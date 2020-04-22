@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../images/iyte-comp-logo.png">
+    <title>Checked Applications</title>
+
+    <!-- Materialize imports -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    
+
+    <!-- Bootstrap imports -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../styles/verification.css">
+</head>
+
+<body>
+
+    <!-- Navigation menu and logo-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href=""><img src="../../images/iyte-comp-logo.png" height="60" width="60"> Izmir
+            Institute Of Technology</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="">Dashboard </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Profile </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Settings </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- List view of applications -->
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="my-3 p-3 bg-white rounded shadow-sm">
+                    <h6 class="border-bottom border-gray pb-2 mb-0">Select Interviewed Applicants</h6>
+
+                    <ol id="sortable" style="list-style-type: none;">
+
+                        <li class="ui-state-default" value="1" draggable="true">
+                            <div class="media text-muted pt-3 applicant-info border-bottom border-gray">
+                                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff"
+                                    color="#007bff" class="mr-2 rounded">
+                                <div class="media-body pb-3 mb-0 small lh-125">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">user@email.com</strong>
+                                    </div>
+                                    <span class="d-block">Name & Lastname</span>
+                                </div>
+                                <label>
+                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <span class="checkbox-label">Accept</span>
+                                </label>
+                            </div>
+                        </li>
+
+                        <li class="ui-state-default" value="1" draggable="true">
+                            <div class="media text-muted pt-3 applicant-info border-bottom border-gray">
+                                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff"
+                                    color="#007bff" class="mr-2 rounded">
+                                <div class="media-body pb-3 mb-0 small lh-125">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">user@email.com</strong>
+                                    </div>
+                                    <span class="d-block">Name & Lastname</span>
+                                </div>
+                                <label>
+                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <span class="checkbox-label">Accept</span>
+                                </label>
+                            </div>
+                        </li>
+
+                        <li class="ui-state-default" value="1" draggable="true">
+                            <div class="media text-muted pt-3 applicant-info border-bottom border-gray">
+                                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff"
+                                    color="#007bff" class="mr-2 rounded">
+                                <div class="media-body pb-3 mb-0 small lh-125">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">user@email.com</strong>
+                                    </div>
+                                    <span class="d-block">Name & Lastname</span>
+                                </div>
+                                <label>
+                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <span class="checkbox-label">Accept</span>
+                                </label>
+                            </div>
+                        </li>
+
+                        <li class="ui-state-default" value="1" draggable="true">
+                            <div class="media text-muted pt-3 applicant-info border-bottom border-gray">
+                                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff"
+                                    color="#007bff" class="mr-2 rounded">
+                                <div class="media-body pb-3 mb-0 small lh-125">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">user@email.com</strong>
+                                    </div>
+                                    <span class="d-block">Name & Lastname</span>
+                                </div>
+                                <label>
+                                    <input id="indeterminate-checkbox" type="checkbox"/>
+                                    <span class="checkbox-label">Accept</span>
+                                </label>
+                            </div>
+                        </li>
+
+
+                        <li class="ui-state-default" value="1" draggable="true">
+                            <div class="media text-muted pt-3 applicant-info border-bottom border-gray">
+                                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff"
+                                    color="#007bff" class="mr-2 rounded">
+                                <div class="media-body pb-3 mb-0 small lh-125">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">user@email.com</strong>
+                                    </div>
+                                    <span class="d-block">Name & Lastname</span>
+                                </div>
+                                <label>
+                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <span class="checkbox-label">Accept</span>
+                                </label>
+                            </div>
+                        </li>
+
+
+                        <li class="ui-state-default" value="1" draggable="true">
+                            <div class="media text-muted pt-3 applicant-info border-bottom border-gray">
+                                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff"
+                                    color="#007bff" class="mr-2 rounded">
+                                <div class="media-body pb-3 mb-0 small lh-125">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">user@email.com</strong>
+                                    </div>
+                                    <span class="d-block">Name & Lastname</span>
+                                </div>
+                                <label>
+                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <span class="checkbox-label">Accept</span>
+                                </label>
+                            </div>
+                        </li>
+
+                        <li class="ui-state-default" value="1" draggable="true">
+                            <div class="media text-muted pt-3 applicant-info border-bottom border-gray">
+                                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff"
+                                    color="#007bff" class="mr-2 rounded">
+                                <div class="media-body pb-3 mb-0 small lh-125">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">user@email.com</strong>
+                                    </div>
+                                    <span class="d-block">Name & Lastname</span>
+                                </div>
+                                <label>
+                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <span class="checkbox-label">Accept</span>
+                                </label>
+                            </div>
+                        </li>
+
+
+                        <li class="ui-state-default" value="1" draggable="true">
+                            <div class="media text-muted pt-3 applicant-info border-bottom border-gray">
+                                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff"
+                                    color="#007bff" class="mr-2 rounded">
+                                <div class="media-body pb-3 mb-0 small lh-125">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">user@email.com</strong>
+                                    </div>
+                                    <span class="d-block">Name & Lastname</span>
+                                </div>
+                                <label>
+                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <span class="checkbox-label">Accept</span>
+                                </label>
+                            </div>
+                        </li>
+
+
+                        <li class="ui-state-default" value="1" draggable="true">
+                            <div class="media text-muted pt-3 applicant-info border-bottom border-gray">
+                                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff"
+                                    color="#007bff" class="mr-2 rounded">
+                                <div class="media-body pb-3 mb-0 small lh-125">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">user@email.com</strong>
+                                    </div>
+                                    <span class="d-block">Name & Lastname</span>
+                                </div>
+                                <label>
+                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <span class="checkbox-label">Accept</span>
+                                </label>
+                            </div>
+                        </li>
+
+
+                        <li class="ui-state-default" value="1" draggable="true">
+                            <div class="media text-muted pt-3 applicant-info border-bottom border-gray">
+                                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff"
+                                    color="#007bff" class="mr-2 rounded">
+                                <div class="media-body pb-3 mb-0 small lh-125">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">user@email.com</strong>
+                                    </div>
+                                    <span class="d-block">Name & Lastname</span>
+                                </div>
+                                <label>
+                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <span class="checkbox-label">Accept</span>
+                                </label>
+                            </div>
+                        </li>
+
+                    </ol>
+                </div>
+                
+                <!-- Pages (20-50 applications per page) -->
+                <ul class="pagination">
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="active"><a href="#!">1</a></li>
+                    <li class="waves-effect"><a href="#!">2</a></li>
+                    <li class="waves-effect"><a href="#!">3</a></li>
+                    <li class="waves-effect"><a href="#!">4</a></li>
+                    <li class="waves-effect"><a href="#!">5</a></li>
+                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <button type="button" class="btn btn-danger submit-results-btn">Submit All Results</button>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../../javascript/assessment.js"></script>
+</body>
+
+</html>

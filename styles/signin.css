@@ -1,0 +1,97 @@
+/* Used with login.html */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: white;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.iztech-logo-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: "90";
+  height: "90";
+  margin-bottom: 2rem;
+}
+
+.font-weight-normal {
+  font-weight: 200;
+}
+
+.sign-in-with-button {
+  margin: 8% 3% 5% 0;
+}
+
+.company-icon {
+  margin-right: 0.8rem;
+  margin-left: -1rem;
+}
+
+.below-logo-title {
+  text-align: center;
+  margin: auto auto 4rem;
+  font-weight: 700;
+  font-size: xx-large;
+}
+
+.sign-up-link {
+  text-align: end;
+  font-size: small;
+}
+
+.login-header {
+  margin-bottom: 1rem;
+}
+
+.rectangle-container{
+  border: 1px solid green;
+}
+
+.sigin-input-form{
+  padding: 31rem;
+}

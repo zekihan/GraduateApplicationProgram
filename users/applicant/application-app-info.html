@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../images/iyte-comp-logo.png">
+  <title>Application</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../styles/application.css">
+  <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../../javascript/application-form.js"></script>
+</head>
+
+<body>
+<div class="container">
+  
+  <!-- Logo and title -->
+  <div class="logo-and-title">  
+    <img class="iztech-logo" src="../../images/iyte-logo.jpg" alt="" width="120" height="120">
+    <h3 class="school-title">Izmir Institute Of Technology Graduate Application</h3>
+  </div>
+  <hr class="">
+  <div class="py-5 text-center">
+    <h2>Application form</h2>
+  </div>
+
+    <!-- Application Form Section -->
+
+    <div class="col-md-12 order-md-1">
+
+      <h4 class="mb-3">Student application information</h4>
+
+      <!-- Student Type Input (foreign, turkish) -->
+
+      <form class="needs-validation" novalidate>
+        
+        <label for="studentType">Department To Apply</label>
+        <div class="input-group mb-3">
+          <select class="custom-select" id="studentTypeSelection" aria-label="" onchange="setVisibilityOfPassportInput(this)">
+            <option selected>Choose...</option>
+            <option value="ceng">Computer Engineering</option>
+            <option value="me">Mechanical Engineering</option>
+            <option value="ce">Civil Engineering</option>
+            <option value="ee">Electrical and Electronics Engineering</option>
+            <option value="physics">Physics</option>
+            <option value="math">Mathematics</option>
+            <option value="chem">Chemistry</option>
+            <option value="chem-eng">Chemistry Engineering</option>
+            <option value="mbg">Molecular Biology And Genetics</option>
+            <option value="ms-eng">Material Science and Engineering</option>
+            <option value="eeng">Environment Engineering</option>
+            <!-- Add all departments here -->
+          </select>
+        </div>
+
+        <label for="studentType">Applicant Type</label>
+        <div class="input-group mb-3">
+          <select class="custom-select" id="studentTypeSelection" aria-label="" onchange="setVisibilityOfPassportInput(this)">
+            <option selected>Choose...</option>
+            <option value="turkish">Turkish Applicant</option>
+            <option value="foreign">Foreign Applicant</option>
+          </select>
+        </div>
+
+        <div id="passport-input-field">
+            <label for="passport">Passport (Only foreign students)</label>
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="passport" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="studentType">Is currently working ?</label>
+            <div class="input-group mb-3">
+                <select class="custom-select" id="isWorking" aria-label="" required onchange="setVisibilityOfPermissionLetterInput(this)">
+                    <option selected>Choose...</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+        </div>
+        
+        <div id="permission-letters-input">
+            <label for="passport">Permission Letter (Only working students) </label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="permissionLetter" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+            </div>
+        </div>
+
+        <label for="photo">Photo</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+          </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
+        </div>
+
+        <label for="undergrad-transcript">Undergraduate Transcript</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
+        </div>
+
+        <label for="ales-result">ALES Result</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
+        </div>
+
+        <label for="english-exam-result">English Exam Result</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
+        </div>
+
+        <label for="reference-letters">Reference Letters</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
+        </div>
+
+        <label for="statement-of-purpose">Statement Of Purpose  </label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
+        </div>
+
+        
+        <label for="studentType">Degree to Apply</label>
+        <div class="input-group">
+          <select class="custom-select" id="degreeSelection" aria-label="" onchange="setVisibilityOfGradTranscriptInput(this)">
+            <option selected>Choose...</option>
+            <option value="phd">PhD</option>
+            <option value="mastersDegree">Master's Degree</option>
+          </select>
+        </div>
+
+        <div id="grad-transcript-input">
+            <label for="passport">Master's Degree Transcript</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="mastersDegreeTranscript" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+            </div>
+        </div>
+
+
+        <hr class="mb-4">
+
+        <button class="btn btn-primary btn-lg btn-block" type="button" onclick="storeApplicationDocuments()">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 1992-2020 Izmir Institute Of Technology</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+</div>
+
+</body>
+</html>

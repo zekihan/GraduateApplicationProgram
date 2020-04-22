@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="images/iyte-comp-logo.png">
+    <title>Log In</title>
+    <meta name="description" content="Izmir Institute of Technology Graduate Application">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/signin.css">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+2:600&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
+    <script src="javascript/login.js"></script>
+  </head>
+  <body>
+    <!--Sign in form-->
+    <form class="form-signin" action="">
+
+      <!--Logo and Application Title-->
+      <img class="mb-4 iztech-logo-img" src="images/iyte-logo.jpg" alt="" width="120" height="120">
+      <div class="below-logo-title">IZTECH Graduate Application</div>
+
+      <!-- Input fields -->
+      <h5 class="login-header">Log In</h6>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+      
+      <div class="checkbox mb-3">
+        <div class="row">
+          <div class="col-6">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
+          <div class="col-6 sign-up-link">
+            <a href="forgotMyPass1.html">Forgot my password</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Buttons -->
+      <button class="btn btn-lg btn-primary btn-block sign-in-with-button" type="submit">Sign in</button>
+      <button type="button" class="btn btn-lg btn-outline-danger btn-block sign-in-with-button"><i class="fab fa-google company-icon"></i>Sign in with Google</button>
+      <button type="button" class="btn btn-lg btn-outline-primary btn-block sign-in-with-button"><i class="fab fa-facebook company-icon"></i>Sign in with Facebook</button>
+      <small class="text-muted">
+          Don't have an account?
+      </small>
+      <button class="btn btn-lg btn-danger btn-block" type="button" onclick="getRegisterPage()">Sign Up</button>
+    </div>
+      <p class="mt-5 mb-3 text-muted">&copy; 1992-2020 Izmir Institute of Technology</p>
+    </form>
+  </body>
+</html>

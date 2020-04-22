@@ -1,0 +1,12 @@
+.confirm-button{
+    border-color: #eb4559;
+    color: #eb4559;
+    font-size: medium;
+    border-radius: 0.3rem;
+    margin: -1rem 0.4rem auto auto;
+}
+
+.confirm-button:hover{
+    background-color: #eb4559;
+    color: white;
+}
