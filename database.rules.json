@@ -1,0 +1,34 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "messages": {
+      ".read": true,
+      ".write": true
+    },
+    "applications": {
+      "$d": {
+        "$department":{
+          "$uid": {
+            "content":{
+              ".read": "$uid == auth.uid || root.child('users').child(auth.uid).child('role').val() == 1 || root.child('users').child(auth.uid).child('role').val() == 2",
+              ".write": "$uid == auth.uid || !data.exists()"
+            },
+            "departmentControl":{
+              ".read": "root.child('users').child(auth.uid).child('role').val() == 1",
+              ".write": "$uid == auth.uid"
+            },
+            "gradschoolControl":{
+              ".read": "root.child('users').child(auth.uid).child('role').val() == 2",
+              ".write": "$uid == auth.uid"
+            }
+          }
+        }
+      }
+    }
+  }
+}
