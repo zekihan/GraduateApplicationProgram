@@ -21,7 +21,16 @@
 	<script src="/__/firebase/7.14.2/firebase-storage.js"></script>
 	<script src="/__/firebase/init.js"></script>
 
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
+
+	<!-- **********************************************
+     * TODO(DEVELOPER): Use your Client ID below. *
+     ********************************************** -->
+	<meta name="google-signin-client_id"
+		content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+	<meta name="google-signin-cookiepolicy" content="single_host_origin">
+	<meta name="google-signin-scope" content="profile email">
 </head>
 
 <body>
@@ -34,39 +43,8 @@
 
 		<p id="p1">Hello World!</p>
 		<!-- Input fields -->
-		<h5 class="login-header">Log In</h6>
-			<label for="inputEmail" class="sr-only">Email address</label>
-			<input type="email" id="inputEmail1" class="form-control" placeholder="Email address" required autofocus>
-			<label for="inputPassword" class="sr-only">Password</label>
-			<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
-
-			<div class="checkbox mb-3">
-				<div class="row">
-					<div class="col-6">
-						<label>
-							<input type="checkbox" value="remember-me"> Remember me
-						</label>
-					</div>
-					<div class="col-6 sign-up-link">
-						<a href="forgotMyPass1.html">Forgot my password</a>
-					</div>
-				</div>
-			</div>
-
-			<!-- Buttons -->
-			<button class="btn btn-lg btn-primary btn-block sign-in-with-button" type="submit"
-				onclick="myFunction()">Sign in</button>
-			<button type="button" class="btn btn-lg btn-outline-danger btn-block sign-in-with-button"><i
-					class="fab fa-google company-icon"></i>Sign in with Google</button>
-			<button type="button" class="btn btn-lg btn-outline-primary btn-block sign-in-with-button"><i
-					class="fab fa-facebook company-icon"></i>Sign in with Facebook</button>
-			<small class="text-muted">
-				Don't have an account?
-			</small>
-			<button class="btn btn-lg btn-danger btn-block" type="button" onclick="getRegisterPage()">Sign Up</button>
-			</div>
-			<p class="mt-5 mb-3 text-muted">&copy; 1992-2020 Izmir Institute of Technology</p>
+		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+		<p class="mt-5 mb-3 text-muted">&copy; 1992-2020 Izmir Institute of Technology</p>
 	</form>
 
 	<script>
@@ -76,17 +54,56 @@
 			});
 		}
 
-		// Retrieve services via the defaultApp variable...
-		var database = firebase.database();
-		var username = "a";
-		database.ref('/messages').once('value').then(function (snapshot) {
-			document.getElementById("p1").innerHTML = snapshot.val();
-		});
-
-		function myFunction() {
-			var a = document.getElementById("inputEmail1").value;
-			firebase.database().ref('/test-field/test1').set(a);
+		function phone(){
+			return true;
 		}
+		function onSignIn(googleUser) {
+
+			console.log('Google Auth Response', googleUser);
+			// We need to register an Observer on Firebase Auth to make sure auth is initialized.
+			var unsubscribe = firebase.auth().onAuthStateChanged(function (firebaseUser) {
+				unsubscribe();
+				// Check if we are already signed-in Firebase with the correct user.
+				if (!isUserEqual(googleUser, firebaseUser)) {
+					if (phone()) {
+						var credential = firebase.auth.GoogleAuthProvider.credential(
+							googleUser.getAuthResponse().id_token);
+						// Sign in with credential from the Google user.
+						firebase.auth().signInWithCredential(credential).then(function (error) 
+						{
+							console.log("error");
+							location.href = "/users/applicant/my-application";
+						}).catch(function (error) {
+							console.log(error);
+							var errorCode = error.code;
+							var errorMessage = error.message;
+							// The email of the user's account used.
+							var email = error.email;
+							// The firebase.auth.AuthCredential type that was used.
+							var credential = error.credential;
+							// ...
+						});
+					}
+				} else {
+					console.log('User already signed-in Firebase.');
+				}
+			});
+		}
+
+		function isUserEqual(googleUser, firebaseUser) {
+			if (firebaseUser) {
+				var providerData = firebaseUser.providerData;
+				for (var i = 0; i < providerData.length; i++) {
+					if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
+						providerData[i].uid === googleUser.getBasicProfile().getId()) {
+						// We don't need to reauth the Firebase connection.
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+
 	</script>
 </body>
 

@@ -4,6 +4,7 @@
   },
   "hosting": {
     "public": "public",
+	"cleanUrls": true,
     "rewrites": [ {
       "source": "/echoMessage",
       "function": "echoMessage"

@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id"
+    content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
     <link rel="icon" href="../../images/iyte-comp-logo.png">
     <title>My Application</title>
     <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
@@ -23,6 +25,15 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <link rel="stylesheet" href="../../styles/my-application.css">
+
+    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script> 
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
@@ -31,7 +42,7 @@
                 width="32" height="32"> Izmir Institute Of Technology</a>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
+                <a class="nav-link" href="#" onclick="signOut()">Sign out</a>
             </li>
         </ul>
     </nav>
@@ -125,6 +136,25 @@
         </div>
     </div>
     <script src="semantic/dist/semantic.min.js"></script>
+    <script>
+        if (!firebase.apps.length) {
+            fetch('/__/firebase/init.json').then(async response => {
+                firebase.initializeApp(await response.json());
+            });
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+        function onLoad() {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
+        }
+    </script>
 </body>
 
 </html>
