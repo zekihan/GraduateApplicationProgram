@@ -42,12 +42,45 @@
 		<div class="below-logo-title">IZTECH Graduate Application</div>
 
 		<p id="p1">Hello World!</p>
+		
+
+		
 		<!-- Input fields -->
 		<div class="g-signin2" data-onsuccess="onSignIn"></div>
 		<p class="mt-5 mb-3 text-muted">&copy; 1992-2020 Izmir Institute of Technology</p>
 	</form>
+	<button class="open-button" onclick="openForm()">Open Form</button>
+	<div class="form-popup" id="myForm">
+		<form action="" class="form-container">
+			<h1>Login</h1>
 
+			<label for="email"><b>Email</b></label>
+			<input type="text" placeholder="Enter Email" name="email" required>
+
+			<label for="psw"><b>Password</b></label>
+			<input type="password" placeholder="Enter Password" name="psw" required>
+
+			<button type="submit" class="btn">Login</button>
+			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+		</form>
+		</div>
 	<script>
+		function openForm() {
+			let newWindow = open('/phone', 'example', 'width=300,height=300')
+			newWindow.focus();
+
+			alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
+
+			newWindow.onload = function() {
+			let html = `<div style="font-size:30px">Welcome!</div>`;
+			newWindow.document.body.insertAdjacentHTML('afterbegin', html);
+			};
+		 // document.getElementById("myForm").style.display = "block";
+		}
+		
+		function closeForm() {
+		  document.getElementById("myForm").style.display = "none";
+		}
 		if (!firebase.apps.length) {
 			fetch('/__/firebase/init.json').then(async response => {
 				firebase.initializeApp(await response.json());
@@ -55,7 +88,8 @@
 		}
 
 		function phone(){
-			return true;
+			location.href = "/phone";
+			return true
 		}
 		function onSignIn(googleUser) {
 
