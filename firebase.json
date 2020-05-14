@@ -4,11 +4,17 @@
   },
   "hosting": {
     "public": "public",
-	"cleanUrls": true,
-    "rewrites": [ {
+    "cleanUrls": true,
+    "rewrites": [{
       "source": "/echoMessage",
       "function": "echoMessage"
-    } ],
+    }, {
+      "source": "/sendCode",
+      "function": "sendCode"
+    }, {
+      "source": "/verifyCode",
+      "function": "verifyCode"
+    }],
     "ignore": [
       "firebase.json",
       "**/.*",

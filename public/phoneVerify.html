@@ -54,7 +54,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="firstName">Verification Code</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                <input type="text" class="form-control" id="verificationCode" required>
                 <div class="invalid-feedback">
                     Valid first name is required.
                 </div>
@@ -62,10 +62,10 @@
         </div>
         <div class="row">
             <div class="col-auto">
-                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                <button class="btn btn-primary btn-block" onclick="verify()" type="button">Submit</button>
             </div>
         </div>
-     </form>
+    </form>
 
 
     <!-- Optional JavaScript -->
@@ -81,6 +81,41 @@
             }
             timeleft -= 1;
         }, 1000);
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function verify() {
+            var phone = getCookie("phone")
+            var url = '/verifyCode'
+            var body = {
+                phoneNumber: phone,
+                verificationCode: document.getElementById('verificationCode').value
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.response)
+
+                }
+            };
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(body));
+        }
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">

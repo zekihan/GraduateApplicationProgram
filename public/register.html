@@ -19,6 +19,13 @@
   </script>
   <link rel="stylesheet" href="styles/register.css">
   <link rel="stylesheet" href="styles/application.css">
+
+  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
+  <script src="/__/firebase/init.js"></script>
+
 </head>
 
 <body>
@@ -76,7 +83,7 @@
           </div>
 
           <hr class="mb-4">
-          <button class="btn btn-primary btn-lg btn-block" type="submit">Sign Up</button>
+          <button class="btn btn-primary btn-lg btn-block" type="button" onclick="signUp()">Sign Up</button>
 
           <small class="text-muted">
             Already have an account?
