@@ -12,21 +12,19 @@ exports.sendCode = functions.https.onRequest(async (request, res) => {
 
     const {
         phoneNumber,
-        recaptcha
+        recaptchaToken
     } = request.body;
     console.log(request.body)
 
     const identityToolkit = google.identitytoolkit({
         auth: 'AIzaSyBIa9fFrqi0f50b7jW8OI5racdVnVlbR3k',
-        version: 'v3',
+        version: 'v3'
     });
 
     response = await identityToolkit.relyingparty.sendVerificationCode({
         phoneNumber,
-        recaptchaToken: recaptcha,
+        recaptchaToken,
     });
-    console.log(response)
-    console.log(response.data)
     console.log(response.data.sessionInfo)
     // save sessionInfo into db. You will need this to verify the SMS code
     const sessionInfo = response.data.sessionInfo;

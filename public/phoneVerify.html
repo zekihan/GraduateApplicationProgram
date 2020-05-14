@@ -70,6 +70,7 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="javascript/phone.js"></script>
     <script>
         var timeleft = 180;
         var downloadTimer = setInterval(function () {
@@ -82,40 +83,6 @@
             timeleft -= 1;
         }, 1000);
 
-        function getCookie(cname) {
-            var name = cname + "=";
-            var decodedCookie = decodeURIComponent(document.cookie);
-            var ca = decodedCookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-        function verify() {
-            var phone = getCookie("phone")
-            var url = '/verifyCode'
-            var body = {
-                phoneNumber: phone,
-                verificationCode: document.getElementById('verificationCode').value
-            }
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log(xhr.response)
-
-                }
-            };
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(body));
-        }
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">

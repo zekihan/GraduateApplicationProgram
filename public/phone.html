@@ -44,9 +44,6 @@
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img src="../../images/iyte-comp-logo.png" alt=""
                 width="32" height="32"> Izmir Institute Of Technology</a>
         <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
-            </li>
         </ul>
     </nav>
     <form>
@@ -70,20 +67,18 @@
     <script>
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sendCode', {
             'size': 'invisible',
-            'callback': function (recapchaToken) {
-                // reCAPTCHA solved, send recapchaToken and phone number to backend.
-
-                // a REST call to your backend
+            'callback': function (recaptchaToken) {
+                var phone = document.getElementById('dialCode').innerText + document.getElementById('phone').value;
                 var url = '/sendCode'
                 var body = {
-                    phoneNumber: document.getElementById('phone').value,
-                    recapchaToken,
+                    phoneNumber: phone,
+                    recaptchaToken,
                 }
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         console.log(xhr.response)
-                        document.cookie = "phone=" + document.getElementById('phone').value;
+                        document.cookie = "phone=" + phone;
                         location.href = "phoneVerify.html";
                     }
                 };
@@ -92,39 +87,18 @@
                 xhr.send(JSON.stringify(body));
             }
         });
-
-        // render the rapchaVerifier. 
         window.recaptchaVerifier.render().then(function (widgetId) {
             window.recaptchaWidgetId = widgetId;
         });
     </script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="build/js/intlTelInput.js"></script>
     <script>
         var input = document.querySelector("#phone");
         window.intlTelInput(input, {
-            // allowDropdown: false,
-            // autoHideDialCode: false,
-            // autoPlaceholder: "off",
             dropdownContainer: document.body,
-            // excludeCountries: ["us"],
-            // formatOnDisplay: false,
-            // geoIpLookup: function(callback) {
-            //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
-            //     var countryCode = (resp && resp.country) ? resp.country : "";
-            //     callback(countryCode);
-            //   });
-            // },
-            // hiddenInput: "full_number",
-            // initialCountry: "auto",
-            // localizedCountries: { 'de': 'Deutschland' },
-            // nationalMode: false,
-            // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-            // placeholderNumberType: "MOBILE",
-            // preferredCountries: ['cn', 'jp'],
-            // separateDialCode: true,
+            preferredCountries: ['tr', 'us'],
+            separateDialCode: true,
             utilsScript: "build/js/utils.js",
         });
     </script>

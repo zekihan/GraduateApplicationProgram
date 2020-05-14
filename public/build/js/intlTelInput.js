@@ -359,7 +359,8 @@
                     }, this.selectedFlag);
                     if (this.options.separateDialCode) {
                         this.selectedDialCode = this._createEl("div", {
-                            "class": "iti__selected-dial-code"
+                            "class": "iti__selected-dial-code",
+                            "id":"dialCode"
                         }, this.selectedFlag);
                     }
                     if (this.options.allowDropdown) {
