@@ -13,5 +13,5 @@ function signIn(){
             // ...
           });
     }
-    getLoginPage()
+    getLoginPage();
 }
