@@ -5,138 +5,14 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="icon" href="images/iyte-comp-logo.png">
-	<title>Log In</title>
+	<title>Index</title>
 	<meta name="description" content="Izmir Institute of Technology Graduate Application">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" href="styles/signin.css">
-	<link href="https://fonts.googleapis.com/css?family=Baloo+2:600&display=swap" rel="stylesheet">
-	<script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
-	<script src="javascript/login.js"></script>
-
-	<script src="/__/firebase/7.14.2/firebase-app.js"></script>
-	<script src="/__/firebase/7.14.2/firebase-auth.js"></script>
-	<script src="/__/firebase/7.14.2/firebase-database.js"></script>
-	<script src="/__/firebase/7.14.2/firebase-storage.js"></script>
-	<script src="/__/firebase/init.js"></script>
-
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-
-	<!-- **********************************************
-     * TODO(DEVELOPER): Use your Client ID below. *
-     ********************************************** -->
-	<meta name="google-signin-client_id"
-		content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
-	<meta name="google-signin-cookiepolicy" content="single_host_origin">
-	<meta name="google-signin-scope" content="profile email">
 </head>
 
 <body>
-	<!--Sign in form-->
-	<form class="form-signin" action="">
-
-		<!--Logo and Application Title-->
-		<img class="mb-4 iztech-logo-img" src="images/iyte-logo.jpg" alt="" width="120" height="120">
-		<div class="below-logo-title">IZTECH Graduate Application</div>
-
-		<p id="p1">Hello World!</p>
-
-
-
-		<!-- Input fields -->
-		<div class="g-signin2" data-onsuccess="onSignIn"></div>
-		<p class="mt-5 mb-3 text-muted">&copy; 1992-2020 Izmir Institute of Technology</p>
-	</form>
-	<button class="open-button" onclick="openForm()">Open Form</button>
-	<div class="form-popup" id="myForm">
-		<form action="" class="form-container">
-			<h1>Login</h1>
-
-			<label for="email"><b>Email</b></label>
-			<input type="text" placeholder="Enter Email" name="email" required>
-
-			<label for="psw"><b>Password</b></label>
-			<input type="password" placeholder="Enter Password" name="psw" required>
-
-			<button type="submit" class="btn">Login</button>
-			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-		</form>
-	</div>
 	<script>
-		function openForm() {
-			let newWindow = open('/phone', 'example', 'width=300,height=300')
-			newWindow.focus();
-
-			alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
-
-			newWindow.onload = function () {
-				let html = `<div style="font-size:30px">Welcome!</div>`;
-				newWindow.document.body.insertAdjacentHTML('afterbegin', html);
-			};
-			// document.getElementById("myForm").style.display = "block";
-		}
-
-		function closeForm() {
-			document.getElementById("myForm").style.display = "none";
-		}
-		if (!firebase.apps.length) {
-			fetch('/__/firebase/init.json').then(async response => {
-				firebase.initializeApp(await response.json());
-			});
-		}
-
-		function phone() {
-			location.href = "/phone";
-			return true
-		}
-
-		function onSignIn(googleUser) {
-
-			console.log('Google Auth Response', googleUser);
-			// We need to register an Observer on Firebase Auth to make sure auth is initialized.
-			var unsubscribe = firebase.auth().onAuthStateChanged(function (firebaseUser) {
-				unsubscribe();
-				// Check if we are already signed-in Firebase with the correct user.
-				if (!isUserEqual(googleUser, firebaseUser)) {
-					if (phone()) {
-						var credential = firebase.auth.GoogleAuthProvider.credential(
-							googleUser.getAuthResponse().id_token);
-						// Sign in with credential from the Google user.
-						firebase.auth().signInWithCredential(credential).then(function (error) {
-							console.log("error");
-							location.href = "/users/applicant/my-application";
-						}).catch(function (error) {
-							console.log(error);
-							var errorCode = error.code;
-							var errorMessage = error.message;
-							// The email of the user's account used.
-							var email = error.email;
-							// The firebase.auth.AuthCredential type that was used.
-							var credential = error.credential;
-							// ...
-						});
-					}
-				} else {
-					console.log('User already signed-in Firebase.');
-				}
-			});
-		}
-
-		function isUserEqual(googleUser, firebaseUser) {
-			if (firebaseUser) {
-				var providerData = firebaseUser.providerData;
-				for (var i = 0; i < providerData.length; i++) {
-					if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-						providerData[i].uid === googleUser.getBasicProfile().getId()) {
-						// We don't need to reauth the Firebase connection.
-						return true;
-					}
-				}
-			}
-			return false;
-		}
+		window.location.href = "/login"
 	</script>
 </body>
 
