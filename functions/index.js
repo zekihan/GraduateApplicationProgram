@@ -28,7 +28,11 @@ exports.sendCode = functions.https.onRequest(async (request, res) => {
     console.log(response.data.sessionInfo)
 
     const sessionInfo = response.data.sessionInfo;
-    admin.database().ref('/tmp/phones').child(phoneNumber).set(sessionInfo);
+    const timestamp = Date.now();
+    admin.database().ref('/tmp/phones').child(phoneNumber).set({
+        sessionInfo,
+        timestamp
+    });
     res.status(200).send("OK");
 });
 
@@ -46,7 +50,7 @@ exports.verifyCode = functions.https.onRequest(async (request, res) => {
     });
 
     var phoneSessionId;
-    await admin.database().ref('/tmp/phones').child(phoneNumber).once('value').then(snapshot => {
+    await admin.database().ref('/tmp/phones').child(phoneNumber).child('sessionInfo').once('value').then(snapshot => {
         phoneSessionId = snapshot.val();
         console.log(phoneSessionId);
         return phoneSessionId;
@@ -99,3 +103,15 @@ exports.populateUser = functions.https.onRequest(async (request, response) => {
     });
     response.status(200).send("saved");
 });
+
+exports.deletePhoneInfo = functions.database.ref('/users/{userId}')
+    .onCreate((snapshot, context) => {
+        // Grab the current value of what was written to the Realtime Database.
+        const original = snapshot.val()['phone'];
+        console.log('Uppercasing', context.params.pushId, original);
+
+        // You must return a Promise when performing asynchronous tasks inside a Functions such as
+        // writing to the Firebase Realtime Database.
+        // Setting an "uppercase" sibling in the Realtime Database returns a Promise.
+        return admin.database().ref('/tmp/phones/').child(original).remove();
+    });
