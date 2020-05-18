@@ -42,9 +42,9 @@
 		<div class="below-logo-title">IZTECH Graduate Application</div>
 
 		<p id="p1">Hello World!</p>
-		
 
-		
+
+
 		<!-- Input fields -->
 		<div class="g-signin2" data-onsuccess="onSignIn"></div>
 		<p class="mt-5 mb-3 text-muted">&copy; 1992-2020 Izmir Institute of Technology</p>
@@ -63,7 +63,7 @@
 			<button type="submit" class="btn">Login</button>
 			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
 		</form>
-		</div>
+	</div>
 	<script>
 		function openForm() {
 			let newWindow = open('/phone', 'example', 'width=300,height=300')
@@ -71,15 +71,15 @@
 
 			alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
 
-			newWindow.onload = function() {
-			let html = `<div style="font-size:30px">Welcome!</div>`;
-			newWindow.document.body.insertAdjacentHTML('afterbegin', html);
+			newWindow.onload = function () {
+				let html = `<div style="font-size:30px">Welcome!</div>`;
+				newWindow.document.body.insertAdjacentHTML('afterbegin', html);
 			};
-		 // document.getElementById("myForm").style.display = "block";
+			// document.getElementById("myForm").style.display = "block";
 		}
-		
+
 		function closeForm() {
-		  document.getElementById("myForm").style.display = "none";
+			document.getElementById("myForm").style.display = "none";
 		}
 		if (!firebase.apps.length) {
 			fetch('/__/firebase/init.json').then(async response => {
@@ -87,10 +87,11 @@
 			});
 		}
 
-		function phone(){
+		function phone() {
 			location.href = "/phone";
 			return true
 		}
+
 		function onSignIn(googleUser) {
 
 			console.log('Google Auth Response', googleUser);
@@ -103,8 +104,7 @@
 						var credential = firebase.auth.GoogleAuthProvider.credential(
 							googleUser.getAuthResponse().id_token);
 						// Sign in with credential from the Google user.
-						firebase.auth().signInWithCredential(credential).then(function (error) 
-						{
+						firebase.auth().signInWithCredential(credential).then(function (error) {
 							console.log("error");
 							location.href = "/users/applicant/my-application";
 						}).catch(function (error) {
@@ -137,7 +137,6 @@
 			}
 			return false;
 		}
-
 	</script>
 </body>
 

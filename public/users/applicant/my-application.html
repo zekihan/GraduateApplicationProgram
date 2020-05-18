@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id"
-    content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
     <link rel="icon" href="../../images/iyte-comp-logo.png">
     <title>My Application</title>
     <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
@@ -31,8 +31,8 @@
     <script src="/__/firebase/7.14.2/firebase-database.js"></script>
     <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
     <script src="/__/firebase/init.js"></script>
-    
-    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script> 
+
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
@@ -149,10 +149,11 @@
                 console.log('User signed out.');
             });
         }
+
         function onLoad() {
-        gapi.load('auth2', function() {
-            gapi.auth2.init();
-        });
+            gapi.load('auth2', function () {
+                gapi.auth2.init();
+            });
         }
     </script>
 </body>

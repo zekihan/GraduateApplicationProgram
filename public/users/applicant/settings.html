@@ -77,68 +77,72 @@
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-              <section id="basic-settings">
-                <h1 class="title big">Information</h1>
-                <div class="row">
-                  <div class="avatar col-sm-3">
-                    <img src="https://d36rlb2fgh8cjd.cloudfront.net/default-images/default-user-q80.png" alt="Zekihan">
-                    <div class="col-auto">
-                      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Lorem Ipsum">
+                <section id="basic-settings">
+                    <h1 class="title big">Information</h1>
+                    <div class="row">
+                        <div class="avatar col-sm-3">
+                            <img src="https://d36rlb2fgh8cjd.cloudfront.net/default-images/default-user-q80.png"
+                                alt="Zekihan">
+                            <div class="col-auto">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="Lorem Ipsum">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <div class="other-infos infos-zone">
+                                <h2>Your information <span class="other-message"></span></h2>
+                                <form action="/set_infos" class="form-horizontal" method="post" data-parsley-validate=""
+                                    novalidate="">
+
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                                        <div class="col-7">
+                                            <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                                value="email@example.com">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-auto col-form-label">Phone</label>
+                                        <div class="col-auto">
+                                            <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                                value="+90******1111">
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary">Change your phone</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary">Reset Password</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-7">
+                                            <button style="background-color: rebeccapurple;" type="submit"
+                                                class="btn btn-primary btn-block">Save Changes</button>
+                                        </div>
+                                    </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-lg-5 margin-right">
+
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-danger">Delete your account</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
                     </div>
-                  </div>
-      
-                  <div class="col-sm-9">
-                    <div class="other-infos infos-zone">
-                      <h2>Your information <span class="other-message"></span></h2>
-                      <form action="/set_infos" class="form-horizontal" method="post" data-parsley-validate="" novalidate="">
-
-                        <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                          <div class="col-7">
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                              value="email@example.com">
-                          </div>
-                        </div>
-
-                        <div class="form-group row">
-                          <label for="inputEmail3" class="col-auto col-form-label">Phone</label>
-                          <div class="col-auto">
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="+90******1111">
-                          </div>
-                          <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Change your phone</button>
-                          </div>
-                        </div>
-
-                        <div class="form-group row">
-                          <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Reset Password</button>
-                          </div>
-                        </div>
-
-                        <div class="form-group row">
-                          <div class="col-7">
-                            <button style="background-color: rebeccapurple;" type="submit"
-                              class="btn btn-primary btn-block">Save Changes</button>
-                          </div>
-                        </div>
-
-                    </div>
-      
-                    <div class="form-group row">
-                      <div class="col-lg-5 margin-right">
-      
-                      </div>
-                      <div class="col-auto">
-                        <button type="submit" class="btn btn-danger">Delete your account</button>
-                      </div>
-                    </div>
-                  </div>
-                  </form>
-                </div>
-              </section>
+                </section>
             </main>
-      
+
         </div>
     </div>
     <script src="semantic/dist/semantic.min.js"></script>

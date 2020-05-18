@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../images/iyte-comp-logo.png">
     <title>Dashboard</title>
-    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../../styles/application.css">
@@ -20,8 +19,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <link rel="stylesheet" href="../../styles/my-application.css">
 </head>
 
@@ -31,7 +28,7 @@
                 width="32" height="32"> Izmir Institute Of Technology</a>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
+                <a class="nav-link" onclick="signOut()">Sign out</a>
             </li>
         </ul>
     </nav>
@@ -81,7 +78,53 @@
             </main>
         </div>
     </div>
-    <script src="semantic/dist/semantic.min.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    <script src="//connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+        FB.init({
+            appId: '271875460605718',
+            status: true,
+            xfbml: true,
+            version: 'v2.6'
+        });
+    </script>
+
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+    <meta name="google-signin-client_id"
+        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // window.location.href = '/users/applicant/applicant-dashboard';
+            } else {
+                window.location.href = '/login';
+            }
+        });
+
+        function onLoad() {
+            gapi.load('auth2', function () {
+                gapi.auth2.init();
+            });
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+            FB.logout(function (response) {
+                // Person is now logged out
+            });
+            firebase.auth().signOut().then(function () {
+                window.location.href = "/login"
+            }).catch(function (error) {
+                console.log(error)
+            });
+        }
+    </script>
 </body>
 
 </html>

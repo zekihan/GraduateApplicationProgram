@@ -25,7 +25,7 @@ function verify() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             console.log(xhr.response)
-           //redirect to ?
+            opener.verify(true)
         }
     };
     xhr.open("POST", url, true);

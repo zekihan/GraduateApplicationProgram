@@ -20,12 +20,6 @@
   <link rel="stylesheet" href="styles/register.css">
   <link rel="stylesheet" href="styles/application.css">
 
-  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
-  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
-  <script src="/__/firebase/7.14.2/firebase-database.js"></script>
-  <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
-  <script src="/__/firebase/init.js"></script>
-
 </head>
 
 <body>
@@ -45,44 +39,36 @@
             <div class="col-md-6 mb-3">
               <label for="firstName">First name</label>
               <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
+              <span class="error-msg" style="color:red;" id="firstName-error"></span>
             </div>
             <div class="col-md-6 mb-3">
               <label for="lastName">Last name</label>
               <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid last name is required.
-              </div>
+              <span class="error-msg" style="color:red;" id="lastName-error"></span>
             </div>
           </div>
 
           <div class="mb-3">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com">
-            <div class="invalid-feedback">
-              Please enter a valid email address for shipping updates.
-            </div>
+            <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+            <span class="error-msg" style="color:red;" id="email-error"></span>
           </div>
 
           <div class="mb-3">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password" required>
-            <div class="invalid-feedback">
-              Please enter your password
-            </div>
+            <input type="password" autocomplete="on" class="form-control" id="password" placeholder="Password" required>
+            <span class="error-msg" style="color:red;" id="password-error"></span>
           </div>
 
           <div class="mb-3">
             <label for="password">Re-type Password</label>
-            <input type="password" class="form-control" id="password-again" placeholder="Password" required>
-            <div class="invalid-feedback">
-              Please enter your password
-            </div>
+            <input type="password" autocomplete="on" class="form-control" id="password-again" placeholder="Password"
+              required>
+            <span class="error-msg" style="color:red;" id="password-again-error"></span>
           </div>
 
           <hr class="mb-4">
+          <span class="error-msg" style="color:red;" id="phone-error"></span>
           <button class="btn btn-primary btn-lg btn-block" type="button" onclick="signUp()">Sign Up</button>
 
           <small class="text-muted">
@@ -98,6 +84,10 @@
       <p class="mb-1">&copy; 1992-2020 Izmir Institute Of Technology</p>
     </footer>
   </div>
+
+  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
   <script src="javascript/register.js"></script>
 </body>
 

@@ -17,7 +17,7 @@ exports.sendCode = functions.https.onRequest(async (request, res) => {
     console.log(request.body)
 
     const identityToolkit = google.identitytoolkit({
-        auth: 'AIzaSyBIa9fFrqi0f50b7jW8OI5racdVnVlbR3k',
+        auth: 'AIzaSyA547mqKiE8KaPBOhyzRzwmaqVvlefeTgY',
         version: 'v3'
     });
 
@@ -26,7 +26,7 @@ exports.sendCode = functions.https.onRequest(async (request, res) => {
         recaptchaToken,
     });
     console.log(response.data.sessionInfo)
-    // save sessionInfo into db. You will need this to verify the SMS code
+
     const sessionInfo = response.data.sessionInfo;
     admin.database().ref('/tmp/phones').child(phoneNumber).set(sessionInfo);
     res.status(200).send("OK");
@@ -41,7 +41,7 @@ exports.verifyCode = functions.https.onRequest(async (request, res) => {
     console.log(request.body)
 
     const identityToolkit = google.identitytoolkit({
-        auth: 'AIzaSyBIa9fFrqi0f50b7jW8OI5racdVnVlbR3k',
+        auth: 'AIzaSyA547mqKiE8KaPBOhyzRzwmaqVvlefeTgY',
         version: 'v3',
     });
 
@@ -62,9 +62,11 @@ exports.verifyCode = functions.https.onRequest(async (request, res) => {
     res.status(200).send("OK");
 });
 
-exports.echoMessage = functions.https.onRequest(async (request, response) => {
-    // Grab the text parameter.
-    const email = request.get("email");
+exports.checkUserExists = functions.https.onRequest(async (request, response) => {
+
+    const {
+        email
+    } = request.body;
     console.log(email)
 
     return admin.auth().getUserByEmail(email).then(user => {
@@ -77,4 +79,23 @@ exports.echoMessage = functions.https.onRequest(async (request, response) => {
             response.status(400).send(err.message);
         }
     })
+});
+
+exports.populateUser = functions.https.onRequest(async (request, response) => {
+
+    const {
+        uid,
+        firstName,
+        lastName,
+        phone
+    } = request.body;
+    console.log(firstName, lastName, phone);
+
+    admin.database().ref('users').child(uid).set({
+        name: firstName,
+        lastName,
+        phone,
+        role: 0
+    });
+    response.status(200).send("saved");
 });

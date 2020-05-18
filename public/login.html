@@ -46,7 +46,8 @@
       </div>
 
       <!-- Buttons -->
-      <button class="btn btn-lg btn-primary btn-block sign-in-with-button" type="button" onclick="signInWithEmail()">Sign in</button>
+      <button class="btn btn-lg btn-primary btn-block sign-in-with-button" type="button"
+        onclick="signInWithEmail()">Sign in</button>
       <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
       <fb:login-button data-auto-logout-link="true" scope="public_profile,email" size="large"></fb:login-button>
 
@@ -149,12 +150,12 @@
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            // The email of the user's account used.
             var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
-            // ...
+            console.log(errorCode, errorMessage)
+            return false;
           });
+          console.log("Successful authentication");
         } else {
           console.log('User already signed-in Firebase.');
         }
@@ -174,6 +175,16 @@
       }
       return false;
     }
+  </script>
+
+  <script>
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        window.location.href = '/users/applicant/applicant-dashboard';
+      } else {
+        // window.location.href = '/login';
+      }
+    });
   </script>
 
 </body>
