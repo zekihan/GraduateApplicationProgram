@@ -3,6 +3,7 @@ function getRegisterPage() {
 }
 
 function signInWithEmail() {
+    showSpinner();
     var email = document.getElementById('inputEmail').value;
     console.log('Email: ' + email);
     var password = document.getElementById('inputPassword').value;
@@ -16,4 +17,5 @@ function signInWithEmail() {
         location.href = "register.html";
     });
     console.log("Successful authentication");
+    hideSpinner();
 }
