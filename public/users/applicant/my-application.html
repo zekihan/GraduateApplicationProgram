@@ -28,9 +28,10 @@
 
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="../../javascript/my-application.js"></script>
 </head>
 
-<body>
+<body onload="getApplicationData()">
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img src="../../images/iyte-comp-logo.png" alt=""
                 width="32" height="32"> Izmir Institute Of Technology</a>
@@ -84,7 +85,7 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
                 <div class="application-section">
-                    <h4 class="page-title">Application Details</h2>
+                    <h4 class="page-title">Application Details</h4>
                         <div class="table-responsive">
                             <table class="table table-striped table-sm">
                                 <thead>
@@ -94,7 +95,7 @@
                                         <th>Application Date</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="applicationEntries">
                                     <tr>
                                         <td>user@email.com</td>
                                         <td>Waiting for interview results</td>
@@ -116,7 +117,7 @@
                                         <th>Time</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="interviewEntries">
                                     <tr>
                                         <td>Computer Engineering Department</td>
                                         <td>03/04/2020</td>
@@ -129,13 +130,13 @@
             </main>
         </div>
     </div>
+    <script src="javascript/my-application.js"></script>
     <script src="semantic/dist/semantic.min.js"></script>
     <script src="/__/firebase/7.14.2/firebase-app.js"></script>
     <script src="/__/firebase/7.14.2/firebase-database.js"></script>
     <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
     <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
     <script src="/__/firebase/init.js"></script>
-
     <script src="//connect.facebook.net/en_US/sdk.js"></script>
     
     <script>
@@ -180,7 +181,15 @@
             });
         }
     </script>
-    <script src="javascript/my-application.js"></script>
+    <script>
+        var userId;
+        firebase.auth().onAuthStateChanged(function(user){
+            userId = firebase.auth().currentUser.uid;
+        });
+        var admin = require('firebase-admin');
+        var ref = admin.database().ref('users/' + userId + '/applications');
+        ref.push();
+    </script>
 </body>
 
 </html>
