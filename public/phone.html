@@ -22,7 +22,8 @@
         <ul class="navbar-nav px-3">
         </ul>
     </nav>
-    <form>
+
+    <div class="container" style="width: fit-content; padding-top: 15%;">
         <div class="form-group row">
             <p class="card-text">We will send you a text message with a verification code that <br> you'll need to enter
                 on the next screen.</p>
@@ -38,7 +39,7 @@
                 <button type="button" class="btn btn-primary" id="sendCode" onclick="">Send</button>
             </div>
         </div>
-    </form>
+    </div>
 
 
     <script src="/__/firebase/7.14.2/firebase-app.js"></script>
@@ -61,6 +62,7 @@
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         console.log(xhr.response)
+                        document.cookie = "phone=" + phone;
                         opener.phone(phone)
                     }
                 };
