@@ -96,11 +96,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="applicationEntries">
-                                    <tr>
-                                        <td>user@email.com</td>
-                                        <td>Waiting for interview results</td>
-                                        <td>3/04/2020</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -118,11 +113,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="interviewEntries">
-                                    <tr>
-                                        <td>Computer Engineering Department</td>
-                                        <td>03/04/2020</td>
-                                        <td>13:15</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -186,9 +176,6 @@
         firebase.auth().onAuthStateChanged(function(user){
             userId = firebase.auth().currentUser.uid;
         });
-        var admin = require('firebase-admin');
-        var ref = admin.database().ref('users/' + userId + '/applications');
-        ref.push();
     </script>
 </body>
 

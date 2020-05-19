@@ -6,25 +6,22 @@
                 ".write": "$uid === auth.uid"
             }
         },
-        "messages": {
-            ".read": true,
-            ".write": true
-        },
         "applications": {
             "$d": {
                 "$department": {
-                    "$uid": {
+                    "$appid": {
+                        ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 1 || root.child('users').child(auth.uid).child('role').val() == 2",
                         "content": {
-                            ".read": "$uid == auth.uid || root.child('users').child(auth.uid).child('role').val() == 1 || root.child('users').child(auth.uid).child('role').val() == 2",
-                            ".write": "$uid == auth.uid || !data.exists()"
+                            ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 1 || root.child('users').child(auth.uid).child('role').val() == 2",
+                            ".write": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || !data.exists()"
                         },
                         "departmentControl": {
-                            ".read": "root.child('users').child(auth.uid).child('role').val() == 1",
-                            ".write": "$uid == auth.uid"
+                            ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 1",
+                            ".write": "root.child('users').child(auth.uid).child('role').val() == 1"
                         },
                         "gradschoolControl": {
-                            ".read": "root.child('users').child(auth.uid).child('role').val() == 2",
-                            ".write": "$uid == auth.uid"
+                            ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 2",
+                            ".write": "root.child('users').child(auth.uid).child('role').val() == 2"
                         }
                     }
                 }
