@@ -1,31 +1,37 @@
 {
-    "rules": {
-        "users": {
-            "$uid": {
-                ".read": "$uid === auth.uid",
-                ".write": "$uid === auth.uid"
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "applications": {
+      ".read": "true",
+      "$term": {
+        "$department": {
+          "$appid": {
+            ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 1 || root.child('users').child(auth.uid).child('role').val() == 2",
+            ".write": "!data.exists() && newData.exists()",
+            "content": {
+              ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 1 || root.child('users').child(auth.uid).child('role').val() == 2",
+              ".write": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || !data.exists()"
+            },
+            "departmentControl": {
+              ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 1",
+              ".write": "root.child('users').child(auth.uid).child('role').val() == 1"
+            },
+            "gradschoolControl": {
+              ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 2",
+              ".write": "root.child('users').child(auth.uid).child('role').val() == 2"
             }
-        },
-        "applications": {
-            "$d": {
-                "$department": {
-                    "$appid": {
-                        ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 1 || root.child('users').child(auth.uid).child('role').val() == 2",
-                        "content": {
-                            ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 1 || root.child('users').child(auth.uid).child('role').val() == 2",
-                            ".write": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || !data.exists()"
-                        },
-                        "departmentControl": {
-                            ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 1",
-                            ".write": "root.child('users').child(auth.uid).child('role').val() == 1"
-                        },
-                        "gradschoolControl": {
-                            ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 2",
-                            ".write": "root.child('users').child(auth.uid).child('role').val() == 2"
-                        }
-                    }
-                }
-            }
+          }
         }
+      }
+    },
+    "departments": {
+      ".read": "auth.uid != null",
+      ".write": "root.child('users').child(auth.uid).child('role').val() == 2"
     }
+  }
 }

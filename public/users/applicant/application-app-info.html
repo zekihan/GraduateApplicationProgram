@@ -45,22 +45,11 @@
 
             <form class="needs-validation" novalidate>
 
-                <label for="studentType">Department To Apply</label>
+                <label for="departmentSelection">Department To Apply</label>
                 <div class="input-group mb-3">
-                    <select class="custom-select" id="studentTypeSelection" aria-label=""
-                        onchange="setVisibilityOfPassportInput(this)">
+                    <select class="custom-select" id="departmentSelection" aria-label="">
                         <option selected>Choose...</option>
-                        <option value="ceng">Computer Engineering</option>
-                        <option value="me">Mechanical Engineering</option>
-                        <option value="ce">Civil Engineering</option>
-                        <option value="ee">Electrical and Electronics Engineering</option>
-                        <option value="physics">Physics</option>
-                        <option value="math">Mathematics</option>
-                        <option value="chem">Chemistry</option>
-                        <option value="chem-eng">Chemistry Engineering</option>
-                        <option value="mbg">Molecular Biology And Genetics</option>
-                        <option value="ms-eng">Material Science and Engineering</option>
-                        <option value="eeng">Environment Engineering</option>
+
                         <!-- Add all departments here -->
                     </select>
                 </div>
@@ -120,7 +109,7 @@
                     <div class="input-group-prepend">
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01"
+                        <input type="file" class="custom-file-input" id="photoFile"
                             aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
@@ -132,7 +121,7 @@
                         <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01"
+                        <input type="file" class="custom-file-input" id="underGradTransFile"
                             aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
@@ -144,7 +133,7 @@
                         <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01"
+                        <input type="file" class="custom-file-input" id="alesFile"
                             aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
@@ -156,7 +145,7 @@
                         <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01"
+                        <input type="file" class="custom-file-input" id="englishFile"
                             aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
@@ -168,8 +157,8 @@
                         <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01"
-                            aria-describedby="inputGroupFileAddon01">
+                        <input type="file" class="custom-file-input" id="referenceFiles"
+                            aria-describedby="inputGroupFileAddon01" multiple>
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
                 </div>
@@ -180,7 +169,7 @@
                         <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01"
+                        <input type="file" class="custom-file-input" id="purposeFile"
                             aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
@@ -214,8 +203,7 @@
 
                 <hr class="mb-4">
 
-                <button class="btn btn-primary btn-lg btn-block" type="button"
-                    onclick="storeApplicationDocuments()">Submit</button>
+                <button class="btn btn-primary btn-lg btn-block" type="button" onclick="submitResult()">Submit</button>
             </form>
         </div>
     </div>
@@ -230,6 +218,31 @@
     </footer>
     </div>
 
+    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script>
+        fillDepartment();
+        $(".custom-file-input").on("change", function () {
+            var length = $(this).get(0).files.length;
+            if (length === 1){
+                var fileNames = '';
+                fileNames += '"' + $(this).get(0).files[0].name + '"';
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
+            }
+            else if(length === 2){
+                var fileNames = '';
+                fileNames += '"' + $(this).get(0).files[0].name + '",';
+                fileNames += '"' + $(this).get(0).files[1].name + '"';
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
+            }else{
+                $(this).siblings(".custom-file-label").addClass("selected").html("Can not select more than 2.");
+                $(this).get(0).files = null;
+            }
+        });
+    </script>
 </body>
 
 </html>
