@@ -20,6 +20,7 @@
     <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
     <link rel="stylesheet" href="../../styles/verification.css">
     <link rel="stylesheet" href="../../styles/list-of-departments.css">
+    <script src="../../javascript/list-checked-applications.js"></script>
 </head>
 
 <body onload="getFirstPage()">
@@ -51,129 +52,9 @@
     <main role="main" class="container">
 
         <!-- Listview of unchecked applications -->
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <div id="applicant-container" class="my-3 p-3 bg-white rounded shadow-sm">
             <h6 class="border-bottom border-gray pb-2 mb-0">Submitted Unchecked Applications</h6>
-
-            <div class="media text-muted pt-3 border-bottom border-gray"
-                onclick="location.href='application-details.html';" style="cursor: pointer;">
-                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff" color="#007bff"
-                    class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125">
-                    <strong class="d-block text-gray-dark">user@email.com</strong>
-                    Name & Last Name
-                </p>
-                <a href="application-details.html" class="details-link">View Details</a>
-            </div>
-
-            <div class="media text-muted pt-3 border-bottom border-gray"
-                onclick="location.href='application-details.html';" style="cursor: pointer;">
-                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff" color="#007bff"
-                    class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125">
-                    <strong class="d-block text-gray-dark">user@email.com</strong>
-                    Name & Last Name
-                </p>
-                <a href="application-details.html" class="details-link">View Details</a>
-            </div>
-
-            <div class="media text-muted pt-3 border-bottom border-gray"
-                onclick="location.href='application-details.html';" style="cursor: pointer;">
-                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff" color="#007bff"
-                    class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125">
-                    <strong class="d-block text-gray-dark">user@email.com</strong>
-                    Name & Last Name
-                </p>
-                <a href="application-details.html" class="details-link">View Details</a>
-            </div>
-
-            <div class="media text-muted pt-3 border-bottom border-gray"
-                onclick="location.href='application-details.html';" style="cursor: pointer;">
-                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff" color="#007bff"
-                    class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125">
-                    <strong class="d-block text-gray-dark">user@email.com</strong>
-                    Name & Last Name
-                </p>
-                <a href="application-details.html" class="details-link">View Details</a>
-            </div>
-
-            <div class="media text-muted pt-3 border-bottom border-gray"
-                onclick="location.href='application-details.html';" style="cursor: pointer;">
-                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff" color="#007bff"
-                    class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125">
-                    <strong class="d-block text-gray-dark">user@email.com</strong>
-                    Name & Last Name
-                </p>
-                <a href="application-details.html" class="details-link">View Details</a>
-            </div>
-
-            <div class="media text-muted pt-3 border-bottom border-gray"
-                onclick="location.href='application-details.html';" style="cursor: pointer;">
-                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff" color="#007bff"
-                    class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125">
-                    <strong class="d-block text-gray-dark">user@email.com</strong>
-                    Name & Last Name
-                </p>
-                <a href="application-details.html" class="details-link">View Details</a>
-            </div>
-
-            <div class="media text-muted pt-3 border-bottom border-gray"
-                onclick="location.href='application-details.html';" style="cursor: pointer;">
-                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff" color="#007bff"
-                    class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125">
-                    <strong class="d-block text-gray-dark">user@email.com</strong>
-                    Name & Last Name
-                </p>
-                <a href="application-details.html" class="details-link">View Details</a>
-            </div>
-
-            <div class="media text-muted pt-3 border-bottom border-gray"
-                onclick="location.href='application-details.html';" style="cursor: pointer;">
-                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff" color="#007bff"
-                    class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125">
-                    <strong class="d-block text-gray-dark">user@email.com</strong>
-                    Name & Last Name
-                </p>
-                <a href="application-details.html" class="details-link">View Details</a>
-            </div>
-
-            <div class="media text-muted pt-3 border-bottom border-gray"
-                onclick="location.href='application-details.html';" style="cursor: pointer;">
-                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff" color="#007bff"
-                    class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125">
-                    <strong class="d-block text-gray-dark">user@email.com</strong>
-                    Name & Last Name
-                </p>
-                <a href="application-details.html" class="details-link">View Details</a>
-            </div>
-
-            <div class="media text-muted pt-3 border-bottom border-gray"
-                onclick="location.href='application-details.html';" style="cursor: pointer;">
-                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff" color="#007bff"
-                    class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125">
-                    <strong class="d-block text-gray-dark">user@email.com</strong>
-                    Name & Last Name
-                </p>
-                <a href="application-details.html" class="details-link">View Details</a>
-            </div>
-
-            <div class="media text-muted pt-3 border-bottom border-gray"
-                onclick="location.href='application-details.html';" style="cursor: pointer;">
-                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff" color="#007bff"
-                    class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom">
-                    <strong class="d-block text-gray-dark">user@email.com</strong>
-                    Name & Last Name
-                </p>
-                <a href="application-details.html" class="details-link">View Details</a>
-            </div>
+        </div>
 
             <nav class="page-navbar" aria-label="...">
                 <ul class="pagination">
@@ -192,6 +73,7 @@
             </nav>
 
     </main>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="javascript/my-application.js"></script>
     <script src="semantic/dist/semantic.min.js"></script>
     <script src="/__/firebase/7.14.2/firebase-app.js"></script>
@@ -199,7 +81,6 @@
     <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
     <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
     <script src="/__/firebase/init.js"></script>
-    <script src="../../javascript/list-checked-applications.js"></script>
 </body>
 
 </html>
