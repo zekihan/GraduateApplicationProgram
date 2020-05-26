@@ -3,18 +3,9 @@ function getApplicationData() {
         if (user) {
             //Get firebase database instance
             var userId = firebase.auth().currentUser.uid;
-            var userEmail = user.email;
-            var applicationProperties = new Map();
             firebase.database().ref('users/' + userId + '/applications').once('value').then(function (snapshot) {
                 if (snapshot === null) {
-                    var noApplication = true;
-                    applicationProperties.set('date', null);
-                    applicationProperties.set('place', null);
-                    applicationProperties.set('time', null);
-                    applicationProperties.set('isAccepted', null);
-                    applicationProperties.set('isVerified', null);
-                    applicationProperties.set('result', null);
-                    addDataToTables(userEmail, applicationProperties);
+                    addDataToTables(null, null);
                     return;
                 }
                 snapshot.forEach(function (childSnapshot) {
@@ -28,39 +19,43 @@ function getApplicationData() {
                     var departmentId = childSnapshot.child('department').val();
 
                     //Get the interview data.
-                    firebase.database().ref('applications').child(term).child(departmentId).child(applicationId).once('value').then(function (snapshot) {
-                        var date = snapshot.child('departmentControl/interviewInfo/date').val();
-                        var place = snapshot.child('departmentControl/interviewInfo/place').val();
-                        var time = snapshot.child('departmentControl/interviewInfo/time').val();
-                        var isAccepted = snapshot.child('departmentControl/isAccepted').val();
+                    firebase.database().ref('applications').child(term).child(departmentId).child(applicationId).once('value').then(function (applicationSnapshot) {
+                        var createDate = applicationSnapshot.child('date').val();
+                        var date = applicationSnapshot.child('departmentControl/interviewInfo/date').val();
+                        var place = applicationSnapshot.child('departmentControl/interviewInfo/place').val();
+                        var time = applicationSnapshot.child('departmentControl/interviewInfo/time').val();
+                        var isAccepted = applicationSnapshot.child('departmentControl/isAccepted').val();
 
+                        var applicationProperties = new Map();
+
+                        applicationProperties.set('createDate', createDate);
                         applicationProperties.set('date', date);
                         applicationProperties.set('place', place);
                         applicationProperties.set('time', time);
-                        if(isAccepted === null){
-                            applicationProperties.set('isAccepted', false);
-                        }else{
-                            applicationProperties.set('isAccepted', true);
+                        if (isAccepted === null) {
+                            applicationProperties.set('isAccepted', null);
+                        } else {
+                            applicationProperties.set('isAccepted', isAccepted);
                         }
-                        
 
                         //Get the application's acceptance data
-                        var isVerified = snapshot.child('gradschoolControl/isVerified').val();
-                        if(isVerified === null){
-                            applicationProperties.set('isVerified', false);
-                        }else{
-                            applicationProperties.set('isVerified', true);
+                        var isVerified = applicationSnapshot.child('gradschoolControl/isVerified').val();
+                        if (isVerified === null) {
+                            applicationProperties.set('isVerified', null);
+                        } else {
+                            applicationProperties.set('isVerified', isVerified);
                         }
 
-                        var result = snapshot.child('gradschoolControl/result').val();
-                        if(result === null){
-                            applicationProperties.set('result', false);
-                        }else{
-                            applicationProperties.set('result', true);
+                        var result = applicationSnapshot.child('gradschoolControl/result').val();
+                        if (result === null) {
+                            applicationProperties.set('result', null);
+                        } else {
+                            applicationProperties.set('result', result);
                         }
-
-                        //Display each application's data on the my-application.html page
-                        addDataToTables(applicationProperties, userEmail);
+                        firebase.database().ref('departments').child(departmentId).once('value').then(function (depSnapshot) {
+                            //Display each application's data on the my-application.html page
+                            addDataToTables(applicationProperties, depSnapshot.child("name").val());
+                        });
                     });
                 });
             });
@@ -73,41 +68,51 @@ function getApplicationData() {
 }
 
 //applicationData is a map that contains date, place, time, isAccepted, isVerified and result data.
-function addDataToTables(applicationData, userEmail) {
-    var date = applicationData.get('date');
-    var place = applicationData.get('place');
-    var time = applicationData.get('time');
-    var isAccepted = applicationData.get('isAccepted');
-    var isVerified = applicationData.get('isVerified');
-    var result = applicationData.get('result');
-
-    if (date === null && place === null && time === null && isAccepted === null && isVerified === null && result === null) {
+function addDataToTables(applicationData, departmentId) {
+    if (applicationData === null) {
         var currentStatus = 'You haven\'t created an application yet';
+        var createDate = "-";
+        var date = "-";
+        var place = "-";
+        var time = "-";
+        var isAccepted = "-";
+        var isVerified = "-";
+        var result = "-";
     } else {
-        if (isVerified === 'true') {
+        var createDate = applicationData.get('createDate');
+        createDate = timeConverter(createDate);
+        var date = applicationData.get('date');
+        if (date === null) date = "-";
+        var place = applicationData.get('place');
+        if (place === null) place = "-";
+        var time = applicationData.get('time');
+        if (time === null) time = "-";
+        var isAccepted = applicationData.get('isAccepted');
+        var isVerified = applicationData.get('isVerified');
+        var result = applicationData.get('result');
+        if (isVerified === 1) {
             if (isAccepted === 'true') {
                 if (result === 'true') {
                     currentStatus = 'Your application has been accepted';
                 } else {
                     currentStatus = 'Waiting for announcements';
                 }
+            } else if (isAccepted === 'false') {
+                currentStatus = 'Application has been rejected';
             } else {
                 currentStatus = 'Waiting for department response';
             }
-        } else {
-            if(date === null && place === null && time === null){
-                currentStatus = 'Waiting for department to set an interview';
-            }
+        } else if (isVerified === 0) {
             currentStatus = 'Application has been rejected';
+        } else {
+            currentStatus = 'Waiting Graduate School to verify documents';
         }
     }
-
-
 
     var tableRow = document.createElement("TR");
 
     var tableDataTag1 = document.createElement("TD");
-    var tableData1 = document.createTextNode(userEmail);
+    var tableData1 = document.createTextNode(departmentId);
     tableDataTag1.appendChild(tableData1);
 
     var tableDataTag2 = document.createElement("TD");
@@ -116,7 +121,7 @@ function addDataToTables(applicationData, userEmail) {
 
 
     var tableDataTag3 = document.createElement("TD");
-    var tableData3 = document.createTextNode('some date');
+    var tableData3 = document.createTextNode(createDate);
     tableDataTag3.appendChild(tableData3);
 
 
@@ -146,4 +151,17 @@ function addDataToTables(applicationData, userEmail) {
     interviewTableRow.appendChild(interviewTableDataTag3);
 
     document.getElementById('interviewEntries').appendChild(interviewTableRow);
+}
+
+function timeConverter(timestamp) {
+    var a = new Date(timestamp);
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+    return time;
 }

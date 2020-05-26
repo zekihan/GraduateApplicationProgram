@@ -250,6 +250,56 @@
     <script src="/__/firebase/7.14.2/firebase-database.js"></script>
     <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
     <script src="/__/firebase/init.js"></script>
+    <script src="//connect.facebook.net/en_US/sdk.js"></script>
+
+    <script>
+        FB.init({
+            appId: '271875460605718',
+            status: true,
+            xfbml: true,
+            version: 'v2.6'
+        });
+    </script>
+
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+    <meta name="google-signin-client_id"
+        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // window.location.href = '/users/applicant/applicant-dashboard';
+            } else {
+                window.location.href = '/login';
+            }
+        });
+
+        function onLoad() {
+            gapi.load('auth2', function () {
+                gapi.auth2.init();
+            });
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+            FB.logout(function (response) {
+                // Person is now logged out
+            });
+            firebase.auth().signOut().then(function () {
+                window.location.href = "/login"
+            }).catch(function (error) {
+                console.log(error)
+            });
+        }
+    </script>
+    <script>
+        var userId;
+        firebase.auth().onAuthStateChanged(function (user) {
+            userId = firebase.auth().currentUser.uid;
+        });
+    </script>
     <script>
         fillDepartment();
         $('#create-app').click(function () {

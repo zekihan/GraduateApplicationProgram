@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id"
-        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
     <link rel="icon" href="../../images/iyte-comp-logo.png">
     <title>My Application</title>
-    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements
+        crossorigin="anonymous"> </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../../styles/application.css">
-    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
@@ -23,11 +21,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <link rel="stylesheet" href="../../styles/my-application.css">
-
-    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="../../javascript/my-application.js"></script>
 </head>
 
@@ -86,19 +80,19 @@
 
                 <div class="application-section">
                     <h4 class="page-title">Application Details</h4>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>Email</th>
-                                        <th>Current Status</th>
-                                        <th>Application Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="applicationEntries">
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Department</th>
+                                    <th>Current Status</th>
+                                    <th>Application Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="applicationEntries">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div class="interview-section">
@@ -120,15 +114,12 @@
             </main>
         </div>
     </div>
-    <script src="javascript/my-application.js"></script>
-    <script src="semantic/dist/semantic.min.js"></script>
     <script src="/__/firebase/7.14.2/firebase-app.js"></script>
     <script src="/__/firebase/7.14.2/firebase-database.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
     <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
     <script src="/__/firebase/init.js"></script>
     <script src="//connect.facebook.net/en_US/sdk.js"></script>
-    
+
     <script>
         FB.init({
             appId: '271875460605718',
@@ -173,7 +164,7 @@
     </script>
     <script>
         var userId;
-        firebase.auth().onAuthStateChanged(function(user){
+        firebase.auth().onAuthStateChanged(function (user) {
             userId = firebase.auth().currentUser.uid;
         });
     </script>
