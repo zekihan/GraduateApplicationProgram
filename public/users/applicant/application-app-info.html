@@ -263,24 +263,44 @@
                 var fileNames = 'Choose file';
                 $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
             } else if (length === 1) {
-                if ($(this).get(0).files[0].size < 10000000) {
-                    var fileNames = '';
-                    fileNames += '"' + $(this).get(0).files[0].name + '"';
-                    $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
+                var accepted = $(this).attr("accept").split(",");
+                var x = $(this).get(0).files[0].name.split(".");
+                var file_ext = x[x.length - 1];
+                if (accepted.includes("." + file_ext)) {
+                    if ($(this).get(0).files[0].size < 10000000) {
+                        var fileNames = '';
+                        fileNames += '"' + $(this).get(0).files[0].name + '"';
+                        $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
+                    } else {
+                        $(this).siblings(".custom-file-label").addClass("selected").html(
+                            "File size cannot exceed 10MB.");
+                        $(this).get(0).files = null;
+                    }
                 } else {
                     $(this).siblings(".custom-file-label").addClass("selected").html(
-                        "File size cannot exceed 10MB.");
+                        "Wrong file format");
                     $(this).get(0).files = null;
                 }
             } else if (length === 2) {
-                if ($(this).get(0).files[0].size < 10000000 && $(this).get(1).files[0].size) {
-                    var fileNames = '';
-                    fileNames += '"' + $(this).get(0).files[0].name + '",';
-                    fileNames += '"' + $(this).get(0).files[1].name + '"';
-                    $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);;
+                var accepted = $(this).attr("accept").split(",");
+                var x = $(this).get(0).files[0].name.split(".");
+                var file_ext1 = x[x.length - 1];
+                x = $(this).get(0).files[1].name.split(".");
+                var file_ext2 = x[x.length - 1];
+                if (accepted.includes("." + file_ext1) && accepted.includes("." + file_ext2)) {
+                    if ($(this).get(0).files[0].size < 10000000 && $(this).get(0).files[1].size < 10000000) {
+                        var fileNames = '';
+                        fileNames += '"' + $(this).get(0).files[0].name + '",';
+                        fileNames += '"' + $(this).get(0).files[1].name + '"';
+                        $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);;
+                    } else {
+                        $(this).siblings(".custom-file-label").addClass("selected").html(
+                            "File size cannot exceed 10MB.");
+                        $(this).get(0).files = null;
+                    }
                 } else {
                     $(this).siblings(".custom-file-label").addClass("selected").html(
-                        "File size cannot exceed 10MB.");
+                        "Wrong file format");
                     $(this).get(0).files = null;
                 }
             } else {
