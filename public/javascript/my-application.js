@@ -6,6 +6,17 @@ function getApplicationData() {
             var userEmail = user.email;
             var applicationProperties = new Map();
             firebase.database().ref('users/' + userId + '/applications').once('value').then(function (snapshot) {
+                if (snapshot === null) {
+                    var noApplication = true;
+                    applicationProperties.set('date', null);
+                    applicationProperties.set('place', null);
+                    applicationProperties.set('time', null);
+                    applicationProperties.set('isAccepted', null);
+                    applicationProperties.set('isVerified', null);
+                    applicationProperties.set('result', null);
+                    addDataToTables(userEmail, applicationProperties);
+                    return;
+                }
                 snapshot.forEach(function (childSnapshot) {
                     //Get the application id
                     var applicationId = childSnapshot.key;
@@ -26,14 +37,27 @@ function getApplicationData() {
                         applicationProperties.set('date', date);
                         applicationProperties.set('place', place);
                         applicationProperties.set('time', time);
-                        applicationProperties.set('isAccepted', isAccepted);
+                        if(isAccepted === null){
+                            applicationProperties.set('isAccepted', false);
+                        }else{
+                            applicationProperties.set('isAccepted', true);
+                        }
+                        
 
                         //Get the application's acceptance data
                         var isVerified = snapshot.child('gradschoolControl/isVerified').val();
-                        var result = snapshot.child('gradschoolControl/result').val();
+                        if(isVerified === null){
+                            applicationProperties.set('isVerified', false);
+                        }else{
+                            applicationProperties.set('isVerified', true);
+                        }
 
-                        applicationProperties.set('isVerified', isVerified);
-                        applicationProperties.set('result', result);
+                        var result = snapshot.child('gradschoolControl/result').val();
+                        if(result === null){
+                            applicationProperties.set('result', false);
+                        }else{
+                            applicationProperties.set('result', true);
+                        }
 
                         //Display each application's data on the my-application.html page
                         addDataToTables(applicationProperties, userEmail);
@@ -57,21 +81,28 @@ function addDataToTables(applicationData, userEmail) {
     var isVerified = applicationData.get('isVerified');
     var result = applicationData.get('result');
 
-    var currentStatus = 'Application not verified';
-
-    if (isVerified == 'true') {
-        if (isAccepted == 'true') {
-            if (result == 'true') {
-                currentStatus = 'Your application has been accepted';
+    if (date === null && place === null && time === null && isAccepted === null && isVerified === null && result === null) {
+        var currentStatus = 'You haven\'t created an application yet';
+    } else {
+        if (isVerified === 'true') {
+            if (isAccepted === 'true') {
+                if (result === 'true') {
+                    currentStatus = 'Your application has been accepted';
+                } else {
+                    currentStatus = 'Waiting for announcements';
+                }
             } else {
-                currentStatus = 'Waiting for announcements';
+                currentStatus = 'Waiting for department response';
             }
         } else {
-            currentStatus = 'Waiting for department response';
+            if(date === null && place === null && time === null){
+                currentStatus = 'Waiting for department to set an interview';
+            }
+            currentStatus = 'Application has been rejected';
         }
-    } else {
-        currentStatus = 'Application has been rejected';
     }
+
+
 
     var tableRow = document.createElement("TR");
 
@@ -86,7 +117,7 @@ function addDataToTables(applicationData, userEmail) {
 
     var tableDataTag3 = document.createElement("TD");
     var tableData3 = document.createTextNode('some date');
-    tableDataTag1.appendChild(tableData3);
+    tableDataTag3.appendChild(tableData3);
 
 
     tableRow.appendChild(tableDataTag1);
