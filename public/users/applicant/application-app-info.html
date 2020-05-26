@@ -45,165 +45,192 @@
 
             <form class="needs-validation" novalidate>
 
-                <label for="departmentSelection">Department To Apply</label>
-                <div class="input-group mb-3">
+                <div class="mb-3">
+                    <label for="departmentSelection">Department To Apply</label>
                     <select class="custom-select" id="departmentSelection" aria-label="">
                         <option selected>Choose...</option>
-
-                        <!-- Add all departments here -->
                     </select>
+                    <span class="error-msg" style="color:red;" id="departmentSelection-error"></span>
                 </div>
 
-                <label for="studentType">Applicant Type</label>
-                <div class="input-group mb-3">
+
+                <div class="mb-3">
+                    <label for="studentType">Applicant Type</label>
+
                     <select class="custom-select" id="studentTypeSelection" aria-label=""
                         onchange="setVisibilityOfPassportInput(this)">
                         <option selected>Choose...</option>
                         <option value="turkish">Turkish Applicant</option>
                         <option value="foreign">Foreign Applicant</option>
                     </select>
+                    <span class="error-msg" style="color:red;" id="studentTypeSelection-error"></span>
                 </div>
 
-                <div id="passport-input-field">
+                <div class="mb-3" id="passport-input-field">
                     <label for="passport">Passport (Only foreign students)</label>
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="passport"
+                            <input type="file" accept=".pdf" class="custom-file-input" id="passport"
                                 aria-describedby="inputGroupFileAddon01">
                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
                     </div>
+                    <span class="error-msg" style="color:red;" id="passport-error"></span>
                 </div>
 
                 <div class="mb-3">
                     <label for="studentType">Is currently working ?</label>
-                    <div class="input-group mb-3">
-                        <select class="custom-select" id="isWorking" aria-label="" required
-                            onchange="setVisibilityOfPermissionLetterInput(this)">
-                            <option selected>Choose...</option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
-                    </div>
+                    <select class="custom-select" id="isWorking" aria-label="" required
+                        onchange="setVisibilityOfPermissionLetterInput(this)">
+                        <option selected>Choose...</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <span class="error-msg" style="color:red;" id="isWorking-error"></span>
                 </div>
 
-                <div id="permission-letters-input">
+                <div id="permission-letters-input" class="mb-3">
                     <label for="passport">Permission Letter (Only working students) </label>
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="permissionLetter"
+                            <input type="file" accept=".pdf" class="custom-file-input" id="permissionLetter"
                                 aria-describedby="inputGroupFileAddon01">
                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
                     </div>
-                </div>
-
-                <label for="photo">Photo</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="photoFile"
-                            aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                    </div>
-                </div>
-
-                <label for="undergrad-transcript">Undergraduate Transcript</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="underGradTransFile"
-                            aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                    </div>
-                </div>
-
-                <label for="ales-result">ALES Result</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="alesFile"
-                            aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                    </div>
-                </div>
-
-                <label for="english-exam-result">English Exam Result</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="englishFile"
-                            aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                    </div>
-                </div>
-
-                <label for="reference-letters">Reference Letters</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="referenceFiles"
-                            aria-describedby="inputGroupFileAddon01" multiple>
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                    </div>
-                </div>
-
-                <label for="statement-of-purpose">Statement Of Purpose </label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="purposeFile"
-                            aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                    </div>
+                    <span class="error-msg" style="color:red;" id="permissionLetter-error"></span>
                 </div>
 
 
-                <label for="studentType">Degree to Apply</label>
-                <div class="input-group">
+                <div class="mb-3">
+                    <label for="photo">Photo</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" accept=".jpg,.jpeg,.png" class="custom-file-input" id="photoFile"
+                                aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <span class="error-msg" style="color:red;" id="photoFile-error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="undergrad-transcript">Undergraduate Transcript</label>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" accept=".pdf" class="custom-file-input" id="underGradTransFile"
+                                aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <span class="error-msg" style="color:red;" id="undergradTranscript-error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="ales-result">ALES Result</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" accept=".pdf" class="custom-file-input" id="alesFile"
+                                aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <span class="error-msg" style="color:red;" id="alesFile-error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="english-exam-result">English Exam Result</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" accept=".pdf" class="custom-file-input" id="englishFile"
+                                aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <span class="error-msg" style="color:red;" id="englishFile-error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="reference-letters">Reference Letters</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" accept=".pdf" class="custom-file-input" id="referenceFiles"
+                                aria-describedby="inputGroupFileAddon01" multiple>
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <span class="error-msg" style="color:red;" id="referenceFiles-error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="statement-of-purpose">Statement Of Purpose </label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" accept=".pdf" class="custom-file-input" id="purposeFile"
+                                aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <span class="error-msg" style="color:red;" id="purposeFile-error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="studentType">Degree to Apply</label>
+
                     <select class="custom-select" id="degreeSelection" aria-label=""
                         onchange="setVisibilityOfGradTranscriptInput(this)">
                         <option selected>Choose...</option>
                         <option value="phd">PhD</option>
                         <option value="mastersDegree">Master's Degree</option>
                     </select>
+                    <span class="error-msg" style="color:red;" id="degreeSelection-error"></span>
                 </div>
 
                 <div id="grad-transcript-input">
                     <label for="passport">Master's Degree Transcript</label>
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="mastersDegreeTranscript"
+                            <input type="file" accept=".pdf" class="custom-file-input" id="mastersDegreeTranscript"
                                 aria-describedby="inputGroupFileAddon01">
                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
                     </div>
+                    <span class="error-msg" style="color:red;" id="mastersDegreeTranscript-error"></span>
                 </div>
 
 
                 <hr class="mb-4">
-
-                <button class="btn btn-primary btn-lg btn-block" type="button" onclick="submitResult()">Submit</button>
+                <div id="buttons">
+                    <button class="btn btn-primary btn-lg btn-block" id="create-app" type="button"
+                        onclick="submitResult()">Submit</button>
+                </div>
             </form>
         </div>
     </div>
@@ -225,19 +252,26 @@
     <script src="/__/firebase/init.js"></script>
     <script>
         fillDepartment();
+        $('#create-app').click(function () {
+            $('#buttons').html(
+                '<button class="btn btn-primary btn-lg btn-block" id="create-app" type="button" disabled><span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...</button>'
+            ).addClass('disabled');
+        });
         $(".custom-file-input").on("change", function () {
             var length = $(this).get(0).files.length;
-            if (length === 1){
+            if (length === 0) {
+                var fileNames = 'Choose file';
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
+            } else if (length === 1) {
                 var fileNames = '';
                 fileNames += '"' + $(this).get(0).files[0].name + '"';
                 $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
-            }
-            else if(length === 2){
+            } else if (length === 2) {
                 var fileNames = '';
                 fileNames += '"' + $(this).get(0).files[0].name + '",';
                 fileNames += '"' + $(this).get(0).files[1].name + '"';
                 $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
-            }else{
+            } else {
                 $(this).siblings(".custom-file-label").addClass("selected").html("Can not select more than 2.");
                 $(this).get(0).files = null;
             }

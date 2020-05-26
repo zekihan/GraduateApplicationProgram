@@ -86,9 +86,11 @@
                         <div class="row">
                             <div class="col">
                                 <input type="text" class="form-control" id="firstName" placeholder="First name">
+                                <span class="error-msg" style="color:red;" id="firstName-error"></span>
                             </div>
                             <div class="col">
                                 <input type="text" class="form-control" id="lastName" placeholder="Last name">
+                                <span class="error-msg" style="color:red;" id="lastName-error"></span>
                             </div>
                         </div>
                     </div>
@@ -97,14 +99,13 @@
                     <div class="mb-3">
                         <label for="socialSecurityNumber">Social Security Number</label>
                         <input type="text" class="form-control" id="socialSecurityNumber" placeholder="12345678900">
+                        <span class="error-msg" style="color:red;" id="socialSecurityNumber-error"></span>
                     </div>
 
                     <div class="mb-3">
                         <label for="address">Address</label>
                         <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-                        <div class="invalid-feedback">
-                            Please enter your shipping address.
-                        </div>
+                        <span class="error-msg" style="color:red;" id="address-error"></span>
                     </div>
 
                     <div class="mb-3">
@@ -364,17 +365,13 @@
                                 <option value="Zambia">Zambia</option>
                                 <option value="Zimbabwe">Zimbabwe</option>
                             </select>
-                            <div class="invalid-feedback">
-                                Please select a valid country.
-                            </div>
+                            <span class="error-msg" style="color:red;" id="country-error"></span>
                         </div>
 
                         <div class="col-md-5 mb-3">
                             <label for="zip">Zip</label>
                             <input type="text" class="form-control" id="zip" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Zip code required.
-                            </div>
+                            <span class="error-msg" style="color:red;" id="zip-error"></span>
                         </div>
                     </div>
 
@@ -395,7 +392,23 @@
             </ul>
         </footer>
     </div>
+    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                firebase.database().ref('/users').child(user.uid).once('value').then(function (snapshot) {
 
+                    document.getElementById('firstName').value = snapshot.child('name').val();
+                    document.getElementById('lastName').value = snapshot.child('lastName').val();
+                });
+            } else {
+                window.location.href = '/login';
+            }
+        });
+    </script>
 </body>
 
 </html>
