@@ -115,3 +115,10 @@ exports.deletePhoneInfo = functions.database.ref('/users/{userId}')
         // Setting an "uppercase" sibling in the Realtime Database returns a Promise.
         return admin.database().ref('/tmp/phones/').child(original).remove();
     });
+
+exports.applicationCreated = functions.database.ref('/applications/{term}/{department}/{applicationId}')
+    .onCreate((snapshot, context) => {
+
+        const timestamp = Date.now();
+        return snapshot.ref.child('date').set(timestamp);
+    });
