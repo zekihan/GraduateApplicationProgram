@@ -36,7 +36,7 @@ function getApplicationData() {
                         applicationProperties.set('result', result);
 
                         //Display each application's data on the my-application.html page
-                        addDataToApplicationTable(applicationProperties, userEmail);
+                        addDataToTables(applicationProperties, userEmail);
                     });
                 });
             });
@@ -49,7 +49,7 @@ function getApplicationData() {
 }
 
 //applicationData is a map that contains date, place, time, isAccepted, isVerified and result data.
-function addDataToApplicationTable(applicationData, userEmail) {
+function addDataToTables(applicationData, userEmail) {
     var date = applicationData.get('date');
     var place = applicationData.get('place');
     var time = applicationData.get('time');
@@ -75,44 +75,44 @@ function addDataToApplicationTable(applicationData, userEmail) {
 
     var tableRow = document.createElement("TR");
 
-var tableDataTag1 = document.createElement("TD");
-var tableData1 = document.createTextNode(userEmail);
-tableDataTag1.appendChild(tableData1);
+    var tableDataTag1 = document.createElement("TD");
+    var tableData1 = document.createTextNode(userEmail);
+    tableDataTag1.appendChild(tableData1);
 
-var tableDataTag2 = document.createElement("TD");
-var tableData2 = document.createTextNode(currentStatus);
-tableDataTag2.appendChild(tableData2);
-
-
-var tableDataTag3 = document.createElement("TD");
-var tableData3 = document.createTextNode('some date');
-tableDataTag1.appendChild(tableData3);
+    var tableDataTag2 = document.createElement("TD");
+    var tableData2 = document.createTextNode(currentStatus);
+    tableDataTag2.appendChild(tableData2);
 
 
-tableRow.appendChild(tableDataTag1);
-tableRow.appendChild(tableDataTag2);
-tableRow.appendChild(tableDataTag3);
-
-document.getElementById('applicationEntries').appendChild(tableRow);
+    var tableDataTag3 = document.createElement("TD");
+    var tableData3 = document.createTextNode('some date');
+    tableDataTag1.appendChild(tableData3);
 
 
- var interviewTableRow= document.createElement("TR");
+    tableRow.appendChild(tableDataTag1);
+    tableRow.appendChild(tableDataTag2);
+    tableRow.appendChild(tableDataTag3);
 
-var interviewTableDataTag1 = document.createElement("TD");
-tableData1 = document.createTextNode(place);
-interviewTableDataTag1.appendChild(tableData1);
+    document.getElementById('applicationEntries').appendChild(tableRow);
 
-var interviewTableDataTag2 = document.createElement("TD");
-tableData2 = document.createTextNode(date);
-interviewTableDataTag2.appendChild(tableData2);
 
-var interviewTableDataTag3 = document.createElement("TD");
-tableData3 = document.createTextNode(time);
-interviewTableDataTag3.appendChild(tableData3);
+    var interviewTableRow = document.createElement("TR");
 
-interviewTableRow.appendChild(interviewTableDataTag1);
-interviewTableRow.appendChild(interviewTableDataTag2);
-interviewTableRow.appendChild(interviewTableDataTag3);
+    var interviewTableDataTag1 = document.createElement("TD");
+    tableData1 = document.createTextNode(place);
+    interviewTableDataTag1.appendChild(tableData1);
 
-document.getElementById('interviewEntries').appendChild(interviewTableRow);
+    var interviewTableDataTag2 = document.createElement("TD");
+    tableData2 = document.createTextNode(date);
+    interviewTableDataTag2.appendChild(tableData2);
+
+    var interviewTableDataTag3 = document.createElement("TD");
+    tableData3 = document.createTextNode(time);
+    interviewTableDataTag3.appendChild(tableData3);
+
+    interviewTableRow.appendChild(interviewTableDataTag1);
+    interviewTableRow.appendChild(interviewTableDataTag2);
+    interviewTableRow.appendChild(interviewTableDataTag3);
+
+    document.getElementById('interviewEntries').appendChild(interviewTableRow);
 }
