@@ -9,9 +9,11 @@ function getApplicantData() {
                 }
             });*/
 
+            //Decode the URL and get the parameters
             var queryString = decodeURIComponent(window.location.search);
             queryString = queryString.substring(1);
             var queries = queryString.split("&");
+
             //Get the application id from the url
             var applicationId = (queries[0].split("="))[1];
             var termInfo = (queries[1].split("="))[1];
@@ -20,6 +22,7 @@ function getApplicantData() {
             console.log("term: " + termInfo);
             console.log("department: " + department);
             var documents = new Object();
+
             firebase.database().ref('applications/' + termInfo + '/' + department + '/' + applicationId).once('value').then(function (snapshot) {
 
                 //Get applicant's personal information
@@ -44,6 +47,7 @@ function getApplicantData() {
                 //var referenceLetters 
                 var undergradTranscriptPath = snapshot.child('content/undergradTranscript').val();
 
+                //Get ALES document's URL.
                 firebase.storage().ref(alesDocumentPath).getDownloadURL().then(function (url) {
                     document.getElementById("ales").onclick = function () {
                         open(url);
@@ -51,7 +55,8 @@ function getApplicantData() {
                 }).catch(function (error) {
                     //handle errors here
                 });
-
+                
+                //Get English Exam Result document's URL.
                 firebase.storage().ref(englishExamPath).getDownloadURL().then(function (url) {
                     document.getElementById("englishExam").onclick = function () {
                         open(url);
@@ -60,6 +65,7 @@ function getApplicantData() {
                     //handle errors here
                 });
 
+                //Get Master's Transcript's URL
                 firebase.storage().ref(mastersTranscriptPath).getDownloadURL().then(function (url) {
                     document.getElementById("mastersTranscript").onclick = function () {
                         open(url);
@@ -68,6 +74,7 @@ function getApplicantData() {
                     //handle errors here
                 });
 
+                //Get Permission Letter document's URL
                 firebase.storage().ref(permissionLetterPath).getDownloadURL().then(function (url) {
                     document.getElementById("permission").onclick = function () {
                         open(url);
@@ -76,6 +83,7 @@ function getApplicantData() {
                     //handle errors here
                 });
 
+                //Get Photo's URL
                 firebase.storage().ref(photoPath).getDownloadURL().then(function (url) {
                     document.getElementById("photo").onclick = function () {
                         open(url);
@@ -84,6 +92,7 @@ function getApplicantData() {
                     //handle errors here
                 });
 
+                //Get Statement Of Purpose document's URL
                 firebase.storage().ref(purposePath).getDownloadURL().then(function (url) {
                     document.getElementById("purpose").onclick = function () {
                         open(url);
@@ -92,6 +101,7 @@ function getApplicantData() {
                     //handle errors here
                 });
 
+                //Get Undergraduate Transcript document's URL
                 firebase.storage().ref(undergradTranscriptPath).getDownloadURL().then(function (url) {
                     document.getElementById("undergrad").onclick = function () {
                         open(url);
@@ -100,6 +110,7 @@ function getApplicantData() {
                     //handle errors here
                 });
 
+                //Get Passport's URL
                 firebase.storage().ref(passportPath).getDownloadURL().then(function (url) {
                     document.getElementById("passport").onclick = function () {
                         open(url);
@@ -135,6 +146,5 @@ function submitResult() {
     console.log("permission is checked: " + (document.getElementById("permission-checkbox").checked));
     console.log("master's transcript is checked: " + (document.getElementById("mastersdegree-checkbox").checked));
     console.log("ales is checked: " + (document.getElementById("ales-checkbox").checked));
-    
-
 }
+

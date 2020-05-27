@@ -6,6 +6,12 @@ const functions = require('firebase-functions');
 
 var admin = require("firebase-admin");
 
+
+const {
+    Storage
+} = require('@google-cloud/storage');
+
+
 admin.initializeApp();
 
 exports.sendCode = functions.https.onRequest(async (request, res) => {
@@ -122,3 +128,20 @@ exports.applicationCreated = functions.database.ref('/applications/{term}/{depar
         const timestamp = Date.now();
         return snapshot.ref.child('date').set(timestamp);
     });
+
+
+exports.generateSignedURL = async function(filename){
+    const options = {
+        version: 'v4',
+        action: 'read',
+        expires: Date.now() + 15 * 60 * 1000, // 15 minutes
+      };
+    
+      // Get a v4 signed URL for reading the file
+      const [url] = await storage
+        .bucket(admin.storage().bucket())
+        .file(filename)
+        .getSignedUrl(options);
+
+        return url;
+}
