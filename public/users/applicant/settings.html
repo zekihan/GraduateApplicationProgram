@@ -21,11 +21,10 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <link rel="stylesheet" href="../../styles/my-application.css">
 </head>
 
-<body>
+<body onload="getUserInformation()">
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img src="../../images/iyte-comp-logo.png" alt=""
                 width="32" height="32"> Izmir Institute Of Technology</a>
@@ -84,7 +83,7 @@
                             <img src="https://d36rlb2fgh8cjd.cloudfront.net/default-images/default-user-q80.png"
                                 alt="Zekihan">
                             <div class="col-auto">
-                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                <input type="text" readonly class="form-control-plaintext" id="nameAndLastname"
                                     value="Lorem Ipsum">
                             </div>
                         </div>
@@ -106,17 +105,17 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-auto col-form-label">Phone</label>
                                         <div class="col-auto">
-                                            <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                            <input type="text" readonly class="form-control-plaintext" id="staticPhone"
                                                 value="+90******1111">
                                         </div>
                                         <div class="col-auto">
-                                            <button type="submit" class="btn btn-primary">Change your phone</button>
+                                            <button type="button" class="btn btn-primary" onclick="changePhone()">Change your phone</button>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <div class="col-auto">
-                                            <button type="submit" class="btn btn-primary">Reset Password</button>
+                                            <button type="button" class="btn btn-primary" onclick="resetPassword()">Reset Password</button>
                                         </div>
                                     </div>
 
@@ -145,7 +144,12 @@
 
         </div>
     </div>
-    <script src="semantic/dist/semantic.min.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="../../javascript/settings.js   "></script>
 </body>
 
 </html>

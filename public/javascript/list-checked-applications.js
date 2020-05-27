@@ -7,13 +7,13 @@ function getFirstPage() {
             var numOfApplicantsToGet = 20;
             //Get the last term's applicants' data
             firebase.database().ref("applications").orderByKey().limitToLast(1).once('value').then(function (snapshot) {
-                console.log(snapshot.val());
                 snapshot.forEach(function (departments) {
+                    var termInfo = departments.key;
                     departments.forEach(function (applications) {
-                        var value = applications.key;
-                        console.log("value: " + value);
+                        var departmentId = applications.key;
+                        console.log("value: " + departmentId);
                         applications.forEach(function (application) {
-                            applicants.push({name: application.child("content").child("name").val(), lastname: application.child("content").child("lastName").val()});
+                            applicants.push({term: termInfo, department: application.child("content").child("department").val(), applicationId: application.key, name: application.child("content").child("name").val(), lastname: application.child("content").child("lastName").val()});
                             numOfApplicantsToGet--;
                         });
                     })
@@ -33,15 +33,17 @@ function displayApplicants(applicants){
         console.log("Name: " + applicant.name);
         console.log("Lastname: " + applicant.lastname);
         var div = document.createElement('DIV');
-        htmlString = "<div class=\"media text-muted pt-3 border-bottom border-gray\" onclick=\"location.href='application-details.html';\" style=\"cursor: pointer;\"><img src=\"../../images/iyte-logo.jpg\" width=\"32\" height=\"32\" background=\"#007bff\" color=\"#007bff\" class=\"mr-2 rounded\"><p class=\" media-body pb-3 mb-0 small lh-125\"><strong class=\"d-block text-gray-dark\">" + applicant.name + "</strong>" + 
+
+        /*htmlString = "<div class=\"media text-muted pt-3 border-bottom border-gray\" onclick=\"location.href='application-details.html';\" style=\"cursor: pointer;\"><img src=\"../../images/iyte-logo.jpg\" width=\"32\" height=\"32\" background=\"#007bff\" color=\"#007bff\" class=\"mr-2 rounded\"><p class=\" media-body pb-3 mb-0 small lh-125\"><strong class=\"d-block text-gray-dark\">" + applicant.name + "</strong>" + 
             applicant.name + "&" + applicant.lastname + 
-        "</p><a href=\"application-details.html\" class=\"details-link\">View Details</a></div>";
+        "</p><a href=\"application-details.html\" class=\"details-link\">View Details</a></div>";*/
+
         div.classList.add("text-muted");
         div.classList.add("pt-3");
         div.classList.add("border-bottom");
         div.classList.add("border-gray");
         div.classList.add("media");
-        div.onclick = function(){ location.href='application-details.html'; }
+        div.onclick = function(){ getApplicationInfoWithId(applicant.applicationId, applicant.term, applicant.department); }
         div.style.cursor = "pointer";
 
         var img = document.createElement("IMG");
@@ -78,8 +80,8 @@ function displayApplicants(applicants){
         div.appendChild(p);
 
         var a = document.createElement("A");
-        a.href = "application-details.html";
         a.classList.add("details-link");
+        a.onclick = function() {getApplicationInfoWithId(applicant.applicationId, applicant.term, applicant.department);}
         var linkText = document.createTextNode("View Details");
         a.appendChild(linkText);
 
@@ -89,5 +91,10 @@ function displayApplicants(applicants){
     });
 }
 
-/*
-*/
+
+function getApplicationInfoWithId(applicationId, term, department){
+    console.log("application id is " + applicationId);
+    var id = applicationId;
+    var queryString = "?id=" + id + '&term=' + term + '&department=' + department ;
+    window.location.href = "application-details.html" + queryString;
+}
