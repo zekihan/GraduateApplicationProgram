@@ -21,10 +21,11 @@ function getApplicationData() {
                     //Get the interview data.
                     firebase.database().ref('applications').child(term).child(departmentId).child(applicationId).once('value').then(function (applicationSnapshot) {
                         var createDate = applicationSnapshot.child('date').val();
-                        var date = applicationSnapshot.child('departmentControl/interviewInfo/date').val();
-                        var place = applicationSnapshot.child('departmentControl/interviewInfo/place').val();
-                        var time = applicationSnapshot.child('departmentControl/interviewInfo/time').val();
-                        var isAccepted = applicationSnapshot.child('departmentControl/isAccepted').val();
+                        var interviewInfoChild = applicationSnapshot.child('departmentControl/interviewInfo');
+                        var date = interviewInfoChild.child('date').val();
+                        var place = interviewInfoChild.child('place').val();
+                        var time = interviewInfoChild.child('time').val();
+                        var isAccepted = interviewInfoChild.child('isAccepted').val();
 
                         var applicationProperties = new Map();
 

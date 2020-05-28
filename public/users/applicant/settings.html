@@ -75,16 +75,17 @@
                 </div>
             </nav>
 
+
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <section id="basic-settings">
-                    <h1 class="title big">Information</h1>
+                    <h1 class="title big">Account Settings</h1>
                     <div class="row">
                         <div class="avatar col-sm-3">
                             <img src="https://d36rlb2fgh8cjd.cloudfront.net/default-images/default-user-q80.png"
                                 alt="Zekihan">
                             <div class="col-auto">
                                 <input type="text" readonly class="form-control-plaintext" id="nameAndLastname"
-                                    value="Lorem Ipsum">
+                                    value="">
                             </div>
                         </div>
 
@@ -95,21 +96,20 @@
                                     novalidate="">
 
                                     <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                                        <label for="inputEmail3" class="col-auto col-form-label">Email</label>
                                         <div class="col-7">
                                             <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                                value="email@example.com">
+                                                value="">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-auto col-form-label">Phone</label>
                                         <div class="col-auto">
-                                            <input type="text" readonly class="form-control-plaintext" id="staticPhone"
-                                                value="+90******1111">
+                                            <input type="text" readonly class="form-control-plaintext" id="staticPhone" value="">
                                         </div>
                                         <div class="col-auto">
-                                            <button type="button" class="btn btn-primary" onclick="changePhone()">Change your phone</button>
+                                            <button type="button" class="btn btn-primary" onclick="changePhone()">Change Phone</button>
                                         </div>
                                     </div>
 
@@ -117,25 +117,17 @@
                                         <div class="col-auto">
                                             <button type="button" class="btn btn-primary" onclick="resetPassword()">Reset Password</button>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <div class="col-7">
-                                            <button style="background-color: rebeccapurple;" type="submit"
-                                                class="btn btn-primary btn-block">Save Changes</button>
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-danger">Delete Your Account</button>
                                         </div>
                                     </div>
-
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-lg-5 margin-right">
-
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-danger">Delete your account</button>
+                                    <div class="form-group row">
+                                    
                                 </div>
                             </div>
+
+                            
                         </div>
                         </form>
                     </div>
