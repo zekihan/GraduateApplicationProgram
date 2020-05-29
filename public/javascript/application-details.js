@@ -18,10 +18,6 @@ function getApplicantData() {
             var applicationId = (queries[0].split("="))[1];
             var termInfo = (queries[1].split("="))[1];
             var department = (queries[2].split("="))[1];
-            console.log("app id: " + applicationId);
-            console.log("term: " + termInfo);
-            console.log("department: " + department);
-            var documents = new Object();
 
             firebase.database().ref('applications/' + termInfo + '/' + department + '/' + applicationId).once('value').then(function (snapshot) {
 
@@ -44,80 +40,132 @@ function getApplicantData() {
                 var permissionLetterPath = snapshot.child('content/permissionLetter').val();
                 var photoPath = snapshot.child('content/photo').val();
                 var purposePath = snapshot.child('content/purpose').val();
-                //var referenceLetters 
+                var referenceLetter1Path = snapshot.child('content/referenceLetters/0').val();
+                var referenceLetter2Path = snapshot.child('content/referenceLetters/1').val();
                 var undergradTranscriptPath = snapshot.child('content/undergradTranscript').val();
 
+
+                if (referenceLetter1Path !== "#") {
+                    firebase.storage().ref(referenceLetter1Path).getDownloadURL().then(function (url) {
+                        document.getElementById("reference1").onclick = function () {
+                            open(url);
+                        }
+                    }).catch(function (error) {
+                        //handle errors here
+                    });
+                }
+
+                if (referenceLetter2Path !== "#") {
+                    firebase.storage().ref(referenceLetter2Path).getDownloadURL().then(function (url) {
+                        document.getElementById("reference1").onclick = function () {
+                            open(url);
+                        }
+                    }).catch(function (error) {
+                        //handle errors here
+                    });
+                } else {
+                    document.getElementById("all-documents").removeChild(document.getElementById("referenceLetter2"));
+                }
+
                 //Get ALES document's URL.
-                firebase.storage().ref(alesDocumentPath).getDownloadURL().then(function (url) {
-                    document.getElementById("ales").onclick = function () {
-                        open(url);
-                    }
-                }).catch(function (error) {
-                    //handle errors here
-                });
-                
+                if (alesDocumentPath !== "#") {
+                    firebase.storage().ref(alesDocumentPath).getDownloadURL().then(function (url) {
+                        document.getElementById("ales").onclick = function () {
+                            open(url);
+                        }
+                    }).catch(function (error) {
+                        //handle errors here
+                    });
+                }
+
+
                 //Get English Exam Result document's URL.
-                firebase.storage().ref(englishExamPath).getDownloadURL().then(function (url) {
-                    document.getElementById("englishExam").onclick = function () {
-                        open(url);
-                    }
-                }).catch(function (error) {
-                    //handle errors here
-                });
+                if (englishExamPath !== "#") {
+                    firebase.storage().ref(englishExamPath).getDownloadURL().then(function (url) {
+                        document.getElementById("englishExam").onclick = function () {
+                            open(url);
+                        }
+                    }).catch(function (error) {
+                        //handle errors here
+                    });
+                }
+
 
                 //Get Master's Transcript's URL
-                firebase.storage().ref(mastersTranscriptPath).getDownloadURL().then(function (url) {
-                    document.getElementById("mastersTranscript").onclick = function () {
-                        open(url);
-                    }
-                }).catch(function (error) {
-                    //handle errors here
-                });
+                if (mastersTranscriptPath !== "#") {
+                    firebase.storage().ref(mastersTranscriptPath).getDownloadURL().then(function (url) {
+                        document.getElementById("mastersTranscript").onclick = function () {
+                            open(url);
+                        }
+                    }).catch(function (error) {
+                        //handle errors here
+                    });
+                }
+
 
                 //Get Permission Letter document's URL
-                firebase.storage().ref(permissionLetterPath).getDownloadURL().then(function (url) {
-                    document.getElementById("permission").onclick = function () {
-                        open(url);
-                    }
-                }).catch(function (error) {
-                    //handle errors here
-                });
+                if (permissionLetterPath !== "#") {
+                    firebase.storage().ref(permissionLetterPath).getDownloadURL().then(function (url) {
+                        document.getElementById("permission").onclick = function () {
+                            open(url);
+                        }
+                    }).catch(function (error) {
+                        //handle errors here
+                    });
+                } else {
+                    document.getElementById("all-documents").removeChild(document.getElementById("permission-field"));
+                }
+
 
                 //Get Photo's URL
-                firebase.storage().ref(photoPath).getDownloadURL().then(function (url) {
-                    document.getElementById("photo").onclick = function () {
-                        open(url);
-                    }
-                }).catch(function (error) {
-                    //handle errors here
-                });
+                if (photoPath !== "#") {
+                    firebase.storage().ref(photoPath).getDownloadURL().then(function (url) {
+                        document.getElementById("photo").onclick = function () {
+                            open(url);
+                        }
+                    }).catch(function (error) {
+                        //handle errors here
+                    });
+                }
+
 
                 //Get Statement Of Purpose document's URL
-                firebase.storage().ref(purposePath).getDownloadURL().then(function (url) {
-                    document.getElementById("purpose").onclick = function () {
-                        open(url);
-                    }
-                }).catch(function (error) {
-                    //handle errors here
-                });
+                if (purposePath !== "#") {
+                    firebase.storage().ref(purposePath).getDownloadURL().then(function (url) {
+                        document.getElementById("purpose").onclick = function () {
+                            open(url);
+                        }
+                    }).catch(function (error) {
+                        //handle errors here
+                    });
+                }
+
 
                 //Get Undergraduate Transcript document's URL
-                firebase.storage().ref(undergradTranscriptPath).getDownloadURL().then(function (url) {
-                    document.getElementById("undergrad").onclick = function () {
-                        open(url);
-                    }
-                }).catch(function (error) {
-                    //handle errors here
-                });
+                if (undergradTranscriptPath !== "#") {
+                    firebase.storage().ref(undergradTranscriptPath).getDownloadURL().then(function (url) {
+                        document.getElementById("undergrad").onclick = function () {
+                            open(url);
+                        }
+                    }).catch(function (error) {
+                        //handle errors here
+                    });
+                }
+
 
                 //Get Passport's URL
-                firebase.storage().ref(passportPath).getDownloadURL().then(function (url) {
-                    document.getElementById("passport").onclick = function () {
-                        open(url);
-                    }
-                }).catch(function (error) {
-                    //handle errors here
-                });
+                if (passportPath !== "#") {
+                    firebase.storage().ref(passportPath).getDownloadURL().then(function (url) {
+                        document.getElementById("passport").onclick = function () {
+                            open(url);
+                        }
+                    }).catch(function (error) {
+                        //handle errors here
+                    });
+                } else {
+                    document.getElementById("all-documents").removeChild(document.getElementById("passport-field"));
+                }
+
             });
         }
     });
@@ -146,5 +194,29 @@ function submitResult() {
     console.log("permission is checked: " + (document.getElementById("permission-checkbox").checked));
     console.log("master's transcript is checked: " + (document.getElementById("mastersdegree-checkbox").checked));
     console.log("ales is checked: " + (document.getElementById("ales-checkbox").checked));
-}
 
+    var verified = ((document.getElementById("undergrad-checkbox").checked) && (document.getElementById("purpose-checkbox").checked) &&
+        (document.getElementById("englishexam-checkbox").checked) && (document.getElementById("passport-checkbox").checked) &&
+        (document.getElementById("permission-checkbox").checked) && (document.getElementById("mastersdegree-checkbox").checked) &&
+        (document.getElementById("ales-checkbox").checked));
+
+
+
+    /*console.log('verified' + verified);*/
+
+    //Decode the URL and get the parameters
+    var queryString = decodeURIComponent(window.location.search);
+    queryString = queryString.substring(1);
+    var queries = queryString.split("&");
+
+    //Get the application id from the url
+    var applicationId = (queries[0].split("="))[1];
+    var termInfo = (queries[1].split("="))[1];
+    var department = (queries[2].split("="))[1];
+
+    firebase.database().ref('applications/' + termInfo + '/' + department + '/' + applicationId + '/gradschoolControl').set({
+        isVerified: verified
+    });
+
+    window.location.href = 'list-checked-applications';
+}

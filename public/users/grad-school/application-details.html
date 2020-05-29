@@ -86,13 +86,14 @@
                 <!-- Open Documents And Verify Section -->
                 <div class="col-md-7 order-md-1">
                     <h4 class="mb-3">Application documents</h4>
-                    <form class="needs-validation" novalidate>
+                    <form id="all-documents" class="needs-validation" novalidate>
 
                         <label for="preapp">Undergraduate Transcript</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input id="undergrad-checkbox" type="checkbox" aria-label="Checkbox for following text input">
+                                    <input id="undergrad-checkbox" type="checkbox"
+                                        aria-label="Checkbox for following text input">
                                 </div>
                             </div>
                             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
@@ -106,7 +107,8 @@
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input id="ales-checkbox"  type="checkbox" aria-label="Checkbox for following text input">
+                                    <input id="ales-checkbox" type="checkbox"
+                                        aria-label="Checkbox for following text input">
                                 </div>
                             </div>
                             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
@@ -120,7 +122,8 @@
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input id="englishexam-checkbox" type="checkbox" aria-label="Checkbox for following text input">
+                                    <input id="englishexam-checkbox" type="checkbox"
+                                        aria-label="Checkbox for following text input">
                                 </div>
                             </div>
                             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
@@ -130,25 +133,46 @@
                             </div>
                         </div>
 
-                        <label for="preapp">Reference Letters</label>
+                        <label for="preapp">Reference Letter-1</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input id="reference-checkbox" type="checkbox" aria-label="Checkbox for following text input">
+                                    <input id="reference1-checkbox" type="checkbox"
+                                        aria-label="Checkbox for following text input">
                                 </div>
                             </div>
                             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
                                 placeholder="Reference Letters">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Open</button>
+                                <button class="btn btn-outline-secondary" type="button" id="reference1">Open</button>
                             </div>
                         </div>
+
+                        <div id="referenceLetter2">
+                            <label for="preapp">Reference Letter-2</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input id="reference1-checkbox" type="checkbox"
+                                            aria-label="Checkbox for following text input">
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
+                                    placeholder="Reference Letters">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="reference1">Open</button>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <label for="preapp">Statement of Purpose</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input id="purpose-checkbox" type="checkbox" aria-label="Checkbox for following text input">
+                                    <input id="purpose-checkbox" type="checkbox"
+                                        aria-label="Checkbox for following text input">
                                 </div>
                             </div>
                             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
@@ -158,39 +182,48 @@
                             </div>
                         </div>
 
-                        <label for="preapp">Passport</label>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <input  id="passport-checkbox" type="checkbox" aria-label="Checkbox for following text input">
+                        <div id="passport-field">
+                            <label for="preapp">Passport</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input id="passport-checkbox" type="checkbox"
+                                            aria-label="Checkbox for following text input">
+                                    </div>
                                 </div>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
-                                placeholder="Passport">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="passport">Open</button>
+                                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
+                                    placeholder="Passport">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="passport">Open</button>
+                                </div>
                             </div>
                         </div>
 
-                        <label for="preapp">Permission Letter</label>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <input id="permission-checkbox"  type="checkbox" aria-label="Checkbox for following text input">
+                        <div id="permission-field">
+                            <label for="preapp">Permission Letter</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input id="permission-checkbox" type="checkbox"
+                                            aria-label="Checkbox for following text input">
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
+                                    placeholder="Permission Letter">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="permission">Open</button>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
-                                placeholder="Permission Letter">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="permission">Open</button>
-                            </div>
                         </div>
+
 
                         <label for="preapp">Master's Degree Transcript</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input id="mastersdegree-checkbox" type="checkbox" aria-label="Checkbox for following text input">
+                                    <input id="mastersdegree-checkbox" type="checkbox"
+                                        aria-label="Checkbox for following text input">
                                 </div>
                             </div>
                             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
@@ -200,7 +233,8 @@
                             </div>
                         </div>
                         <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block" type="button" onclick="submitResult()">Submit Result</button>
+                        <button class="btn btn-primary btn-lg btn-block" type="button" onclick="submitResult()">Submit
+                            Result</button>
                     </form>
                 </div>
             </div>
