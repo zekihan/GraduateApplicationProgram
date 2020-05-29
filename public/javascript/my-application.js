@@ -25,7 +25,7 @@ function getApplicationData() {
                         var date = interviewInfoChild.child('date').val();
                         var place = interviewInfoChild.child('place').val();
                         var time = interviewInfoChild.child('time').val();
-                        var isAccepted = interviewInfoChild.child('isAccepted').val();
+                        var isAccepted = applicationSnapshot.child('departmentControl/isAccepted').val();
 
                         var applicationProperties = new Map();
 

@@ -112,19 +112,6 @@ function onSignIn(googleUser) {
     });
 }
 
-function isUserEqualGoogle(googleUser, firebaseUser) {
-    if (firebaseUser) {
-        var providerData = firebaseUser.providerData;
-        for (var i = 0; i < providerData.length; i++) {
-            if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-                providerData[i].uid === googleUser.getBasicProfile().getEmail()) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 FB.init({
     appId: '271875460605718',
     status: true,
@@ -156,6 +143,19 @@ function checkLoginState(event) {
     } else {
         firebase.auth().signOut();
     }
+}
+
+function isUserEqualGoogle(googleUser, firebaseUser) {
+    if (firebaseUser) {
+        var providerData = firebaseUser.providerData;
+        for (var i = 0; i < providerData.length; i++) {
+            if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
+                providerData[i].uid === googleUser.getBasicProfile().getEmail()) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 function isUserEqualFacebook(facebookAuthResponse, firebaseUser) {
