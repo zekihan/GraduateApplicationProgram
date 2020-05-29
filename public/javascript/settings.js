@@ -1,4 +1,3 @@
-
 function getUserInformation() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -57,18 +56,46 @@ function changePhone() {
     });
 }
 
-function resetPassword(){
+function resetPassword() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             //User has signed in.
             var userId = user.uid;
             var userEmail = user.email;
-            firebase.auth().sendPasswordResetEmail(userEmail).then(function(){
-                window.alert("A reset email has been sent to " + userEmail + " address!");
-            })
-            .catch(function(error){
-                console.log("An error has occurred " + error);
-            })
+            firebase.auth().sendPasswordResetEmail(userEmail).then(function () {
+                    window.alert("A reset email has been sent to " + userEmail + " address!");
+                })
+                .catch(function (error) {
+                    console.log("An error has occurred " + error);
+                })
+        }
+    });
+}
+
+
+function deleteAccount() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            var userId = user.uid;
+            var canBeDeleted = false;
+            firebase.database().ref('users/' + userId + '/applications').once('value').then(function (snapshot) {
+                if (snapshot.val() == null) {
+                    canBeDeleted = true;
+                } else {
+                    snapshot.forEach(function (applicationId) {
+                        var department = applicationId.child("department").val();
+                        var term = applicationId.child("term").val();
+                        firebase.database().ref("applications/" + term + "/" + department + "/" + applicationId).once('value').then(function (snapshot) {
+                            canBeDeleted = !(snapshot.child("gradschoolControl/isVerified").val());
+                        }).catch(function (error) {});
+                    });
+                    firebase.auth().currentUser.delete().then(function () {
+                        firebase.database().ref("users/" + userId).remove();
+                        alert('Your account has been successfully deleted!');
+                        window.location.href = "login";
+                    })
+                }
+            }).catch(function (error) {});
         }
     });
 }

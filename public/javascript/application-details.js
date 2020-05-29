@@ -63,6 +63,7 @@ function getApplicantData() {
                     }).catch(function (error) {
                         //handle errors here
                     });
+                    //If document is not present in the database, don't display the link for it
                 } else {
                     document.getElementById("all-documents").removeChild(document.getElementById("referenceLetter2"));
                 }
@@ -112,6 +113,7 @@ function getApplicantData() {
                     }).catch(function (error) {
                         //handle errors here
                     });
+                    //If document is not present in the database, don't display the link for it
                 } else {
                     document.getElementById("all-documents").removeChild(document.getElementById("permission-field"));
                 }
@@ -162,6 +164,7 @@ function getApplicantData() {
                     }).catch(function (error) {
                         //handle errors here
                     });
+                    //If document is not present in the database, don't display the link for it
                 } else {
                     document.getElementById("all-documents").removeChild(document.getElementById("passport-field"));
                 }
