@@ -10,11 +10,18 @@ function signInWithEmail() {
     console.log('Password: ' + password);
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
         // Handle Errors here.
-        console.log("No such account!");
         var errorCode = error.code;
         var errorMessage = error.message;
-        // ...
-        location.href = "register.html";
+        if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+        }else if (errorCode === 'auth/user-not-found'){
+            alert('No such account');
+            location.href = "register.html";
+        }else if (errorCode === 'auth/invalid-email'){
+            alert('No such account');
+        }else if (errorCode === 'auth/user-disabled'){
+            alert('Account Disabled');
+        }
     });
     console.log("Successful authentication");
     // hideSpinner();
