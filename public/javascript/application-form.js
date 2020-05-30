@@ -203,13 +203,18 @@ function checkDocumentFields(persenolInfo) {
         $("#degreeSelection-error").text("Please choose a degree.");
         return false;
     } else if (program === "phd") {
-        mastersTranscript = document.getElementById("mastersDegreeTranscript").files[0];
+        mastersTranscript = document.getElementById("mastersTranscript").files[0];
         if (mastersTranscript === undefined || mastersTranscript === "#") {
-            $("#mastersDegreeTranscript-error").text("Please choose Masters Degree Transcript file.");
+            $("#mastersTranscript-error").text("Please choose Masters Degree Transcript file.");
             return false;
         }
     }
-
+    
+    var appliedProgram = $("#programSelection :selected").val();
+    if (appliedProgram === "Choose..." || appliedProgram === "") {
+        $("#programSelection-error").text("Please choose a program.");
+        return false;
+    }
 
 
     return true;
@@ -245,8 +250,9 @@ function getInfo() {
     var program = $("#degreeSelection :selected").val();
     var mastersTranscript = "#";
     if (program === "phd") {
-        var mastersTranscript = document.getElementById("mastersDegreeTranscript").files[0];
+        var mastersTranscript = document.getElementById("mastersTranscript").files[0];
     }
+    var appliedProgram = $("#programSelection :selected").val();
     var info = {
         department,
         isForeign,
@@ -260,7 +266,8 @@ function getInfo() {
         referenceLetters,
         purpose,
         program,
-        mastersTranscript
+        mastersTranscript,
+        appliedProgram
     }
     return info;
 }
@@ -270,10 +277,8 @@ function fillDepartment() {
         snapshot.forEach(function (childSnapshot) {
             var deptId = childSnapshot.key;
             var deptName = childSnapshot.child('name').val();
-            if (childSnapshot.child('isTaking').val() == 1) {
-                s = `<option value="${deptId}">${deptName}</option>`;
-                $("#departmentSelection").append(s);
-            }
+            s = `<option id="${deptId}" value="${deptId}">${deptName}</option>`;
+            $("#departmentSelection").append(s);
         });
     });
 }
