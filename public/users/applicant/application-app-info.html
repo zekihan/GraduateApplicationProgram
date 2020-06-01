@@ -53,6 +53,39 @@
                     <span class="error-msg" style="color:red;" id="departmentSelection-error"></span>
                 </div>
 
+                <div class="mb-3">
+                    <label for="studentType">Degree to Apply</label>
+
+                    <select class="custom-select" id="degreeSelection" aria-label=""
+                        onchange="setVisibilityOfGradTranscriptInput(this)">
+                        <option selected>Choose...</option>
+                    </select>
+                    <span class="error-msg" style="color:red;" id="degreeSelection-error"></span>
+                </div>
+
+                <div id="grad-transcript-input">
+                    <label for="passport">Master's Degree Transcript</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" accept=".pdf" class="custom-file-input" id="mastersTranscript"
+                                aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <span class="error-msg" style="color:red;" id="mastersTranscript-error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="departmentSelection">Program To Apply</label>
+                    <select class="custom-select" id="programSelection" aria-label="">
+                        <option selected>Choose...</option>
+                    </select>
+                    <span class="error-msg" style="color:red;" id="programSelection-error"></span>
+                </div>
+
 
                 <div class="mb-3">
                     <label for="studentType">Applicant Type</label>
@@ -198,34 +231,6 @@
                     <span class="error-msg" style="color:red;" id="purposeFile-error"></span>
                 </div>
 
-                <div class="mb-3">
-                    <label for="studentType">Degree to Apply</label>
-
-                    <select class="custom-select" id="degreeSelection" aria-label=""
-                        onchange="setVisibilityOfGradTranscriptInput(this)">
-                        <option selected>Choose...</option>
-                        <option value="phd">PhD</option>
-                        <option value="mastersDegree">Master's Degree</option>
-                    </select>
-                    <span class="error-msg" style="color:red;" id="degreeSelection-error"></span>
-                </div>
-
-                <div id="grad-transcript-input">
-                    <label for="passport">Master's Degree Transcript</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" accept=".pdf" class="custom-file-input" id="mastersDegreeTranscript"
-                                aria-describedby="inputGroupFileAddon01">
-                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                        </div>
-                    </div>
-                    <span class="error-msg" style="color:red;" id="mastersDegreeTranscript-error"></span>
-                </div>
-
-
                 <hr class="mb-4">
                 <div id="buttons">
                     <button class="btn btn-primary btn-lg btn-block" id="create-app" type="button"
@@ -302,6 +307,36 @@
     </script>
     <script>
         fillDepartment();
+        $('#departmentSelection').on("change", function () {
+            deptId = $("#departmentSelection :selected").attr("id");
+            $('#programSelection').find('option:not(:first)').remove();
+            $('#degreeSelection').find('option:not(:first)').remove();
+            setVisibilityOfGradTranscriptInput($('#degreeSelection'))
+            firebase.database().ref('departments').child(deptId).once('value').then(function (snapshot) {
+                var masters = snapshot.child('program/masters').val();
+                var phd = snapshot.child('program/phd').val();
+                if(phd != null){
+                    $('#degreeSelection').append('<option id="phd" value="phd">PhD</option>')
+                }
+                if(masters != null){
+                    $('#degreeSelection').append('<option id="masters" value="masters">Master\'s Degree</option>')
+                }
+            });
+        });        
+        $('#degreeSelection').on("change", function () {
+            deptId = $("#departmentSelection :selected").attr("id");
+            degree = $("#degreeSelection :selected").attr("id");
+            firebase.database().ref('departments').child(deptId).child('program').child(degree).once('value').then(function (snapshot) {
+                $('#programSelection').find('option:not(:first)').remove();
+                snapshot.forEach(childSnapshot => {
+                    var name = childSnapshot.child('name').val();
+                    var isTaking = childSnapshot.child('isTaking').val();
+                    if(isTaking){
+                        $('#programSelection').append(`<option value="${name}">${name}</option>`)
+                    }
+                });
+            });
+        });
         $('#create-app').click(function () {
             $('#buttons').html(
                 '<button class="btn btn-primary btn-lg btn-block" id="create-app" type="button" disabled><span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...</button>'
