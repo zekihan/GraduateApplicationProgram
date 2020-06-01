@@ -46,7 +46,7 @@ function changePhone() {
                     firebase.database().ref('users/' + userId).update({
                         phone: phone
                     });
-
+                    window.location.reload();
                 } else {
                     myWindow.close();
                     $("#phone-error").text("Phone verification failed.");
@@ -74,6 +74,7 @@ function resetPassword() {
 
 
 function deleteAccount() {
+    console.log("Delete account :)");
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             var userId = user.uid;
@@ -87,13 +88,13 @@ function deleteAccount() {
                         var term = applicationId.child("term").val();
                         firebase.database().ref("applications/" + term + "/" + department + "/" + applicationId).once('value').then(function (snapshot) {
                             canBeDeleted = !(snapshot.child("gradschoolControl/isVerified").val());
+                            firebase.auth().currentUser.delete().then(function () {
+                                firebase.database().ref("users/" + userId).remove();
+                                alert('Your account has been successfully deleted!');
+                                window.location.href = "login";
+                            });
                         }).catch(function (error) {});
                     });
-                    firebase.auth().currentUser.delete().then(function () {
-                        firebase.database().ref("users/" + userId).remove();
-                        alert('Your account has been successfully deleted!');
-                        window.location.href = "login";
-                    })
                 }
             }).catch(function (error) {});
         }
