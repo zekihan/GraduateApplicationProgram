@@ -221,5 +221,5 @@ function submitResult() {
         isVerified: verified
     });
 
-    window.location.href = 'list-checked-applications';
+    window.location.href = 'list-applications';
 }

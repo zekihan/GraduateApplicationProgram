@@ -16,6 +16,7 @@
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
   </script>
+  
 </head>
 
 <body>
@@ -66,29 +67,20 @@
       </div>
       <p class="mt-5 mb-3 text-muted">&copy; 1992-2020 Izmir Institute of Technology</p>
   </form>
-
-  <script src="/__/firebase/7.14.4/firebase-app.js"></script>
-  <script src="/__/firebase/7.14.4/firebase-auth.js"></script>
-  <script src="/__/firebase/init.js"></script>
-
-  <script src="//connect.facebook.net/en_US/sdk.js"></script>
-
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  
   <meta name="google-signin-client_id"
     content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
   <meta name="google-signin-cookiepolicy" content="single_host_origin">
   <meta name="google-signin-scope" content="profile email">
 
-  <script>
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        window.location.href = '/users/applicant/applicant-dashboard';
-      } else {
-        // window.location.href = '/login';
-      }
-    });
-  </script>
-  <script src="javascript/login.js"></script>
+  <script src="/__/firebase/7.14.4/firebase-app.js" defer></script>
+  <script src="/__/firebase/7.14.4/firebase-auth.js" defer></script>
+  <script src="/__/firebase/init.js" defer></script>
+  <script src="javascript/redirect-to-dashboard.js" defer></script>
+  <script src="//connect.facebook.net/en_US/sdk.js" defer></script>
+  <script src="https://apis.google.com/js/platform.js" defer></script>
+  <script src="javascript/login.js" defer></script>
+  
 </body>
 
 </html>
