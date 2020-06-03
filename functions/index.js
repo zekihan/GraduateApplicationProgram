@@ -6,6 +6,24 @@ const functions = require('firebase-functions');
 
 var admin = require("firebase-admin");
 
+const SENDGRID_API_KEY = functions.config().sendgrid.key
+
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+
+exports.sendAcceptanceEmail = functions.https.onRequest(async (request, response) => {
+    const msg = {
+        to: 'test@example.com',
+        from: 'grad.application.1992@gmail.com',
+        subject: 'Sending with Twilio SendGrid is Fun',
+        text: 'and easy to do anywhere, even with Node.js',
+        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    };
+    sgMail.send(msg);
+});
+
+
 
 const {
     Storage
@@ -130,18 +148,18 @@ exports.applicationCreated = functions.database.ref('/applications/{term}/{depar
     });
 
 
-exports.generateSignedURL = async function(filename){
+exports.generateSignedURL = async function (filename) {
     const options = {
         version: 'v4',
         action: 'read',
         expires: Date.now() + 15 * 60 * 1000, // 15 minutes
-      };
-    
-      // Get a v4 signed URL for reading the file
-      const [url] = await storage
+    };
+
+    // Get a v4 signed URL for reading the file
+    const [url] = await storage
         .bucket(admin.storage().bucket())
         .file(filename)
         .getSignedUrl(options);
 
-        return url;
+    return url;
 }
