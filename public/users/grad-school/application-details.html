@@ -88,6 +88,7 @@
                     <h4 class="mb-3">Application documents</h4>
                     <form id="all-documents" class="needs-validation" novalidate>
 
+
                         <label for="preapp">Undergraduate Transcript</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -102,6 +103,7 @@
                                 <button class="btn btn-outline-secondary" type="button" id="undergrad">Open</button>
                             </div>
                         </div>
+
 
                         <label for="preapp">ALES Result</label>
                         <div class="input-group mb-3">
@@ -118,6 +120,7 @@
                             </div>
                         </div>
 
+
                         <label for="preapp">English Exam Result</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -133,6 +136,7 @@
                             </div>
                         </div>
 
+
                         <label for="preapp">Reference Letter-1</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -147,6 +151,7 @@
                                 <button class="btn btn-outline-secondary" type="button" id="reference1">Open</button>
                             </div>
                         </div>
+
 
                         <div id="referenceLetter2">
                             <label for="preapp">Reference Letter-2</label>
@@ -167,6 +172,7 @@
                         </div>
 
 
+
                         <label for="preapp">Statement of Purpose</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -181,6 +187,7 @@
                                 <button class="btn btn-outline-secondary" type="button" id="purpose">Open</button>
                             </div>
                         </div>
+
 
                         <div id="passport-field">
                             <label for="preapp">Passport</label>
@@ -198,6 +205,7 @@
                                 </div>
                             </div>
                         </div>
+
 
                         <div id="permission-field">
                             <label for="preapp">Permission Letter</label>
@@ -217,21 +225,24 @@
                             </div>
                         </div>
 
-
-                        <label for="preapp">Master's Degree Transcript</label>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <input id="mastersdegree-checkbox" type="checkbox"
-                                        aria-label="Checkbox for following text input">
+                        
+                        <div id="mastersTranscript">
+                            <label for="preapp">Master's Degree Transcript</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input id="mastersdegree-checkbox" type="checkbox"
+                                            aria-label="Checkbox for following text input">
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
+                                    placeholder="Reference Letters">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Open</button>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
-                                placeholder="Reference Letters">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Open</button>
-                            </div>
                         </div>
+                        
                         <hr class="mb-4">
                         <button class="btn btn-primary btn-lg btn-block" type="button" onclick="submitResult()">Submit
                             Result</button>

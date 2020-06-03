@@ -1,24 +1,27 @@
-function getFirstPage() {
+function getDepartmentsApplicants() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
 
             //Get firebase database instance
             var userId = firebase.auth().currentUser.uid;
-            var applicants = new Array();
-            var numOfApplicantsToGet = 20;
 
-            //Get the last term's applicants' data
+            //Get the department id from the url
+            var departmentId = parseDepartmentId();
+
+            var applicants = new Array();
+
             firebase.database().ref("applications").orderByKey().limitToLast(1).once('value').then(function (term) {
-                term.forEach(function (departments) {
-                    console.log("Term: " + departments.key);
-                    var termInfo = departments.key;
-                    departments.forEach(function (applications) {
-                        var departmentId = applications.key;
-                        console.log("value: " + (typeof departmentId));
-                        applications.forEach(function (application) {
-                            //Add the application to display list only if it's not checked by the grad-school
+                console.log("Number of children nodes: " + term.numChildren());
+                console.log(term.toJSON());
+                term.forEach(function (realTerm) {
+                    realTerm.child(departmentId).forEach(function (application) {
+                        console.log("Application date: " + application.child("date").val());
+                        console.log("Term information: " + realTerm.key);
+                        var termInfo = realTerm.key;
+                        console.log("is accepted: " + application.child("departmentControl/isAccepted").val());
+                        //Change this afterwards
+                        if (/*application.child("departmentControl/isAccepted").val()*/true) {
                             applicants.push({
-                                isVerified: application.child('gradschoolControl/isVerified').val(),
                                 program: application.child("content").child("program").val(),
                                 term: termInfo,
                                 department: application.child("content").child("department").val(),
@@ -27,23 +30,32 @@ function getFirstPage() {
                                 lastname: application.child("content").child("lastName").val(),
                                 date: application.child("date").val()
                             });
-                        });
-                    })
+                        }
+                    });
+                    displayApplicants(applicants);
                 });
-                displayApplicants(applicants);
+            }).catch(function (error) {
+                console.log(error);
             });
-        } else {
-            location.href = "/login";
         }
     });
 }
 
 
-function displayApplicants(applicants) {
-    var htmlString;
-    applicants.forEach(function (applicant) {
-        var div = document.createElement('DIV');
+function parseDepartmentId() {
+    var queryString = decodeURIComponent(window.location.search);
+    queryString = queryString.substring(1);
+    var queries = queryString.split("=");
+    return queries[1];
+}
 
+
+
+function displayApplicants(applicants) {
+    console.log("display mehod");
+    applicants.forEach(function (applicant) {
+        console.log("inside for loop");
+        var div = document.createElement('DIV');
         //Application data row.
         div.classList.add("text-muted");
         div.classList.add("pt-3");
@@ -73,6 +85,7 @@ function displayApplicants(applicants) {
         p.classList.add("small");
         p.classList.add("lh-125");
 
+
         //Applicant's name and lastname
         var strong = document.createElement("STRONG");
         strong.classList.add("d-block");
@@ -80,10 +93,12 @@ function displayApplicants(applicants) {
         strong.innerHTML = applicant.name + ' ' + applicant.lastname;
         p.appendChild(strong);
 
+
         //Application date and department,program information
+        var departmentStr = intToDepartmentStr(applicant.department);
         var psInfo = document.createTextNode('Created at: ' + timeConverter(applicant.date) +
-            ' For ' + intToDepartmentStr(applicant.department) + '  '
-            + prettyFormat(applicant.program));
+            ' For ' + departmentStr + '  ' +
+            prettyFormat(applicant.program));
         p.appendChild(psInfo);
 
         div.appendChild(p);
@@ -138,16 +153,15 @@ function displayApplicants(applicants) {
     });
 }
 
-/* Called whenever 'View Details' of an application is clicked on.
- * Directs user to the selected application's details page.
- * Transfers the required data for the details page via URL
- */
+
 function getApplicationInfoWithId(applicationId, term, department) {
     console.log("application id is " + applicationId);
     var id = applicationId;
     var queryString = "?id=" + id + '&term=' + term + '&department=' + department;
-    window.location.href = "application-details.html" + queryString;
+    window.location.href = "applicant-details.html" + queryString;
 }
+
+
 
 /* Convert timestamp to a more human-readable format.*/
 function timeConverter(timestamp) {
@@ -181,12 +195,19 @@ function prettyFormat(output) {
 
 /* Convert department id to corresponding department name. */
 function intToDepartmentStr(departmentIdentifier) {
-    switch (departmentIdentifier) {
-        case "1":
-            return "Computer Engineering Department";
-        case "2":
-            return "Mechanical Engineering Department";
-        default:
-            return "NaN";
+    firebase.database().ref("departments").once('value').then(function(department){
+        return (department.child(departmentIdentifier).child("name").val());
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+
+function confirmAndAnnounce() {
+
+    if (confirm("You are about to confirm and announce the results.\nProceed?")) {
+        //Confirm and Announce
+    } else {
+
     }
 }

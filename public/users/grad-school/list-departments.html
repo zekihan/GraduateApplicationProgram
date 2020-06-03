@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="../../styles/confirm.css">
 </head>
 
-<body onload="getDepartmentsApplicants()">
+<body onload="getDepartments()">
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href=""><img src="../../images/iyte-comp-logo.png" height="60" width="60"> Izmir
@@ -49,14 +49,9 @@
 
         <!-- Listview of unchecked applications -->
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-            <h6 class="border-bottom border-gray pb-2 mb-0">Computer Engineering Department Accepted Students</h6>
-            <div id="applicant-container"></div>
-        </div>
+            <h6 class="border-bottom border-gray pb-2 mb-0">All Departments</h6>
+            <div id="department-container"></div>
 
-        <div class="media text-muted pt-3">
-            <button type="button" class="btn btn-outline-light confirm-button btn-lg" onclick="confirmAndAnnounce()"><i
-                    class="fas fa-paper-plane"></i>
-                Confirm</button>
         </div>
 
     </main>
@@ -65,7 +60,7 @@
     <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
     <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
     <script src="/__/firebase/init.js"></script>
-    <script src="../../javascript/list-accepted-applicants.js"></script>
+    <script src="../../javascript/list-departments.js"></script>
 </body>
 
 </html>
