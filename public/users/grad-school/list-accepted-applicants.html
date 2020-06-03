@@ -49,14 +49,36 @@
 
         <!-- Listview of unchecked applications -->
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-            <h6 class="border-bottom border-gray pb-2 mb-0">Computer Engineering Department Accepted Students</h6>
+            <h6 id="department-title" class="border-bottom border-gray pb-2 mb-0">Computer Engineering Department
+                Accepted Students</h6>
             <div id="applicant-container"></div>
         </div>
 
         <div class="media text-muted pt-3">
-            <button type="button" class="btn btn-outline-light confirm-button btn-lg" onclick="confirmAndAnnounce()"><i
-                    class="fas fa-paper-plane"></i>
+            <button type="button" class="btn btn-outline-light confirm-button btn-lg" data-toggle="modal"
+                data-target="#exampleModal"><i class="fas fa-paper-plane"></i>
                 Confirm</button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirm All Applicants?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            All ... department applicants will receive an email, results will be announced!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" onclick=" confirmAndAnnounce()">Confirm and Announce</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </main>

@@ -52,9 +52,7 @@ function parseDepartmentId() {
 
 
 function displayApplicants(applicants) {
-    console.log("display mehod");
     applicants.forEach(function (applicant) {
-        console.log("inside for loop");
         var div = document.createElement('DIV');
         //Application data row.
         div.classList.add("text-muted");
@@ -95,9 +93,8 @@ function displayApplicants(applicants) {
 
 
         //Application date and department,program information
-        var departmentStr = intToDepartmentStr(applicant.department);
         var psInfo = document.createTextNode('Created at: ' + timeConverter(applicant.date) +
-            ' For ' + departmentStr + '  ' +
+            ' For ' + '  ' +
             prettyFormat(applicant.program));
         p.appendChild(psInfo);
 
@@ -151,6 +148,7 @@ function displayApplicants(applicants) {
 
         document.getElementById("applicant-container").appendChild(div);
     });
+   // document.getElementById("department-title").innerHTML = intToDepartmentStr(applicants[0].department) + "Department Accepted Studs";
 }
 
 
@@ -194,11 +192,9 @@ function prettyFormat(output) {
 
 
 /* Convert department id to corresponding department name. */
-function intToDepartmentStr(departmentIdentifier) {
-    firebase.database().ref("departments").once('value').then(function(department){
-        return (department.child(departmentIdentifier).child("name").val());
-    }).catch(function(error){
-        console.log(error);
+async function intToDepartmentStr(departmentIdentifier) {
+    await firebase.database().ref("departments").once("value").then(async function(departments){
+        return dept = await departments.child(departmentIdentifier).child("name").val();
     });
 }
 

@@ -49,3 +49,8 @@
   .slidecontainer{
       margin: 0.55rem;
   }
+
+
+#content-container{
+  visibility: hidden;
+}
