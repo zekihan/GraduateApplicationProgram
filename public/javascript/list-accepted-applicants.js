@@ -22,6 +22,7 @@ function getDepartmentsApplicants() {
                         //Change this afterwards
                         if (/*application.child("departmentControl/isAccepted").val()*/true) {
                             applicants.push({
+                                applicationId: application.key,
                                 program: application.child("content").child("program").val(),
                                 term: termInfo,
                                 department: application.child("content").child("department").val(),
@@ -149,6 +150,7 @@ function displayApplicants(applicants) {
         document.getElementById("applicant-container").appendChild(div);
     });
    // document.getElementById("department-title").innerHTML = intToDepartmentStr(applicants[0].department) + "Department Accepted Studs";
+   document.getElementById("confirmButton").onclick = function(){ confirmAndAnnounce(applicants); }
 }
 
 
@@ -199,11 +201,25 @@ async function intToDepartmentStr(departmentIdentifier) {
 }
 
 
-function confirmAndAnnounce() {
+function confirmAndAnnounce(applicants) {
+    console.log("dept: " + applicants[0].department);
+    var dept = applicants[0].department;
+    applicants.forEach(function(applicant){
+        console.log("id: " + applicant.applicationId);
+        firebase.database().ref('applications/' + applicant.term + '/' + applicant.department + '/' + applicant.applicationId + '/gradschoolControl').set({
+            isVerified: true,
+            result: true
+        });
+    });
 
-    if (confirm("You are about to confirm and announce the results.\nProceed?")) {
-        //Confirm and Announce
-    } else {
+    var update = {
+        confirmed: true
+    };
 
-    }
+    //Update the department as confirmed
+    firebase.database().ref("departments/" + dept).update(update);
+
+
+    window.location.href = "list-departments";
+
 }
