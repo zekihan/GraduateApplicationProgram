@@ -149,7 +149,7 @@ function displayApplicants(applicants) {
 
         document.getElementById("applicant-container").appendChild(div);
     });
-   // document.getElementById("department-title").innerHTML = intToDepartmentStr(applicants[0].department) + "Department Accepted Studs";
+   document.getElementById("department-title").innerHTML = intToDepartmentStr(applicants[0].department) + "Department Accepted Studs";
    document.getElementById("confirmButton").onclick = function(){ confirmAndAnnounce(applicants); }
 }
 
@@ -204,6 +204,8 @@ async function intToDepartmentStr(departmentIdentifier) {
 function confirmAndAnnounce(applicants) {
     console.log("dept: " + applicants[0].department);
     var dept = applicants[0].department;
+    
+    //Update all applicants' result as true
     applicants.forEach(function(applicant){
         console.log("id: " + applicant.applicationId);
         firebase.database().ref('applications/' + applicant.term + '/' + applicant.department + '/' + applicant.applicationId + '/gradschoolControl').set({
