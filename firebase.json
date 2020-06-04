@@ -7,17 +7,17 @@
         "cleanUrls": true,
         "rewrites": [{
                 "source": "/sendCode",
-                "function": "sendCode"
+                "function": "phone-sendCode"
             }, {
                 "source": "/verifyCode",
-                "function": "verifyCode"
+                "function": "phone-verifyCode"
             },
             {
                 "source": "/checkUserExists",
-                "function": "checkUserExists"
+                "function": "auth-checkUserExists"
             }, {
                 "source": "/populateUser",
-                "function": "populateUser"
+                "function": "auth-populateUser"
             }
         ],
         "ignore": [
