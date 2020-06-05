@@ -2,28 +2,26 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <!-- Bootstrap core CSS -->
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Bootstrap core CSS -->
-  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../../styles/sidebar.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../../styles/sidebar.css" rel="stylesheet">
 
 </head>
 
 <body>
-
+    <!-- Dashboard -->
     <div class="d-flex" id="wrapper">
-
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">
-              <div class="row justify-content-md-left">
+              <div class="row justify-content-start">
                 <div class="col-3">
                   <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
                 </div>
@@ -47,24 +45,24 @@
         <div id="page-content-wrapper">
     
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <ul class="navbar-nav ml-1">
+                    <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
+                </ul>
                 
-                <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
                 <ul class="navbar-nav ml-auto mt-1 mb-1">
-                    <li class="nav-item active">
+                    <li class="nav-item active" >
                         <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
                     </li>
                 </ul>
-                
             </nav>
-    
-        <div class="container-fluid">
-            <main role="main">
+
+            <div class="container-fluid">
                 <div class="row py-5 mt-2 justify-content-center">
-                        <h2>Application form</h2> 
+                    <h2>Application form</h2>
                 </div>
-                
+
                 <!-- Applicant Type Description Section -->
-                <div class="row mr-4 ml-4">
+                <div class="row m-3">
                     <div class="col-md-4 order-md-2 mb-5">
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                             <span class="text-muted">Applicant Type Description</span>
@@ -72,28 +70,30 @@
                         <ul class="list-group mb-3">
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
-                                    <h6 class="my-0">Foreign Student <i class="far fa-question-circle d-inline-block"
-                                            tabindex="0" data-toggle="tooltip"
+                                    <h6 class="my-0">Foreign Student <i
+                                            class="far fa-question-circle d-inline-block" tabindex="0"
+                                            data-toggle="tooltip"
                                             title="Foreign applicants will additionally be asked a copy of their passport."></i>
                                     </h6>
                                     <small class="text-muted">Those who do not have a Turkish citizenship.</small>
                                 </div>
                             </li>
-    
+
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
-                                    <h6 class="my-0">Turkish Student <i class="far fa-question-circle d-inline-block"
-                                            tabindex="0" data-toggle="tooltip"
+                                    <h6 class="my-0">Turkish Student <i
+                                            class="far fa-question-circle d-inline-block" tabindex="0"
+                                            data-toggle="tooltip"
                                             title="Turkish students will not upload their passports or permission letters."></i>
                                     </h6>
                                     <small class="text-muted">Those who have a Turkish citizenship.</small>
                                 </div>
                             </li>
-    
+
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
-                                    <h6 class="my-0">Is Working? <i class="far fa-question-circle d-inline-block" tabindex="0"
-                                            data-toggle="tooltip"
+                                    <h6 class="my-0">Is Working? <i class="far fa-question-circle d-inline-block"
+                                            tabindex="0" data-toggle="tooltip"
                                             title="Working applicants will additionally be asked a copy of their perrmission letter from their workplace."></i>
                                     </h6>
                                     <small class="text-muted">Those who currently have a job.</small>
@@ -101,47 +101,52 @@
                             </li>
                         </ul>
                     </div>
-    
+
                     <!-- Application Form Section -->
-    
+
                     <div class="col-md-8 order-md-1">
                         <h4 class="mb-3">Student personal information</h4>
-    
+
                         <!-- Student Type Input (foreign, turkish) -->
-    
+
                         <form class="needs-validation" novalidate>
                             <label for="name">Name and Lastname</label>
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" class="form-control" id="firstName" placeholder="First name">
+                                        <input type="text" class="form-control" id="firstName"
+                                            placeholder="First name">
                                         <span class="error-msg" style="color:red;" id="firstName-error"></span>
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" id="lastName" placeholder="Last name">
+                                        <input type="text" class="form-control" id="lastName"
+                                            placeholder="Last name">
                                         <span class="error-msg" style="color:red;" id="lastName-error"></span>
                                     </div>
                                 </div>
                             </div>
-    
+
                             <!-- Personal Info Input -->
                             <div class="mb-3">
                                 <label for="socialSecurityNumber">Social Security Number</label>
-                                <input type="text" class="form-control" id="socialSecurityNumber" placeholder="12345678900">
+                                <input type="text" class="form-control" id="socialSecurityNumber"
+                                    placeholder="12345678900">
                                 <span class="error-msg" style="color:red;" id="socialSecurityNumber-error"></span>
                             </div>
-    
+
                             <div class="mb-3">
                                 <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                                <input type="text" class="form-control" id="address" placeholder="1234 Main St"
+                                    required>
                                 <span class="error-msg" style="color:red;" id="address-error"></span>
                             </div>
-    
+
                             <div class="mb-3">
                                 <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                                <input type="text" class="form-control" id="address2"
+                                    placeholder="Apartment or suite">
                             </div>
-    
+
                             <div class="row">
                                 <div class="col-md-7 mb-3">
                                     <label for="country">Country</label>
@@ -396,22 +401,22 @@
                                     </select>
                                     <span class="error-msg" style="color:red;" id="country-error"></span>
                                 </div>
-    
+
                                 <div class="col-md-5 mb-3">
                                     <label for="zip">Zip</label>
                                     <input type="text" class="form-control" id="zip" placeholder="" required>
                                     <span class="error-msg" style="color:red;" id="zip-error"></span>
                                 </div>
                             </div>
-    
+
                             <hr class="mb-4">
-    
+
                             <button class="btn btn-primary btn-lg btn-block" type="button"
                                 onclick="storeAndGetNextPage()">Next</button>
                         </form>
                     </div>
                 </div>
-    
+
                 <footer class="my-5 pt-5 text-muted text-center text-small">
                     <p class="mb-1">&copy; 1992-2020 Izmir Institute of Technology</p>
                     <ul class="list-inline">
@@ -420,76 +425,43 @@
                         <li class="list-inline-item"><a href="#">Support</a></li>
                     </ul>
                 </footer>
-            </main>
-        </div>
-        <!-- /#page-content-wrapper -->
-    
-      </div>
-      <!-- /#wrapper -->
+            </div>
+            <!-- /#page-content-wrapper -->
 
-    
+        </div>
+        <!-- /#wrapper -->
+
+
     </div>
     <!-- Bootstrap core JavaScript -->
-  <script src="../../vendor/jquery/jquery.min.js"></script>
-  <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Menu Toggle Script -->
     <script>
-      $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-      });
-    </script>
-
-    <script src="//connect.facebook.net/en_US/sdk.js"></script>
-    
-    <script>
-        FB.init({
-            appId: '271875460605718',
-            status: true,
-            xfbml: true,
-            version: 'v2.6'
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
         });
     </script>
 
-    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-    <meta name="google-signin-client_id"
-        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
-    <script>
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                // window.location.href = '/users/applicant/applicant-dashboard';
-            } else {
-                window.location.href = '/login';
-            }
-        });
-
-        function onLoad() {
-            gapi.load('auth2', function () {
-                gapi.auth2.init();
-            });
-        }
-
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-            FB.logout(function (response) {
-                // Person is now logged out
-            });
-            firebase.auth().signOut().then(function () {
-                window.location.href = "/login"
-            }).catch(function (error) {
-                console.log(error)
-            });
-        }
-    </script>
-    
     <script src="/__/firebase/7.14.2/firebase-app.js"></script>
     <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
     <script src="/__/firebase/init.js"></script>
-    <script src="../../javascript/application-form.js"></script>
+    
+
+    <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+
+    <meta name="google-signin-client_id"
+        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+
+    <script src="../../javascript/logout.js" defer></script>
+    <script src="../../javascript/check-login-state.js" defer></script>
+    <script src="../../javascript/application-form.js" defer></script>
+
+    
 </body>
 
 </html>

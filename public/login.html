@@ -4,18 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="icon" href="images/iyte-comp-logo.png">
   <title>Log In</title>
   <meta name="description" content="Izmir Institute of Technology Graduate Application">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Bootstrap core CSS -->
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../styles/sidebar.css" rel="stylesheet">
   <link rel="stylesheet" href="styles/signin.css">
-  <link href="https://fonts.googleapis.com/css?family=Baloo+2:600&display=swap" rel="stylesheet">
-  <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-  </script>
   
 </head>
 
@@ -24,7 +22,7 @@
   <form class="form-signin" action="">
 
     <!--Logo and Application Title-->
-    <img class="mb-4 iztech-logo-img" src="images/iyte-logo.jpg" alt="" width="120" height="120">
+    <img class="iztech-logo-img" src="assets/iyte-logo.svg" alt="" width="160" height="160">
     <div class="below-logo-title">IZTECH Graduate Application</div>
 
     <!-- Input fields -->
@@ -34,8 +32,7 @@
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
-
-      <div class="checkbox mb-3">
+      <div class="checkbox">
         <div class="row">
           <div class="col-6">
             <label>
@@ -52,8 +49,7 @@
 
       <button class="btn btn-lg btn-primary btn-block sign-in-with-button" type="button"
         onclick="signInWithEmail()">Sign in</button>
-
-      <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-width="max-content" data-height="48">
+      <div class="g-signin2" data-onsuccess="onSignIn" data-theme="light" data-width="300" data-height="42">
       </div>
       <div id="fb-root" style="padding-top: 4%;">
         <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="default"
@@ -73,14 +69,19 @@
   <meta name="google-signin-cookiepolicy" content="single_host_origin">
   <meta name="google-signin-scope" content="profile email">
 
-  <script src="/__/firebase/7.14.4/firebase-app.js" defer></script>
-  <script src="/__/firebase/7.14.4/firebase-auth.js" defer></script>
-  <script src="/__/firebase/init.js" defer></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="../../vendor/jquery/jquery.min.js" async></script>
+  <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js" async></script>
+
+  <script src="//connect.facebook.net/en_US/sdk.js"></script>
+  <script src="https://apis.google.com/js/platform.js"></script>
+
+  <script src="/__/firebase/7.14.4/firebase-app.js"></script>
+  <script src="/__/firebase/7.14.4/firebase-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
+
   <script src="javascript/redirect-to-dashboard.js" defer></script>
-  <script src="//connect.facebook.net/en_US/sdk.js" defer></script>
-  <script src="https://apis.google.com/js/platform.js" defer></script>
   <script src="javascript/login.js" defer></script>
   
 </body>
-
 </html>
