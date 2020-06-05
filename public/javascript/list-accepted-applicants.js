@@ -221,7 +221,6 @@ function confirmAndAnnounce(applicants) {
     //Update the department as confirmed
     firebase.database().ref("departments/" + dept).update(update);
 
-
     window.location.href = "list-departments";
 
 }
