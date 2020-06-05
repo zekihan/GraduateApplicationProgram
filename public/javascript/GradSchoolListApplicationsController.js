@@ -135,7 +135,12 @@ function displayApplicants(applicants) {
         }
 
         document.getElementById("applicant-container").appendChild(div);
+        
     });
+
+    var element = document.getElementById("spinner");
+    element.parentNode.removeChild(element);
+    
 }
 
 /* Called whenever 'View Details' of an application is clicked on.
