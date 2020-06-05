@@ -449,7 +449,6 @@
     <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
     <script src="/__/firebase/7.14.2/firebase-database.js"></script>
     <script src="/__/firebase/init.js"></script>
-    
 
     <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
@@ -460,6 +459,19 @@
     <script src="../../javascript/logout.js" defer></script>
     <script src="../../javascript/check-login-state.js" defer></script>
     <script src="../../javascript/application-form.js" defer></script>
+
+    <script>
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            firebase.database().ref('/users').child(user.uid).once('value').then(function (snapshot) {
+                document.getElementById('firstName').value = snapshot.child('name').val();
+                document.getElementById('lastName').value = snapshot.child('lastName').val();
+            });
+        } else {
+            window.location.href = '/login';
+        }
+    });
+    </script>
 
     
 </body>

@@ -1,14 +1,12 @@
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-        var userId = user.uid;
-
-        var refPath = 'users/' + userId;
-        console.log(refPath);
+        const userId = user.uid;
+        const refPath = 'users/' + userId;
 
         getCurrentPageRole();
 
         firebase.database().ref(refPath).once('value').then(function (snapshot) {
-            role = snapshot.child('role').val();
+            const role = snapshot.child('role').val();
             console.log(role);
             pageRole = getCurrentPageRole();
             console.log(pageRole);
@@ -28,7 +26,7 @@ function getCurrentPageRole(){
     var i = url.indexOf("/users") + 7;
     url = url.slice(i, url.length)
     i = url.indexOf("/")
-    var roleStr = url.slice(0, i);
+    const roleStr = url.slice(0, i);
 
     console.log(roleStr);
 
