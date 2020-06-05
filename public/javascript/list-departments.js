@@ -135,7 +135,8 @@ function displayDepartments(departments) {
         document.getElementById("department-container").appendChild(departmentRow);
     });
 
-
+    var element = document.getElementById("spinner");
+        element.parentNode.removeChild(element);
 }
 
 

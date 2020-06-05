@@ -8,6 +8,14 @@ function getDepartmentsApplicants() {
             //Get the department id from the url
             var departmentId = parseDepartmentId();
 
+            firebase.database().ref("departments/" + departmentId).once('value').then(function (snapshot) {
+                var department = snapshot.child("name").val();
+                displayTitle(department);
+            
+            }).catch(function (error) {
+                console.log(error);
+            });
+
             var applicants = new Array();
 
             firebase.database().ref("applications").orderByKey().limitToLast(1).once('value').then(function (term) {
@@ -38,7 +46,10 @@ function getDepartmentsApplicants() {
             }).catch(function (error) {
                 console.log(error);
             });
+
+            
         }
+
     });
 }
 
@@ -48,6 +59,10 @@ function parseDepartmentId() {
     queryString = queryString.substring(1);
     var queries = queryString.split("=");
     return queries[1];
+}
+
+function displayTitle(department){
+    document.getElementById("department-title").innerHTML = department + " Department Accepted Students";
 }
 
 
@@ -149,8 +164,10 @@ function displayApplicants(applicants) {
 
         document.getElementById("applicant-container").appendChild(div);
     });
-   document.getElementById("department-title").innerHTML = intToDepartmentStr(applicants[0].department) + "Department Accepted Studs";
-   document.getElementById("confirmButton").onclick = function(){ confirmAndAnnounce(applicants); }
+    document.getElementById("confirmButton").onclick = function(){ confirmAndAnnounce(applicants); }
+    
+    var element = document.getElementById("spinner");
+    element.parentNode.removeChild(element);
 }
 
 
