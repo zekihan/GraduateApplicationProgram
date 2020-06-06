@@ -190,7 +190,7 @@ function submit(term, department) {
         await firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update(update);
     });
 
-    window.location.href = "dashboard";
+    window.location.href = "department-dashboard";
 }
 
 
