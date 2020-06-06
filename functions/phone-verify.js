@@ -10,9 +10,7 @@ const {
     Storage
 } = require('@google-cloud/storage');
 
-exports.sendCode = functions
-.region('europe-west1')
-.https.onRequest(async (request, res) => {
+exports.sendCode = functions.https.onRequest(async (request, res) => {
 
     const {
         phoneNumber,
@@ -40,9 +38,7 @@ exports.sendCode = functions
     res.status(200).send("OK");
 });
 
-exports.verifyCode = functions
-.region('europe-west1')
-.https.onRequest(async (request, res) => {
+exports.verifyCode = functions.https.onRequest(async (request, res) => {
 
     const {
         phoneNumber,

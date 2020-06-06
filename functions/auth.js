@@ -2,9 +2,7 @@ const functions = require('firebase-functions');
 
 var admin = require("firebase-admin");
 
-exports.checkUserExists = functions
-.region('europe-west1')
-.https.onRequest(async (request, response) => {
+exports.checkUserExists = functions.https.onRequest(async (request, response) => {
     const {
         email
     } = request.body;
@@ -20,9 +18,7 @@ exports.checkUserExists = functions
     })
 });
 
-exports.populateUser = functions
-.region('europe-west1')
-.https.onRequest(async (request, response) => {
+exports.populateUser = functions.https.onRequest(async (request, response) => {
     const {
         uid,
         firstName,
