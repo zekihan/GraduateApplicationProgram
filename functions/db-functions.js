@@ -4,6 +4,8 @@ var admin = require("firebase-admin");
 
 const https = require('https');
 
+const url = require('url');
+
 exports.deletePhoneInfo = functions
 .region('europe-west1')
 .database.ref('/users/{userId}')
@@ -23,9 +25,10 @@ exports.applicationCreated = functions
 exports.page = functions
 .region('europe-west1')
 .https.onRequest(async (request, response) => {
-    const {
-        term
-    } = request.body;
+
+    const myURL = new URL("https://www.xyz.com" + request.url);
+    const term = myURL.searchParams.get('term');
+    const pageLength = parseInt(myURL.searchParams.get('pageSize'), 10);
 
     https.get(`https://grad-application.firebaseio.com/__applications__/${term}.json?shallow=true`, (resp) => {
         let data = '';
