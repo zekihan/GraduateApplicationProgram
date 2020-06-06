@@ -10,7 +10,10 @@ window.onload = function WindowLoad(event) {
                 console.log(role);
                 redirect(role);
             });
-		}
+        }
+        else{
+            window.location.href = '/login';
+        }
     });
 }
 
