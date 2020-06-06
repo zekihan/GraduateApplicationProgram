@@ -4,19 +4,25 @@ var admin = require("firebase-admin");
 
 const https = require('https');
 
-exports.deletePhoneInfo = functions.database.ref('/users/{userId}')
+exports.deletePhoneInfo = functions
+.region('europe-west1')
+.database.ref('/users/{userId}')
     .onCreate((snapshot, context) => {
         const original = snapshot.val()['phone'];
         return admin.database().ref('/tmp/phones/').child(original).remove();
     });
 
-exports.applicationCreated = functions.database.ref('/applications/{term}/{department}/{applicationId}')
+exports.applicationCreated = functions
+.region('europe-west1')
+.database.ref('/applications/{term}/{department}/{applicationId}')
     .onCreate((snapshot, context) => {
         const timestamp = Date.now();
         return snapshot.ref.child('date').set(timestamp);
     });
 
-exports.page = functions.https.onRequest(async (request, response) => {
+exports.page = functions
+.region('europe-west1')
+.https.onRequest(async (request, response) => {
     const {
         term
     } = request.body;

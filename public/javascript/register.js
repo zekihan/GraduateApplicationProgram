@@ -83,6 +83,7 @@ function createAccount(email, password, firstName, lastName, phone) {
                 photoURL: "#",
             });
             populateUser(currentUser.uid, firstName, lastName, phone);
+            window.location.href = "/login";
         })
         .catch((error) => {
             console.log(error.code);

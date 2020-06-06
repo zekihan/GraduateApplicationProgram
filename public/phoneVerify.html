@@ -8,13 +8,16 @@
 
     <link rel="icon" href="assets/iyte-logo.svg">
 
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
     <title>Phone Verification</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img src="../../images/iyte-comp-logo.png" alt=""
-                width="32" height="32"> Izmir Institute Of Technology</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <a class="navbar-brand"><img src="assets/iyte-logo.svg" alt=""
+                width="32" height="32"> Izmir Institute of Technology</a>
         <ul class="navbar-nav px-3">
         </ul>
     </nav>
@@ -32,12 +35,15 @@
         </div>
         <div>
             <div>
-                <button class="btn btn-primary btn-block" onclick="verify()" type="button">Submit</button>
+                <button class="btn btn-primary btn-block mt-2" onclick="verify()" type="button">Submit</button>
             </div>
         </div>
     </div>
 
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
     <script src="javascript/phone.js" defer></script>
     
     <script>
