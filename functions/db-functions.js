@@ -55,22 +55,23 @@ exports.page = functions
             }
 
             Promise.all(promises)
-                .then(function (snaps) {
+                .then((snaps) => {
                     var pages = [];
-                    snaps.forEach(function (snap) {
-                        pages.push(snap.val());
-                    });
+                    snaps.forEach((snap) => pages.push(snap.val()));
                     responseBody = {
                         pages
                     }
-                    console.log(responseBody);
                     response.status(200).send(responseBody);
-                    process.exit();
-                });
+                    return responseBody;
+                })
+                .catch(error => { 
+                    console.log("Error: " + error.message);
+                    response.status(400).send(error.message);
+                  });
         });
 
-    }).on("error", (err) => {
-        console.log("Error: " + err.message);
-        response.status(400).send(err.message);
+    }).on("error", (error) => {
+        console.log("Error: " + error.message);
+        response.status(400).send(error.message);
     });
 });
