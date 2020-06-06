@@ -1,7 +1,7 @@
 function getPage(num) {
     firebase.database().ref("applications").orderByKey().limitToLast(1).once('value').then(function (term) {
         term.forEach(function (departments) {
-            $("#applicant-container").html('<h6 class="border-bottom border-gray pb-2 mb-0">All Submitted Applications</h6>');
+            $("#applicant-container").html(`<h6 class="border-bottom border-gray pb-2 mb-0">All Submitted Applications</h6><div id="spinner" class="text-center"><div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status"><span class="sr-only">Loading applicant's data...</span></div></div>`);
             var termInfo = departments.key;
             num = num - 1;
             var url = '/pager';
@@ -11,8 +11,6 @@ function getPage(num) {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    var applicants = new Array();
-                    console.log(JSON.parse(xhr.response)[num]);
                     Object.entries(JSON.parse(xhr.response)[num]).forEach(function (entry) {
                         firebase.database().ref("applications").child(termInfo).child(entry[1]).child(entry[0]).once('value').then(function (app) {
                             var applicants = new Array();
@@ -29,7 +27,6 @@ function getPage(num) {
                             displayApplicants(applicants);
                         })
                     });
-                    displayApplicants(applicants);
                 }
             };
             xhr.open("POST", url, true);
@@ -82,8 +79,8 @@ function displayApplicants(applicants) {
 
         //Application date and department,program information
         var psInfo = document.createTextNode('Created at: ' + timeConverter(applicant.date) +
-            ' For ' + intToDepartmentStr(applicant.department) + '  '
-            + prettyFormat(applicant.program));
+            ' For ' + intToDepartmentStr(applicant.department) + '  ' +
+            prettyFormat(applicant.program));
         p.appendChild(psInfo);
 
         div.appendChild(p);
@@ -135,12 +132,13 @@ function displayApplicants(applicants) {
         }
 
         document.getElementById("applicant-container").appendChild(div);
-        
+
     });
 
     var element = document.getElementById("spinner");
-    element.parentNode.removeChild(element);
-    
+    if(element != null){
+        element.parentNode.removeChild(element);
+    }
 }
 
 /* Called whenever 'View Details' of an application is clicked on.
@@ -173,7 +171,7 @@ function timeConverter(timestamp) {
 
 function prettyFormat(output) {
     switch (output) {
-        case "mastersDegree":   
+        case "mastersDegree":
         case "masters":
             return "M.Sc";
         case "phd":

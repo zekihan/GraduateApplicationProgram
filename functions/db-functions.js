@@ -46,7 +46,6 @@ exports.page = functions.https.onRequest(async (request, response) => {
 
             for (var i = 0; i < pageCount; i++) {
                 key = keys[i * pageLength];
-                console.log('key', key);
                 query = valuesRef.orderByKey().limitToFirst(pageLength).startAt(key);
                 promises.push(query.once('value'));
             }
@@ -64,5 +63,6 @@ exports.page = functions.https.onRequest(async (request, response) => {
 
     }).on("error", (err) => {
         console.log("Error: " + err.message);
+        response.status(400).send(err.message);
     });
 });
