@@ -11,9 +11,6 @@ window.onload = function WindowLoad(event) {
                 redirect(role);
             });
         }
-        else{
-            window.location.href = '/login';
-        }
     });
 }
 
