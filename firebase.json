@@ -18,6 +18,9 @@
             }, {
                 "source": "/populateUser",
                 "function": "auth-populateUser"
+            }, {
+                "source": "/pager",
+                "function": "db-page"
             }
         ],
         "ignore": [

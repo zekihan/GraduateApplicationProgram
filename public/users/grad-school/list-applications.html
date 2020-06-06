@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../../styles/list-of-departments.css">
 </head>
 
-<body onload="getFirstPage()">
+<body onload="getPage(1)">
     <!-- Dashboard -->
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
@@ -74,15 +74,15 @@
                     <nav class="page-navbar" aria-label="...">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                <a class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
                             </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" onclick="getPage(1)">1</a></li>
                             <li class="page-item" aria-current="page">
-                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                <a class="page-link" onclick="getPage(2)">2 <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" onclick="getPage(3)">3</a></li>
                             <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
+                                <a class="page-link" >Next</a>
                             </li>
                         </ul>
                     </nav>

@@ -1,43 +1,43 @@
-function getFirstPage() {
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-
-            //Get firebase database instance
-            var userId = firebase.auth().currentUser.uid;
-            var applicants = new Array();
-            var numOfApplicantsToGet = 20;
-
-            //Get the last term's applicants' data
-            firebase.database().ref("applications").orderByKey().limitToLast(1).once('value').then(function (term) {
-                term.forEach(function (departments) {
-                    console.log("Term: " + departments.key);
-                    var termInfo = departments.key;
-                    departments.forEach(function (applications) {
-                        var departmentId = applications.key;
-                        console.log("value: " + (typeof departmentId));
-                        applications.forEach(function (application) {
-                            //Add the application to display list only if it's not checked by the grad-school
+function getPage(num) {
+    firebase.database().ref("applications").orderByKey().limitToLast(1).once('value').then(function (term) {
+        term.forEach(function (departments) {
+            $("#applicant-container").html('<h6 class="border-bottom border-gray pb-2 mb-0">All Submitted Applications</h6>');
+            var termInfo = departments.key;
+            num = num - 1;
+            var url = '/pager';
+            var body = {
+                term: termInfo
+            };
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var applicants = new Array();
+                    console.log(JSON.parse(xhr.response)[num]);
+                    Object.entries(JSON.parse(xhr.response)[num]).forEach(function (entry) {
+                        firebase.database().ref("applications").child(termInfo).child(entry[1]).child(entry[0]).once('value').then(function (app) {
+                            var applicants = new Array();
                             applicants.push({
-                                isVerified: application.child('gradschoolControl/isVerified').val(),
-                                program: application.child("content").child("program").val(),
+                                isVerified: app.child('gradschoolControl/isVerified').val(),
+                                program: app.child("content").child("program").val(),
                                 term: termInfo,
-                                department: application.child("content").child("department").val(),
-                                applicationId: application.key,
-                                name: application.child("content").child("name").val(),
-                                lastname: application.child("content").child("lastName").val(),
-                                date: application.child("date").val()
+                                department: app.child("content").child("department").val(),
+                                applicationId: app.key,
+                                name: entry[0], //app.child("content").child("name").val(),
+                                lastname: app.child("content").child("lastName").val(),
+                                date: app.child("date").val()
                             });
-                        });
-                    })
-                });
-                displayApplicants(applicants);
-            });
-        } else {
-            location.href = "/login";
-        }
+                            displayApplicants(applicants);
+                        })
+                    });
+                    displayApplicants(applicants);
+                }
+            };
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(body));
+        });
     });
 }
-
 
 function displayApplicants(applicants) {
     var htmlString;

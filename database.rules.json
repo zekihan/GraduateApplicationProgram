@@ -6,6 +6,9 @@
         ".write": "$uid === auth.uid"
       }
     },
+    "__applications__": {
+      ".read": "true"
+    },
     "applications": {
       ".read": "true",
       "$term": {
