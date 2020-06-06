@@ -1,37 +1,46 @@
-function getPage(num) {
+$('#pagination-container').pagination({
+    dataSource: '/pager?term=2020-2',
+    locator: 'pages',
+    totalNumberLocator: function (response) {
+        return response.pages.length*20
+    },
+    ajax: {
+        beforeSend: function () {
+            // dataContainer.html('Loading data from flickr.com ...');
+        },
+        afterSend: function(){
+            
+        }
+    },
+    pageSize: 20,
+    autoHidePrevious: true,
+    autoHideNext: true,
+    callback: function (data, pagination) {
+        getPage(data[pagination.pageNumber-1]);
+    }
+})
+
+function getPage(data) {
     firebase.database().ref("applications").orderByKey().limitToLast(1).once('value').then(function (term) {
         term.forEach(function (departments) {
             $("#applicant-container").html(`<h6 class="border-bottom border-gray pb-2 mb-0">All Submitted Applications</h6><div id="spinner" class="text-center"><div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status"><span class="sr-only">Loading applicant's data...</span></div></div>`);
             var termInfo = departments.key;
-            num = num - 1;
-            var url = '/pager';
-            var body = {
-                term: termInfo
-            };
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    Object.entries(JSON.parse(xhr.response)[num]).forEach(function (entry) {
-                        firebase.database().ref("applications").child(termInfo).child(entry[1]).child(entry[0]).once('value').then(function (app) {
-                            var applicants = new Array();
-                            applicants.push({
-                                isVerified: app.child('gradschoolControl/isVerified').val(),
-                                program: app.child("content").child("program").val(),
-                                term: termInfo,
-                                department: app.child("content").child("department").val(),
-                                applicationId: app.key,
-                                name: entry[0], //app.child("content").child("name").val(),
-                                lastname: app.child("content").child("lastName").val(),
-                                date: app.child("date").val()
-                            });
-                            displayApplicants(applicants);
-                        })
+            Object.entries(data).forEach(function (entry) {
+                firebase.database().ref("applications").child(termInfo).child(entry[1]).child(entry[0]).once('value').then(function (app) {
+                    var applicants = new Array();
+                    applicants.push({
+                        isVerified: app.child('gradschoolControl/isVerified').val(),
+                        program: app.child("content").child("program").val(),
+                        term: termInfo,
+                        department: app.child("content").child("department").val(),
+                        applicationId: app.key,
+                        name: entry[0], //app.child("content").child("name").val(),
+                        lastname: app.child("content").child("lastName").val(),
+                        date: app.child("date").val()
                     });
-                }
-            };
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(body));
+                    displayApplicants(applicants);
+                })
+            });
         });
     });
 }
@@ -136,7 +145,7 @@ function displayApplicants(applicants) {
     });
 
     var element = document.getElementById("spinner");
-    if(element != null){
+    if (element != null) {
         element.parentNode.removeChild(element);
     }
 }

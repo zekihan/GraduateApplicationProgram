@@ -4,6 +4,8 @@ var admin = require("firebase-admin");
 
 const https = require('https');
 
+const url = require('url');
+
 exports.deletePhoneInfo = functions.database.ref('/users/{userId}')
     .onCreate((snapshot, context) => {
         const original = snapshot.val()['phone'];
@@ -17,9 +19,10 @@ exports.applicationCreated = functions.database.ref('/applications/{term}/{depar
     });
 
 exports.page = functions.https.onRequest(async (request, response) => {
-    const {
-        term
-    } = request.body;
+
+    const myURL = new URL("https://www.xyz.com" + request.url);
+    const term = myURL.searchParams.get('term');
+    const pageLength = parseInt(myURL.searchParams.get('pageSize'), 10);
 
     https.get(`https://grad-application.firebaseio.com/__applications__/${term}.json?shallow=true`, (resp) => {
         let data = '';
@@ -33,9 +36,7 @@ exports.page = functions.https.onRequest(async (request, response) => {
         resp.on('end', () => {
 
             var keys = Object.keys(JSON.parse(data)).sort(); // Notice the .sort()!
-            console.log(keys)
 
-            var pageLength = 20;
             var pageCount = keys.length / pageLength;
             var currentPage = 1;
             var promises = [];
@@ -56,7 +57,11 @@ exports.page = functions.https.onRequest(async (request, response) => {
                     snaps.forEach(function (snap) {
                         pages.push(snap.val());
                     });
-                    response.status(200).send(pages);
+                    responseBody = {
+                        pages
+                    }
+                    console.log(responseBody);
+                    response.status(200).send(responseBody);
                     process.exit();
                 });
         });

@@ -8,53 +8,57 @@
     <meta name="author" content="">
     <title>Applications</title>
     <link rel="icon" href="../../assets/iyte-logo.svg">
-    
+
     <!-- Bootstrap core CSS -->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <link href="../../vendor/paginationjs/pagination.css" rel="stylesheet">
+
     <!-- Custom styles for this template -->
     <link href="../../styles/sidebar.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="../../styles/confirm.css">
     <link rel="stylesheet" href="../../styles/verification.css">
     <link rel="stylesheet" href="../../styles/list-of-departments.css">
 </head>
 
-<body onload="getPage(1)">
+<body>
     <!-- Dashboard -->
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">
-              <div class="row justify-content-start">
-                <div class="col-3">
-                  <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+                <div class="row justify-content-start">
+                    <div class="col-3">
+                        <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+                    </div>
+                    <div class="col-8">
+                        Izmir Institute of Technology
+                    </div>
                 </div>
-                <div class="col-8">
-                  Izmir Institute of Technology
-                </div>
-              </div>
             </div>
-    
-          <div class="list-group list-group-flush">
-            <a href="grad-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="list-applications.html" class="list-group-item list-group-item-action bg-light">List Applications</a>
-            <a href="list-departments.html" class="list-group-item list-group-item-action bg-light">List Accepted Applications</a>
-            <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
-          </div>
+
+            <div class="list-group list-group-flush">
+                <a href="grad-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                <a href="list-applications.html" class="list-group-item list-group-item-action bg-light">List
+                    Applications</a>
+                <a href="list-departments.html" class="list-group-item list-group-item-action bg-light">List Accepted
+                    Applications</a>
+                <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+            </div>
         </div>
         <!-- /#sidebar-wrapper -->
-    
+
         <!-- Page Content -->
         <div id="page-content-wrapper">
-    
+
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <ul class="navbar-nav ml-1">
                     <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
                 </ul>
-                
+
                 <ul class="navbar-nav ml-auto mt-1 mb-1">
-                    <li class="nav-item active" >
+                    <li class="nav-item active">
                         <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
                     </li>
                 </ul>
@@ -66,26 +70,15 @@
                     <h6 class="border-bottom border-gray pb-2 mb-0">All Submitted Applications</h6>
                     <div id="spinner" class="text-center">
                         <div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status">
-                          <span class="sr-only">Loading applicant's data...</span>
+                            <span class="sr-only">Loading applicant's data...</span>
                         </div>
                     </div>
                 </div>
 
-                    <nav class="page-navbar" aria-label="...">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" onclick="getPage(1)">1</a></li>
-                            <li class="page-item" aria-current="page">
-                                <a class="page-link" onclick="getPage(2)">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" onclick="getPage(3)">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" >Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div id="pagination-container"></div>
+
+
+
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -94,11 +87,12 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/paginationjs/pagination.js"></script>
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Menu Toggle Script -->
     <script>
-        $("#menu-toggle").click(function(e) {
+        $("#menu-toggle").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
