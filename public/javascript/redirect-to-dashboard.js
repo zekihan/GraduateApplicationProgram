@@ -5,11 +5,11 @@ window.onload = function WindowLoad(event) {
 			const refPath = 'users/' + userId;
 			console.log(refPath);
 
-		firebase.database().ref(refPath).once('value').then(function (snapshot) {
-			const role = snapshot.child('role').val();
-			console.log(role);
-			redirect(role);
-		});
+            firebase.database().ref(refPath).once('value').then(function (snapshot) {
+                const role = snapshot.child('role').val();
+                console.log(role);
+                redirect(role);
+            });
 		}
     });
 }

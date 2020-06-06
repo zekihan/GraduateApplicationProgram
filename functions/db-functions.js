@@ -4,25 +4,28 @@ var admin = require("firebase-admin");
 
 const https = require('https');
 
-const url = require('url');
-
-exports.deletePhoneInfo = functions.database.ref('/users/{userId}')
+exports.deletePhoneInfo = functions
+.region('europe-west1')
+.database.ref('/users/{userId}')
     .onCreate((snapshot, context) => {
         const original = snapshot.val()['phone'];
         return admin.database().ref('/tmp/phones/').child(original).remove();
     });
 
-exports.applicationCreated = functions.database.ref('/applications/{term}/{department}/{applicationId}')
+exports.applicationCreated = functions
+.region('europe-west1')
+.database.ref('/applications/{term}/{department}/{applicationId}')
     .onCreate((snapshot, context) => {
         const timestamp = Date.now();
         return snapshot.ref.child('date').set(timestamp);
     });
 
-exports.page = functions.https.onRequest(async (request, response) => {
-
-    const myURL = new URL("https://www.xyz.com" + request.url);
-    const term = myURL.searchParams.get('term');
-    const pageLength = parseInt(myURL.searchParams.get('pageSize'), 10);
+exports.page = functions
+.region('europe-west1')
+.https.onRequest(async (request, response) => {
+    const {
+        term
+    } = request.body;
 
     https.get(`https://grad-application.firebaseio.com/__applications__/${term}.json?shallow=true`, (resp) => {
         let data = '';
