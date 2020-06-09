@@ -2,78 +2,128 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../images/iyte-comp-logo.png">
-    <title>Checked Applications</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Applications</title>
+    <link rel="icon" href="../../assets/iyte-logo.svg">
+
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../../vendor/paginationjs/pagination.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../styles/sidebar.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../styles/confirm.css">
     <link rel="stylesheet" href="../../styles/verification.css">
+    <link rel="stylesheet" href="../../styles/list-of-departments.css">
 </head>
 
 <body onload="getApplicants()">
 
-    <!-- Navigation menu and logo-->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href=""><img src="../../images/iyte-comp-logo.png" height="60" width="60"> Izmir
-            Institute Of Technology</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="department-dashboard.html">Dashboard </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="department-settings.html">Settings </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Dashboard -->
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">
+                <div class="row justify-content-start">
+                    <div class="col-3">
+                        <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+                    </div>
+                    <div class="col-8">
+                        Izmir Institute of Technology
+                    </div>
+                </div>
+            </div>
 
-    <!-- List view of applications -->
-    <main role="main" class="container">
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
-            <h6 class="border-bottom border-gray pb-2 mb-0">Checked Applications</h6>
-            <div id="applicant-container"></div>
-            <nav aria-label="..." class="pages">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="false">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active" aria-current="page">
-                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+            <div class="list-group list-group-flush">
+                <a href="department-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                <a href="dept-list-applications.html" class="list-group-item list-group-item-action bg-light">Review Applications</a>
+                <a href="enter-assessment-results.html" class="list-group-item list-group-item-action bg-light">Enter Assessments</a>
+                <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <ul class="navbar-nav ml-1">
+                    <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
+                </ul>
+
+                <ul class="navbar-nav ml-auto mt-1 mb-1">
+                    <li class="nav-item active">
+                        <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
                     </li>
                 </ul>
             </nav>
+
+            <div class="container-fluid">
+                <div class="my-3 p-3 bg-white rounded shadow-sm">
+                    <h6 class="border-bottom border-gray pb-2 mb-0">Applications</h6>
+                    <div id="spinner" class="text-center">
+                        <div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status">
+                            <span class="sr-only">Loading applicant's data...</span>
+                        </div>
+                    </div>
+                    <div id="applicant-container"></div>
+                    
+                    <nav aria-label="..." class="pages">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="false">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#dashboard-wrapper -->
 
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/paginationjs/pagination.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        </div>
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
 
-    </main>
     <script src="/__/firebase/7.14.2/firebase-app.js"></script>
     <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
     <script src="/__/firebase/7.14.2/firebase-database.js"></script>
     <script src="/__/firebase/init.js"></script>
-    <script src="../../javascript/dept-list-applications.js"></script>
+    <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+
+    <meta name="google-signin-client_id"
+        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+
+    <script src="../../javascript/logout.js" defer></script>
+    <script src="../../javascript/check-login-state.js" defer></script>
+    <script src="../../javascript/dept-list-applications.js" defer></script>
 </body>
 
 </html>

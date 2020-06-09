@@ -3,149 +3,149 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../images/iyte-comp-logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>Settings</title>
-    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../styles/application.css">
-    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-search-pseudo-elements> </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
-    <link rel="stylesheet" href="../../styles/my-application.css">
+    <link rel="icon" href="../../assets/iyte-logo.svg">
+    
+    <!-- Bootstrap core CSS -->
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../styles/sidebar.css" rel="stylesheet">
+    
 </head>
 
-<body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img src="../../images/iyte-comp-logo.png" alt=""
-                width="32" height="32"> Izmir Institute Of Technology</a>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="department-dashboard.html">
-                                <i class="fas fa-columns link-icon"></i>
-                                Dashboard <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dept-list-applications.html">
-                                <i class="fas fa-list-ul link-icon"></i>
-                                List Submitted Applications
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="enter-assessment-results.html">
-                                <i class="fas fa-poll link-icon"></i>
-                                Enter Assessment Results
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="department-settings.html">
-                                <i class="fas fa-cog link-icon"></i>
-                                Settings
-                            </a>
-                        </li>
-                    </ul>
-
+<body onload="getUserInformation()">
+    <!-- Dashboard -->
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">
+                <div class="row justify-content-start">
+                    <div class="col-3">
+                    <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+                    </div>
+                    <div class="col-8">
+                    Izmir Institute of Technology
+                    </div>
                 </div>
+            </div>
+    
+            <div class="list-group list-group-flush">
+                <a href="department-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                <a href="dept-list-applications.html" class="list-group-item list-group-item-action bg-light">Review Applications</a>
+                <a href="enter-assessment-results.html" class="list-group-item list-group-item-action bg-light">Enter Assessments</a>
+                <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+    
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+    
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <ul class="navbar-nav ml-1">
+                    <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
+                </ul>
+                
+                <ul class="navbar-nav ml-auto mt-1 mb-1">
+                    <li class="nav-item active" >
+                        <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
+                    </li>
+                </ul>
             </nav>
 
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <section id="basic-settings">
-                    <h1 class="title big">Information</h1>
-                    <div class="row">
-                        <div class="avatar col-sm-3">
-                            <img src="https://d36rlb2fgh8cjd.cloudfront.net/default-images/default-user-q80.png"
-                                alt="Zekihan">
-                            <div class="col-auto">
-                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                    value="Lorem Ipsum">
-                            </div>
+            <div class="container-fluid">
+
+                <div class="row py-5 mt-2 justify-content-center">
+                    <h2>Account Settings</h2>
+                </div>
+
+                <div class="row ml-3 mr-3">
+                    <div class="col-md-5">
+                        <div class="row justify-content-center">
+                            <img src="../../assets/default-pp.png">
                         </div>
-
-                        <div class="col-sm-9">
-                            <div class="other-infos infos-zone">
-                                <h2>Your information <span class="other-message"></span></h2>
-                                <form action="/set_infos" class="form-horizontal" method="post" data-parsley-validate=""
-                                    novalidate="">
-
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                                        <div class="col-7">
-                                            <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                                value="email@example.com">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-auto col-form-label">Phone</label>
-                                        <div class="col-auto">
-                                            <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                                value="+90******1111">
-                                        </div>
-                                        <div class="col-auto">
-                                            <button type="submit" class="btn btn-primary">Change your phone</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-auto">
-                                            <button type="submit" class="btn btn-primary">Reset Password</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-7">
-                                            <button style="background-color: rebeccapurple;" type="submit"
-                                                class="btn btn-primary btn-block">Save Changes</button>
-                                        </div>
-                                    </div>
-
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-lg-5 margin-right">
-
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-danger">Delete your account</button>
-                                </div>
-                            </div>
+                        <div class="row justify-content-center">
+                            <input type="text" readonly class="form-control-plaintext mr-5 ml-5" id="nameAndLastname" style="text-align: center;">
                         </div>
-                        </form>
+                        
                     </div>
-                </section>
-            </main>
+
+                    <div class="col-md-6">
+
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <label for="inputEmail3">Email</label>
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail">
+                            </li>
+                            <li class="list-group-item">
+                                <label for="inputEmail3">Phone</label>
+                                <input type="text" readonly class="form-control-plaintext" id="staticPhone">
+                            </li>
+
+                          </ul>
+
+                        <div class="other-infos infos-zone">
+                                <div class="row">
+
+                                    <div class="col-auto mt-3">
+                                        <button type="button" class="btn btn-secondary" onclick="changePhone()">Change Phone</button>
+                                    </div>
+
+                                    <div class="col-auto mt-3">
+                                        <button type="button" class="btn btn-secondary"
+                                            onclick="resetPassword()">Reset Password</button>
+                                    </div>
+
+                                    <div class="col-auto mt-3">
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="deleteAccount()">Delete Your Account</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
 
         </div>
+        <!-- /#page-content-wrapper -->
+
     </div>
-    <script src="semantic/dist/semantic.min.js"></script>
+    <!-- /#dashboard-wrapper -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+
+    <meta name="google-signin-client_id"
+        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+
+    <script src="../../javascript/logout.js" defer></script>
+    <script src="../../javascript/check-login-state.js" defer></script>
+        
+    <script src="../../javascript/settings.js"></script>
+    
 </body>
-
 </html>
-
-
-<!--
-
-
--->
