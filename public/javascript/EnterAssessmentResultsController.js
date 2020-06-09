@@ -118,6 +118,7 @@ function displayApplicants(applicants) {
         var checkbox = document.createElement("INPUT");
         checkbox.id = "indeterminate-checkbox";
         checkbox.type = "checkbox";
+        checkbox.style = "margin-right: 4px;"
         containerLabel.appendChild(checkbox);
 
         var innerSpan = document.createElement("SPAN");
