@@ -4,7 +4,8 @@ var admin = require("firebase-admin");
 
 const https = require('https');
 
-const url = require('url').URL;
+global.URL = require('url').URL;
+
 
 exports.deletePhoneInfo = functions.database.ref('/users/{userId}')
     .onCreate((snapshot, context) => {
