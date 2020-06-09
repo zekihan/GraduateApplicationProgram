@@ -1,51 +1,62 @@
+
+
 function getStudentReviewPage() {
     location.href = "student-review.html";
 }
 
+var userId;
+var deptId;
+var term;
 
-function getApplicants() {
-    firebase.auth().onAuthStateChanged(async function (user) {
-        //User is not signed in.
-        if (user) {
+firebase.auth().onAuthStateChanged(async function (user) {
+    //User is not signed in.
+    if (user) {
 
-            var userId = user.uid;
-            console.log("id: " + userId);
-            var applicants = new Array();
-
-
-            //Get the corresponding department id of the user
-
-            firebase.database().ref("users/" + userId).once("value").then(function (user) {
-                var departmentId = user.child("department").val().toString();
-                firebase.database().ref("applications").orderByKey().limitToLast(1).once("value").then(function (term) {
-                    term.forEach(function (realTerm) {
-                        realTerm.child(departmentId).forEach(function (application) {
-                            //Get the applicants that have been verified by the grad school and interviewed by the department
-                            if (application.child("gradschoolControl/isVerified").val()
-                                /*&& 
-                                                               application.child("departmentControl") !== null*/
-                            ) {
-                                applicants.push({
-                                    isInterviewSet: (application.child("departmentControl") !== null),
-                                    applicationId: application.key,
-                                    program: application.child("content").child("program").val(),
-                                    term: realTerm.key,
-                                    department: application.child("content").child("department").val(),
-                                    applicationId: application.key,
-                                    name: application.child("content").child("name").val(),
-                                    lastname: application.child("content").child("lastName").val(),
-                                    date: application.child("date").val()
-                                });
-                            }
-                        });
-                    });
-                    displayApplicants(applicants);
+        userId = user.uid;
+        console.log("id: " + userId);
+        firebase.database().ref("users/" + userId).once("value").then(function (user) {
+            deptId = user.child("department").val().toString();
+            firebase.database().ref("applications").orderByKey().limitToLast(1).once("value").then(function (term) {
+                term.forEach(function (realTerm) {
+                    term = realTerm.key;
+                    $('#pagination-container').pagination({
+                        dataSource: `/dept-pagination?term=${term}&deptId=${deptId}`,
+                        locator: 'pages',
+                        totalNumberLocator: function (response) {
+                            return response.pages.length*20
+                        },
+                        pageSize: 20,
+                        autoHidePrevious: true,
+                        autoHideNext: true,
+                        callback: function (data, pagination) {
+                            getApplicants(data[pagination.pageNumber-1],deptId,term);
+                        }
+                    })
                 });
             });
-            //User is not signed in.
-        } else {
+        });   
+        //User is not signed in.
+    } else {
 
-        }
+    }
+});
+function getApplicants(data) {
+    Object.entries(data).forEach(function (entry) {
+        firebase.database().ref("applications").child(termInfo).child(entry[1]).child(entry[0]).once('value').then(function (app) {
+            var applicants = new Array();
+            applicants.push({
+                isInterviewSet: (application.child("departmentControl") !== null),
+                applicationId: application.key,
+                program: application.child("content").child("program").val(),
+                term: realTerm.key,
+                department: application.child("content").child("department").val(),
+                applicationId: application.key,
+                name: application.child("content").child("name").val(),
+                lastname: application.child("content").child("lastName").val(),
+                date: application.child("date").val()
+            });
+            displayApplicants(applicants);
+        })
     });
 }
 
