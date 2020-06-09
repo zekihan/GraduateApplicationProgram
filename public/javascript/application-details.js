@@ -168,10 +168,15 @@ function getApplicantData() {
                 } else {
                     document.getElementById("all-documents").removeChild(document.getElementById("passport-field"));
                 }
+                var elem = document.getElementById("documentsSection");
+                elem.style.visibility = 'visible';
 
             });
+            
         }
+        
     });
+    
 
 }
 
