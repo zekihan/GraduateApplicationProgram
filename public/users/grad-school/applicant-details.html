@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <title>Applications</title>
     <link rel="icon" href="../../assets/iyte-logo.svg">
-    
+
     <!-- Bootstrap core CSS -->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -25,39 +25,47 @@
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">
-              <div class="row justify-content-start">
-                <div class="col-3">
-                  <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+                <div class="row justify-content-start">
+                    <div class="col-3">
+                        <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+                    </div>
+                    <div class="col-8">
+                        Izmir Institute of Technology
+                    </div>
                 </div>
-                <div class="col-8">
-                  Izmir Institute of Technology
-                </div>
-              </div>
             </div>
-    
-          <div class="list-group list-group-flush">
-            <a href="grad-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="list-applications.html" class="list-group-item list-group-item-action bg-light">List Applications</a>
-            <a href="list-departments.html" class="list-group-item list-group-item-action bg-light">List Accepted Applications</a>
-            <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
-          </div>
+
+            <div class="list-group list-group-flush">
+                <a href="grad-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                <a href="list-applications.html" class="list-group-item list-group-item-action bg-light">List
+                    Applications</a>
+                <a href="list-departments.html" class="list-group-item list-group-item-action bg-light">List Accepted
+                    Applications</a>
+                <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+            </div>
         </div>
         <!-- /#sidebar-wrapper -->
-    
+
         <!-- Page Content -->
         <div id="page-content-wrapper">
-    
+
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <ul class="navbar-nav ml-1">
                     <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
                 </ul>
-                
+
                 <ul class="navbar-nav ml-auto mt-1 mb-1">
-                    <li class="nav-item active" >
+                    <li class="nav-item active">
                         <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
                     </li>
                 </ul>
             </nav>
+
+            <div id="spinner" class="text-center">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
 
             <div class="container-fluid">
                 <!-- Listview of unchecked applications -->
@@ -206,7 +214,6 @@
                             </form>
                         </div>
                     </div>
-                
 
             </div>
 
@@ -222,7 +229,7 @@
 
     <!-- Menu Toggle Script -->
     <script>
-        $("#menu-toggle").click(function(e) {
+        $("#menu-toggle").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
@@ -244,6 +251,6 @@
     <script src="../../javascript/applicant-details.js" defer></script>
 </body>
 
-    
+
 
 </html>
