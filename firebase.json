@@ -19,8 +19,8 @@
                 "source": "/populateUser",
                 "function": "auth-populateUser"
             }, {
-                "source": "/pager",
-                "function": "db-page"
+                "source": "/app-pagination",
+                "function": "db-appPagination"
             }
         ],
         "ignore": [

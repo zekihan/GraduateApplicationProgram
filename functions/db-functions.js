@@ -19,7 +19,7 @@ exports.applicationCreated = functions.database.ref('/applications/{term}/{depar
         return snapshot.ref.child('date').set(timestamp);
     });
 
-exports.page = functions.https.onRequest(async (request, response) => {
+exports.appPagination = functions.https.onRequest(async (request, response) => {
 
     const myURL = new URL("https://www.xyz.com" + request.url);
     const term = myURL.searchParams.get('term');

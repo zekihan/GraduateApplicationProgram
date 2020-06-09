@@ -1,5 +1,5 @@
 $('#pagination-container').pagination({
-    dataSource: '/pager?term=2020-2',
+    dataSource: '/app-pagination?term=2020-2',
     locator: 'pages',
     totalNumberLocator: function (response) {
         return response.pages.length*20
