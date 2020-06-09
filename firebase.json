@@ -21,6 +21,9 @@
             }, {
                 "source": "/app-pagination",
                 "function": "db-appPagination"
+            }, {
+                "source": "/dept-pagination",
+                "function": "db-deptPagination"
             }
         ],
         "ignore": [
