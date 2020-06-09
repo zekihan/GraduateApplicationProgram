@@ -47,12 +47,10 @@ function getDepartmentsApplicants() {
                 console.log(error);
             });
 
-            
         }
 
     });
 }
-
 
 function parseDepartmentId() {
     var queryString = decodeURIComponent(window.location.search);
@@ -64,8 +62,6 @@ function parseDepartmentId() {
 function displayTitle(department){
     document.getElementById("department-title").innerHTML = department + " Department Accepted Students";
 }
-
-
 
 function displayApplicants(applicants) {
     applicants.forEach(function (applicant) {
@@ -194,9 +190,6 @@ function timeConverter(timestamp) {
     return time;
 }
 
-
-
-
 function prettyFormat(output) {
     switch (output) {
         case "mastersDegree":   
@@ -208,7 +201,6 @@ function prettyFormat(output) {
             break;
     }
 }
-
 
 /* Convert department id to corresponding department name. */
 async function intToDepartmentStr(departmentIdentifier) {
