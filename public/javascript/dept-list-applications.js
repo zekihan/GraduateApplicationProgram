@@ -21,8 +21,12 @@ function getApplicants() {
                     term.forEach(function (realTerm) {
                         realTerm.child(departmentId).forEach(function (application) {
                             //Get the applicants that have been verified by the grad school and interviewed by the department
-                            if (application.child("gradschoolControl/isVerified").val()) {
+                            if (application.child("gradschoolControl/isVerified").val()
+                                /*&& 
+                                                               application.child("departmentControl") !== null*/
+                            ) {
                                 applicants.push({
+                                    isInterviewSet: (application.child("departmentControl") !== null),
                                     applicationId: application.key,
                                     program: application.child("content").child("program").val(),
                                     term: realTerm.key,
@@ -89,8 +93,7 @@ function displayApplicants(applicants) {
 
         //Application date and department,program information
         var psInfo = document.createTextNode('Created at: ' + timeConverter(applicant.date) +
-            ' For ' + intToDepartmentStr(applicant.department) + '  ' +
-            prettyFormat(applicant.program));
+            ' For ' + prettyFormat(applicant.program));
         p.appendChild(psInfo);
 
         div.appendChild(p);
@@ -112,27 +115,13 @@ function displayApplicants(applicants) {
             //If the application has been checked by the grad-school
         } else {
             var verification = document.createElement("P");
-            console.log("isVerified: " + applicant.isVerified);
-            var isVerified = applicant.isVerified;
 
-            //Application is verified by the grad-school
-            if (isVerified == true) {
-                verification.innerHTML = "Accepted";
-                var icon = document.createElement("I");
-                icon.classList.add("fas");
-                icon.classList.add("fa-check");
-                icon.style.marginLeft = "0.3rem";
-                verification.appendChild(icon);
-
-                //Application is rejected by the grad-school
-            } else {
-                verification.innerHTML = "Denied";
-                var icon = document.createElement("I");
-                icon.classList.add("fas");
-                icon.classList.add("fa-times");
-                icon.style.marginLeft = "0.3rem";
-                verification.appendChild(icon);
-            }
+            verification.innerHTML = "Interview is set";
+            var icon = document.createElement("I");
+            icon.classList.add("fas");
+            icon.classList.add("fa-check");
+            icon.style.marginLeft = "0.3rem";
+            verification.appendChild(icon);
 
             //Checked application divs will not be clickable
             verification.style.fontSize = "0.8rem";
@@ -159,7 +148,7 @@ function getApplicationInfoWithId(applicationId, term, department) {
     console.log("application id is " + applicationId);
     var id = applicationId;
     var queryString = "?id=" + id + '&term=' + term + '&department=' + department;
-    window.location.href = "application-details.html" + queryString;
+    window.location.href = "student-review" + queryString;
 }
 
 /* Convert timestamp to a more human-readable format.*/

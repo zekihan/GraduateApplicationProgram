@@ -4,6 +4,7 @@ function onLoad() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             var userId = user.uid;
+            
             //Decode the URL and get the parameters
             var queryString = decodeURIComponent(window.location.search);
             queryString = queryString.substring(1);
