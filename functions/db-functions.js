@@ -21,45 +21,6 @@ exports.applicationCreated = functions.database.ref('/applications/{term}/{depar
 
 exports.deptPagination = functions.https.onRequest(async (request, response) => {
 
-    // info = {
-    //     "content": {
-    //         "address1": "address1",
-    //         "address2": "",
-    //         "ales": "/documents/6phlpzlB7Dajo35ey1Cap8OVdWx2/4/ales.pdf",
-    //         "country": "Turkey",
-    //         "department": "1",
-    //         "englishExam": "/documents/6phlpzlB7Dajo35ey1Cap8OVdWx2/4/englishExam.pdf",
-    //         "isForeign": false,
-    //         "isWorking": false,
-    //         "lastName": "lastName",
-    //         "mastersTranscript": "#",
-    //         "name": "name",
-    //         "passport": "#",
-    //         "permissionLetter": "#",
-    //         "photo": "/documents/6phlpzlB7Dajo35ey1Cap8OVdWx2/4/photo.jpg",
-    //         "program": "mastersDegree",
-    //         "purpose": "/documents/6phlpzlB7Dajo35ey1Cap8OVdWx2/4/purpose.pdf",
-    //         "referenceLetters": ["/documents/6phlpzlB7Dajo35ey1Cap8OVdWx2/4/referenceLetter.pdf", "#"],
-    //         "socialSecurityNumber": "12312312312",
-    //         "undergradTranscript": "/documents/6phlpzlB7Dajo35ey1Cap8OVdWx2/4/undergradTranscript.pdf",
-    //         "zip": "00000"
-    //     },
-    //     "gradschoolControl": {
-    //         "isVerified": true
-    //     }
-    // }
-    // for (let index = 0; index < 100; index++) {
-    //     var ref = admin.database().ref('/__applications__')
-    //     var newAppKey = ref.push().key;
-    //     var term = '2020-2'
-    //     var department = '1'
-    //     var updates = {};
-    //     updates['/__applications__/' + term + '/' + newAppKey] = department;
-    //     updates['/applications/' + term + "/" + department + "/" + newAppKey] = info;
-
-    //     admin.database().ref().update(updates);
-    // }
-
     const myURL = new URL("https://www.xyz.com" + request.url);
     var term = myURL.searchParams.get('term');
     var pageLength = parseInt(myURL.searchParams.get('pageSize'), 10);
@@ -96,7 +57,6 @@ exports.deptPagination = functions.https.onRequest(async (request, response) => 
             responseBody = {
                 pages
             }
-            console.log(responseBody)
             response.status(200).send(responseBody);
             return responseBody;
         })
@@ -104,8 +64,6 @@ exports.deptPagination = functions.https.onRequest(async (request, response) => 
             console.log("Error: " + error.message);
             response.status(400).send(error.message);
         });
-
-
 });
 exports.appPagination = functions.https.onRequest(async (request, response) => {
 

@@ -1,5 +1,3 @@
-
-
 function getStudentReviewPage() {
     location.href = "student-review.html";
 }
@@ -23,41 +21,48 @@ firebase.auth().onAuthStateChanged(async function (user) {
                         dataSource: `/dept-pagination?term=${term}&deptId=${deptId}`,
                         locator: 'pages',
                         totalNumberLocator: function (response) {
-                            return response.pages.length*20
+                            return response.pages.length * 20
                         },
                         pageSize: 20,
                         autoHidePrevious: true,
                         autoHideNext: true,
                         callback: function (data, pagination) {
-                            getApplicants(data[pagination.pageNumber-1],deptId,term);
+                            getApplicants(data[pagination.pageNumber - 1], deptId, term);
                         }
                     })
                 });
             });
-        });   
+        });
         //User is not signed in.
     } else {
 
     }
 });
-function getApplicants(data) {
-    Object.entries(data).forEach(function (entry) {
-        firebase.database().ref("applications").child(termInfo).child(entry[1]).child(entry[0]).once('value').then(function (app) {
+
+function getApplicants(data, deptId, term) {
+    if (data) {
+        $("#applicant-container").html(`<h6 class="border-bottom border-gray pb-2 mb-0">Applications</h6>
+        <div id="spinner" class="text-center">
+            <div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status">
+                <span class="sr-only">Loading applicant's data...</span>
+            </div>
+        </div>`);
+        Object.entries(data).forEach(function (entry) {
+            var application = Object.entries(entry[1])[0][1];
             var applicants = new Array();
             applicants.push({
-                isInterviewSet: (application.child("departmentControl") !== null),
-                applicationId: application.key,
-                program: application.child("content").child("program").val(),
-                term: realTerm.key,
-                department: application.child("content").child("department").val(),
-                applicationId: application.key,
-                name: application.child("content").child("name").val(),
-                lastname: application.child("content").child("lastName").val(),
-                date: application.child("date").val()
+                isInterviewSet: application.departmentControl !== null,
+                applicationId: Object.entries(entry[1])[0][0],
+                program: application.content.program,
+                term: term,
+                department: deptId,
+                name: application.content.name,
+                lastname: application.content.lastName,
+                date: application.date
             });
             displayApplicants(applicants);
-        })
-    });
+        });
+    }
 }
 
 

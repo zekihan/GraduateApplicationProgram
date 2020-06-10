@@ -43,9 +43,12 @@
             </div>
 
             <div class="list-group list-group-flush">
-                <a href="department-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="dept-list-applications.html" class="list-group-item list-group-item-action bg-light">Review Applications</a>
-                <a href="enter-assessment-results.html" class="list-group-item list-group-item-action bg-light">Enter Assessments</a>
+                <a href="department-dashboard.html"
+                    class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                <a href="dept-list-applications.html" class="list-group-item list-group-item-action bg-light">Review
+                    Applications</a>
+                <a href="enter-assessment-results.html" class="list-group-item list-group-item-action bg-light">Enter
+                    Assessments</a>
                 <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
             </div>
         </div>
@@ -68,14 +71,15 @@
 
             <div class="container-fluid">
                 <div class="my-3 p-3 bg-white rounded shadow-sm">
-                    <h6 class="border-bottom border-gray pb-2 mb-0">Applications</h6>
-                    <div id="spinner" class="text-center">
-                        <div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status">
-                            <span class="sr-only">Loading applicant's data...</span>
+                    <div id="applicant-container">
+                        <h6 class="border-bottom border-gray pb-2 mb-0">Applications</h6>
+                        <div id="spinner" class="text-center">
+                            <div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status">
+                                <span class="sr-only">Loading applicant's data...</span>
+                            </div>
                         </div>
                     </div>
-                    <div id="applicant-container"></div>
-                    
+
                     <div id="pagination-container"></div>
 
                 </div>
