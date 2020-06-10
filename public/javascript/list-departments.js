@@ -58,15 +58,16 @@ function displayDepartments(departments) {
         departmentRow.style.cursor = "pointer";
 
         //Set up the logo img
-        var iztechLogo = document.createElement("IMG");
-        iztechLogo.src = "../../images/iyte-logo.jpg";
-        iztechLogo.style.width = "32px";
-        iztechLogo.style.height = "32px";
-        iztechLogo.style.background = "#007bff";
-        iztechLogo.style.color = "#007bff";
-        iztechLogo.classList.add("mr-2");
-        iztechLogo.classList.add("rounded");
-        departmentRow.appendChild(iztechLogo);
+        var img = document.createElement("IMG");
+        img.src = "../../assets/iyte-logo.svg";
+        img.style.width = "40px";
+        img.style.height = "40px";
+        img.style.marginBottom = "1rem";
+        img.style.background = "#ffffff";
+        img.style.color = "#ffffff";
+        img.classList.add("mr-2");
+        img.classList.add("rounded");
+        departmentRow.appendChild(img);
 
         //Container for department name and programs below it
         var departmentAndProgramText = document.createElement("P");
