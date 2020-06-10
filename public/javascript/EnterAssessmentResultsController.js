@@ -31,7 +31,6 @@ function getApplicants() {
                     displayApplicants(applicants);
                 });
             });
-
         }
     });
 }
@@ -67,15 +66,14 @@ function displayApplicants(applicants) {
 
         //IZTECH logo for each application.
         var img = document.createElement("IMG");
-        img.src = "../../images/iyte-logo.jpg";
-        img.style.width = "32px";
-        img.style.height = "32px";
+        img.src = "../../assets/iyte-logo.svg";
+        img.style.width = "40px";
+        img.style.height = "40px";
         img.style.marginBottom = "1rem";
-        img.style.background = "#007bff";
-        img.style.color = "#007bff";
+        img.style.background = "#ffffff";
+        img.style.color = "#ffffff";
         img.classList.add("mr-2");
         img.classList.add("rounded");
-
 
         outerDiv.appendChild(img);
 
