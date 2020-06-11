@@ -122,16 +122,17 @@ function displayApplicants(applicants) {
             if (isVerified == true) {
                 verification.innerHTML = "Accepted";
                 var icon = document.createElement("I");
-                icon.classList.add("fas");
+                icon.classList.add("fa");
                 icon.classList.add("fa-check");
                 icon.style.marginLeft = "0.3rem";
+                icon.setAttribute('aria-hidden', 'true');
                 verification.appendChild(icon);
 
                 //Application is rejected by the grad-school
             } else {
                 verification.innerHTML = "Denied";
                 var icon = document.createElement("I");
-                icon.classList.add("fas");
+                icon.classList.add("fa");
                 icon.classList.add("fa-times");
                 icon.style.marginLeft = "0.3rem";
                 verification.appendChild(icon);
