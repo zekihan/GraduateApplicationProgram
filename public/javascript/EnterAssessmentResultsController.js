@@ -168,25 +168,25 @@ function prettyFormat(output) {
 function submit(term, department) {
     var orderedList = document.querySelector("ol").childNodes;
     var listItemsAsArray = Array.from(orderedList);
-    listItemsAsArray.forEach(async function (listItem) {
+    listItemsAsArray.forEach(function (listItem) {
         console.log(listItem.firstChild.lastChild.firstChild.checked);
+        console.log(listItem.id);
         var checked = listItem.firstChild.lastChild.firstChild.checked;
         var update;
 
         //If applicant is checked, he/she will be accepted
         if(checked){           
-            update = {
+            firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update({
                 isAccepted: true
-            };
+            });
 
         //Applicant is rejected by the department
         }else{
-            update = {
+            firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update({
                 isAccepted: false
-            };
+            });
         }
         
-        await firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update(update);
     });
 
     window.location.href = "department-dashboard";
