@@ -61,7 +61,7 @@
                 </ul>
             </nav>
 
-            <div class="container-fluid">
+            <div class="container-fluid" style="overflow-y: scroll; height:calc(100vh - 120px)">
                 
                 <div id="list-container" class="my-3 p-3 bg-white rounded shadow-sm">
                     <h6 class="border-bottom border-gray pb-2 mb-0">Select Interviewed Applicants</h6>
@@ -69,8 +69,9 @@
                         <div class="spinner-border" role="status">
                             <span class="sr-only">Loading applications...</span>
                         </div>
-                        </div>
+                    </div>
                 </div>
+                
 
                 <!-- Pages (20-50 applications per page) -->
                 <!--<ul class="pagination">
@@ -81,10 +82,12 @@
                     <li class="waves-effect"><a href="#!">4</a></li>
                     <li class="waves-effect"><a href="#!">5</a></li>
                     <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>-->
-                    <button id="submit-button" type="button" class="btn btn-danger submit-results-btn mb-3">Submit Results</button>
+                    
                 <!--</ul> -->
                 
             </div>
+
+            <button id="submit-button" type="button" class="btn btn-danger submit-results-btn mt-2 mb-2">Submit Results</button>
         </div>
         <!-- /#page-content-wrapper -->
     </div>
