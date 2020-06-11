@@ -1,41 +1,72 @@
 function getApplicants() {
 
-    firebase.auth().onAuthStateChanged(async function (user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-
-            //Get firebase database instance
+            
+            //Get the user id
             var userId = firebase.auth().currentUser.uid;
 
+            //Applicants array for display purposes
             var applicants = new Array();
-            await firebase.database().ref("users/" + userId).once("value").then(function (user) {
+
+            //Get the department user's department id.
+            firebase.database().ref("users/" + userId).once("value").then(function (user) {
                 var departmentId = user.child("department").val().toString();
-                firebase.database().ref("applications").orderByKey().limitToLast(1).once("value").then(function (term) {
-                    term.forEach(function (realTerm) {
-                        realTerm.child(departmentId).forEach(function (application) {
-                            //Get the applicants that have been verified by the grad school and interviewed by the department
-                            if (application.child("gradschoolControl/isVerified").val() &&
-                                /*application.child("departmentControl/interviewInfo").val() !== null*/ true) {
-                                applicants.push({
-                                    applicationId: application.key,
-                                    program: application.child("content").child("program").val(),
-                                    term: realTerm.key,
-                                    department: application.child("content").child("department").val(),
-                                    applicationId: application.key,
-                                    name: application.child("content").child("name").val(),
-                                    lastname: application.child("content").child("lastName").val(),
-                                    date: application.child("date").val()
-                                });
-                            }
+
+                
+                firebase.database().ref('departments/' + departmentId).once('value').then(function (department) {
+
+                    //If applicants have already been accepted/rejected by the department user.
+                    if (department.child('acceptanceDone').val() === true) {
+                        displayUsabilityText();
+                        return;
+                    }
+
+                    //If applicants have not been accepted/rejected yet.
+                    firebase.database().ref("applications").orderByKey().limitToLast(1).once("value").then(function (term) {
+                        term.forEach(function (realTerm) {
+
+                            /* Get each application of the department. */
+                            realTerm.child(departmentId).forEach(function (application) {
+
+                                //Get only the applicants that have been verified by the grad school and interviewed by the department.
+                                if (application.child("gradschoolControl/isVerified").val() &&
+                                    /*application.child("departmentControl/interviewInfo").val() !== null*/
+                                    true) {
+                                    applicants.push({
+                                        applicationId: application.key,
+                                        program: application.child("content").child("program").val(),
+                                        term: realTerm.key,
+                                        department: application.child("content").child("department").val(),
+                                        applicationId: application.key,
+                                        name: application.child("content").child("name").val(),
+                                        lastname: application.child("content").child("lastName").val(),
+                                        date: application.child("date").val()
+                                    });
+                                }
+                            });
                         });
+                        displayApplicants(applicants);
                     });
-                    displayApplicants(applicants);
                 });
+
             });
         }
     });
 }
 
 
+/* If the user tries to use enter-assessment which has already been done for the particular term, display warning text to the screen. */
+function displayUsabilityText() {
+    var text = document.createElement("P");
+    text.style.marginTop = "1rem";
+    text.innerHTML = "Applicants have already been interviewed and accepted.";
+    document.getElementById("list-container").appendChild(text);
+    document.getElementById("list-container").removeChild(document.getElementById("spinner"));
+    document.getElementById("page-content-wrapper").removeChild(document.getElementById("submit-button"));
+}
+
+/* Display all applicants (Put each applicant into HTML) */
 function displayApplicants(applicants) {
 
     var ol = document.createElement("OL");
@@ -53,7 +84,7 @@ function displayApplicants(applicants) {
         li.classList.add("ui-state-default");
         li.id = applicant.applicationId;
 
-        
+
         //Application data row.
         var outerDiv = document.createElement('DIV');
         outerDiv.classList.add("text-muted");
@@ -86,23 +117,21 @@ function displayApplicants(applicants) {
         innerDiv.classList.add("lh-125");
 
 
+        /* Applicant's name and lastname. */
         var innerMostDiv = document.createElement("DIV");
         innerMostDiv.classList.add("d-flex");
         innerMostDiv.classList.add("justify-content-between");
         innerMostDiv.classList.add("align-items-center");
         innerMostDiv.classList.add("w-100");
 
-
-
         var strong = document.createElement("STRONG");
         strong.classList.add("text-gray-dark");
-        //strong.innerHTML = applicant.email
         strong.innerHTML = applicant.name + ' ' + applicant.lastname;
         innerMostDiv.appendChild(strong);
 
         innerDiv.appendChild(innerMostDiv);
 
-
+        /* Program & date information */
         var span = document.createElement("SPAN");
         span.classList.add("d-block");
         span.innerHTML = 'Created at ' + timeConverter(applicant.date) + ' For ' + prettyFormat(applicant.program);
@@ -112,6 +141,7 @@ function displayApplicants(applicants) {
 
         li.appendChild(outerDiv);
 
+        /* Acceptance checkbox */
         var containerLabel = document.createElement("LABEL");
         var checkbox = document.createElement("INPUT");
         checkbox.id = "indeterminate-checkbox";
@@ -119,10 +149,10 @@ function displayApplicants(applicants) {
         checkbox.style = "margin-right: 4px;"
         containerLabel.appendChild(checkbox);
 
+        /* Accept text */
         var innerSpan = document.createElement("SPAN");
         innerSpan.classList.add("checkbox-label");
         innerSpan.innerHTML = "Accept";
-
         containerLabel.appendChild(innerSpan);
 
         outerDiv.appendChild(containerLabel);
@@ -133,7 +163,7 @@ function displayApplicants(applicants) {
 
     document.getElementById("list-container").removeChild(document.getElementById("spinner"));
     document.getElementById("list-container").appendChild(ol);
-    document.getElementById("submit-button").onclick = function(){ submit(term, department); }
+    document.getElementById("submit-button").onclick = function () { submit(term, department); }
 }
 
 
@@ -151,7 +181,7 @@ function timeConverter(timestamp) {
     return time;
 }
 
-
+/* Degree data to a prettier format */
 function prettyFormat(output) {
     switch (output) {
         case "mastersDegree":
@@ -164,49 +194,34 @@ function prettyFormat(output) {
     }
 }
 
-
+/* Whenever the submit button is clicked */
 function submit(term, department) {
+
+    /* Get all applicants */
     var orderedList = document.querySelector("ol").childNodes;
     var listItemsAsArray = Array.from(orderedList);
-    listItemsAsArray.forEach(function (listItem) {
-        console.log(listItem.firstChild.lastChild.firstChild.checked);
-        console.log(listItem.id);
-        var checked = listItem.firstChild.lastChild.firstChild.checked;
-        var update;
 
-        //If applicant is checked, he/she will be accepted
-        if(checked){           
+    /* For each applicant, check whether he/she will be accepted or not. */
+    listItemsAsArray.forEach(function (listItem) {
+        var checked = listItem.firstChild.lastChild.firstChild.checked;
+
+        /* The applicant is accepted. */
+        if (checked) {
             firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update({
                 isAccepted: true
             });
 
-        //Applicant is rejected by the department
-        }else{
+        /* The applicant is rejected. */
+        } else {
             firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update({
                 isAccepted: false
             });
         }
-        
+    });
+
+    firebase.database().ref('departments/' + department).update({
+        acceptanceDone: true
     });
 
     window.location.href = "department-dashboard";
 }
-
-
-/*
-<li class="ui-state-default" value="1" draggable="true">
-                            <div class="media text-muted pt-3 applicant-info border-bottom border-gray">
-                                <img src="../../images/iyte-logo.jpg" width="32" height="32" background="#007bff"
-                                    color="#007bff" class="mr-2 rounded">
-                                <div class="media-body pb-3 mb-0 small lh-125">
-                                    <div class="d-flex justify-content-between align-items-center w-100">
-                                        <strong class="text-gray-dark">user@email.com</strong>
-                                    </div>
-                                    <span class="d-block">Name & Lastname</span>
-                                </div>
-                                <label>
-                                    <input id="indeterminate-checkbox" type="checkbox" />
-                                    <span class="checkbox-label">Accept</span>
-                                </label>
-                            </div>
-                        </li>*/

@@ -73,7 +73,7 @@ function resetPassword() {
 }
 
 
-function deleteAccount() {
+function applicantDeleteAccount() {
     console.log("Delete account :");
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -107,4 +107,18 @@ function deleteAccount() {
             }).catch(function (error) {});
         }
     });
+}
+
+
+function deleteAccount() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            firebase.auth().currentUser.delete().then(function () {
+                firebase.database().ref("users/" + user.uid).remove();
+                alert('Your account has been successfully deleted!');
+                window.location.href = "login";
+            });
+        }
+    });
+
 }
