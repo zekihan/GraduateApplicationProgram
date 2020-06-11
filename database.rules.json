@@ -34,7 +34,10 @@
     },
     "departments": {
       ".read": "auth.uid != null",
-      ".write": "root.child('users').child(auth.uid).child('role').val() == 2"
+      ".write": "root.child('users').child(auth.uid).child('role').val() == 2",
+      "$department": {
+        ".write": "root.child('users').child(auth.uid).child('role').val() == 1"
+      }
     }
   }
 }

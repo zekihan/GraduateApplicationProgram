@@ -23,36 +23,37 @@
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">
-              <div class="row justify-content-start">
-                <div class="col-3">
-                  <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+                <div class="row justify-content-start">
+                    <div class="col-3">
+                        <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+                    </div>
+                    <div class="col-8">
+                        Izmir Institute of Technology
+                    </div>
                 </div>
-                <div class="col-8">
-                  Izmir Institute of Technology
-                </div>
-              </div>
             </div>
-    
-          <div class="list-group list-group-flush">
-            <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create Application</a>
-            <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
-            <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
-            <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
-          </div>
+
+            <div class="list-group list-group-flush">
+                <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create
+                    Application</a>
+                <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
+                <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
+                <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+            </div>
         </div>
         <!-- /#sidebar-wrapper -->
-    
+
         <!-- Page Content -->
         <div id="page-content-wrapper">
-    
+
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <ul class="navbar-nav ml-1">
                     <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
                 </ul>
-                
+
                 <ul class="navbar-nav ml-auto mt-1 mb-1">
-                    <li class="nav-item active" >
+                    <li class="nav-item active">
                         <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
                     </li>
                 </ul>
@@ -72,9 +73,8 @@
                         <ul class="list-group mb-3">
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
-                                    <h6 class="my-0">Foreign Student <i
-                                            class="far fa-question-circle d-inline-block" tabindex="0"
-                                            data-toggle="tooltip"
+                                    <h6 class="my-0">Foreign Student <i class="far fa-question-circle d-inline-block"
+                                            tabindex="0" data-toggle="tooltip"
                                             title="Foreign applicants will additionally be asked a copy of their passport."></i>
                                     </h6>
                                     <small class="text-muted">Those who do not have a Turkish citizenship.</small>
@@ -83,9 +83,8 @@
 
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
-                                    <h6 class="my-0">Turkish Student <i
-                                            class="far fa-question-circle d-inline-block" tabindex="0"
-                                            data-toggle="tooltip"
+                                    <h6 class="my-0">Turkish Student <i class="far fa-question-circle d-inline-block"
+                                            tabindex="0" data-toggle="tooltip"
                                             title="Turkish students will not upload their passports or permission letters."></i>
                                     </h6>
                                     <small class="text-muted">Those who have a Turkish citizenship.</small>
@@ -112,17 +111,16 @@
                         <!-- Student Type Input (foreign, turkish) -->
 
                         <form class="needs-validation" novalidate>
+                            <input type="text" class="form-control" id="email" hidden>
                             <label for="name">Name and Lastname</label>
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" class="form-control" id="firstName"
-                                            placeholder="First name">
+                                        <input type="text" class="form-control" id="firstName" placeholder="First name">
                                         <span class="error-msg" style="color:red;" id="firstName-error"></span>
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" id="lastName"
-                                            placeholder="Last name">
+                                        <input type="text" class="form-control" id="lastName" placeholder="Last name">
                                         <span class="error-msg" style="color:red;" id="lastName-error"></span>
                                     </div>
                                 </div>
@@ -145,8 +143,7 @@
 
                             <div class="mb-3">
                                 <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                                <input type="text" class="form-control" id="address2"
-                                    placeholder="Apartment or suite">
+                                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
                             </div>
 
                             <div class="row">
@@ -463,19 +460,20 @@
     <script src="../../javascript/application-form.js" defer></script>
 
     <script>
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            firebase.database().ref('/users').child(user.uid).once('value').then(function (snapshot) {
-                document.getElementById('firstName').value = snapshot.child('name').val();
-                document.getElementById('lastName').value = snapshot.child('lastName').val();
-            });
-        } else {
-            window.location.href = '/login';
-        }
-    });
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                firebase.database().ref('/users').child(user.uid).once('value').then(function (snapshot) {
+                    document.getElementById('firstName').value = snapshot.child('name').val();
+                    document.getElementById('lastName').value = snapshot.child('lastName').val();
+                    document.getElementById('email').value = user.email;
+                });
+            } else {
+                window.location.href = '/login';
+            }
+        });
     </script>
 
-    
+
 </body>
 
 </html>

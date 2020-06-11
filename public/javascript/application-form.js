@@ -99,7 +99,7 @@ function submitResult() {
                         var term = childSnapshot.key;
                         var department = info.department;
 
-                        var newAppKey = childSnapshot.ref.child(info.department).push().key;
+                        var newAppKey = firebase.database().ref('/__applications__').push().key;
 
                         var updates = {};
                         updates['/applications/' + term + "/" + department + "/" + newAppKey + "/content"] = info;
@@ -209,7 +209,7 @@ function checkDocumentFields(persenolInfo) {
             return false;
         }
     }
-    
+
     var appliedProgram = $("#programSelection :selected").val();
     if (appliedProgram === "Choose..." || appliedProgram === "") {
         $("#programSelection-error").text("Please choose a program.");
@@ -322,6 +322,7 @@ function storeAndGetNextPage() {
     var persenolInfo = {
         name: document.getElementById('firstName').value,
         lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
         socialSecurityNumber: document.getElementById('socialSecurityNumber').value,
         address1: document.getElementById('address').value,
         address2: document.getElementById('address2').value,

@@ -16,6 +16,7 @@ exports.deletePhoneInfo = functions.database.ref('/users/{userId}')
 exports.applicationCreated = functions.database.ref('/applications/{term}/{department}/{applicationId}')
     .onCreate((snapshot, context) => {
         const timestamp = Date.now();
+        admin.database().ref('/__applications__').child(snapshot.ref.parent.parent.key).child(snapshot.key).set(snapshot.child('content/department').val());
         return snapshot.ref.child('date').set(timestamp);
     });
 
