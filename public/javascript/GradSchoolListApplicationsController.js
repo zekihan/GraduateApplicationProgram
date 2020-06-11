@@ -1,47 +1,52 @@
-$('#pagination-container').pagination({
-    dataSource: '/app-pagination?term=2020-2',
-    locator: 'pages',
-    totalNumberLocator: function (response) {
-        return response.pages.length*20
-    },
-    ajax: {
-        beforeSend: function () {
-            // dataContainer.html('Loading data from flickr.com ...');
-        },
-        afterSend: function(){
-            
-        }
-    },
-    pageSize: 20,
-    autoHidePrevious: true,
-    autoHideNext: true,
-    callback: function (data, pagination) {
-        getPage(data[pagination.pageNumber-1]);
-    }
-})
+var userId;
+var term;
 
-function getPage(data) {
-    firebase.database().ref("applications").orderByKey().limitToLast(1).once('value').then(function (term) {
-        term.forEach(function (departments) {
-            $("#applicant-container").html(`<h6 class="border-bottom border-gray pb-2 mb-0">All Submitted Applications</h6><div id="spinner" class="text-center"><div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status"><span class="sr-only">Loading applicant's data...</span></div></div>`);
-            var termInfo = departments.key;
-            Object.entries(data).forEach(function (entry) {
-                firebase.database().ref("applications").child(termInfo).child(entry[1]).child(entry[0]).once('value').then(function (app) {
-                    var applicants = new Array();
-                    applicants.push({
-                        isVerified: app.child('gradschoolControl/isVerified').val(),
-                        program: app.child("content").child("program").val(),
-                        term: termInfo,
-                        department: app.child("content").child("department").val(),
-                        applicationId: app.key,
-                        name: entry[0], //app.child("content").child("name").val(),
-                        lastname: app.child("content").child("lastName").val(),
-                        date: app.child("date").val()
-                    });
-                    displayApplicants(applicants);
+firebase.auth().onAuthStateChanged(async function (user) {
+    //User is not signed in.
+    if (user) {
+
+        userId = user.uid;
+        firebase.database().ref("applications").orderByKey().limitToLast(1).once("value").then(function (term) {
+            term.forEach(function (realTerm) {
+                term = realTerm.key;
+                $('#pagination-container').pagination({
+                    dataSource: `/app-pagination?term=${term}`,
+                    locator: 'pages',
+                    totalNumberLocator: function (response) {
+                        return response.pages.length * 20
+                    },
+                    pageSize: 20,
+                    autoHidePrevious: true,
+                    autoHideNext: true,
+                    callback: function (data, pagination) {
+                        getPage(data[pagination.pageNumber - 1], term);
+                    }
                 })
             });
         });
+        //User is not signed in.
+    } else {
+
+    }
+});
+
+function getPage(data, term) {
+    $("#applicant-container").html(`<h6 class="border-bottom border-gray pb-2 mb-0">All Submitted Applications</h6><div id="spinner" class="text-center"><div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status"><span class="sr-only">Loading applicant's data...</span></div></div>`);
+    Object.entries(data).forEach(function (entry) {
+        firebase.database().ref("applications").child(term).child(entry[1][1]).child(entry[1][0]).once('value').then(function (app) {
+            var applicants = new Array();
+            applicants.push({
+                isVerified: app.child('gradschoolControl/isVerified').val(),
+                program: app.child("content").child("program").val(),
+                term: term,
+                department: entry[1][1],
+                applicationId: entry[1][0],
+                name: app.child("content").child("name").val(), //app.child("content").child("name").val(),
+                lastname: app.child("content").child("lastName").val(),
+                date: app.child("date").val()
+            });
+            displayApplicants(applicants);
+        })
     });
 }
 
@@ -111,7 +116,6 @@ function displayApplicants(applicants) {
             //If the application has been checked by the grad-school
         } else {
             var verification = document.createElement("P");
-            console.log("isVerified: " + applicant.isVerified);
             var isVerified = applicant.isVerified;
 
             //Application is verified by the grad-school

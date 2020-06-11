@@ -47,9 +47,9 @@ function getApplicants(data, deptId, term) {
                 <span class="sr-only">Loading applicant's data...</span>
             </div>
         </div>`);
+        var applicants = new Array();
         Object.entries(data).forEach(function (entry) {
             var application = Object.entries(entry[1])[0][1];
-            var applicants = new Array();
             applicants.push({
                 isInterviewSet: application.departmentControl !== null,
                 applicationId: Object.entries(entry[1])[0][0],
@@ -60,8 +60,8 @@ function getApplicants(data, deptId, term) {
                 lastname: application.content.lastName,
                 date: application.date
             });
-            displayApplicants(applicants);
         });
+        displayApplicants(applicants);
     }
 }
 

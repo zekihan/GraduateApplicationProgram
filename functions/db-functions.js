@@ -78,7 +78,7 @@ exports.appPagination = functions.https.onRequest(async (request, response) => {
         response.status(400).send("pageSize is not proper");
     }
 
-    https.get(`https://grad-application.firebaseio.com/__applications__/${term}.json?shallow=true`, (resp) => {
+    https.get(`https://grad-application.firebaseio.com/__applications__/${term}.json`, (resp) => {
         let data = '';
 
         // A chunk of data has been recieved.
@@ -89,7 +89,9 @@ exports.appPagination = functions.https.onRequest(async (request, response) => {
         // The whole response has been received.
         resp.on('end', () => {
 
-            var keys = Object.keys(JSON.parse(data)).sort();
+            var keys = Object.entries(JSON.parse(data)).sort();
+            console.log(data);
+
             var pageCount = keys.length / pageLength;
             var pages = [];
             for (var i = 0; i < pageCount; i++) {
@@ -102,6 +104,7 @@ exports.appPagination = functions.https.onRequest(async (request, response) => {
             responseBody = {
                 pages
             }
+            console.log(responseBody);
             response.status(200).send(responseBody);
         });
 
