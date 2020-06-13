@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Dashboard</title>
+    <title>Programs</title>
     <link rel="icon" href="../../assets/iyte-logo.svg">
     
     <!-- Bootstrap core CSS -->
@@ -58,11 +58,18 @@
                 </ul>
             </nav>
 
-            <div class="container-fluid">
-                <!-- /#FILL HERE -->
-                <h1 class="mt-4">SA</h1>
-                <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+            <div class="container-fluid" style="overflow-y: scroll; height:calc(100vh - 120px)">
+                
+                <div id="list-container" class="my-3 p-3 bg-white rounded shadow-sm">
+                    <h6 class="border-bottom border-gray pb-2 mb-0">Programs</h6>
+                    <div id="spinner" class="text-center" style="margin-top: 1.5rem;">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading applications...</span>
+                        </div>
+                    </div>
+                </div>
+                
+            <button id="submit-button" type="button" class="btn btn-success submit-results-btn mt-2 mb-2">Add Program</button>
             </div>
 
         </div>
