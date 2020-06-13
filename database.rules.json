@@ -7,7 +7,8 @@
       }
     },
     "__applications__": {
-      ".read": "true"
+      ".read": "true",
+      ".write": "!data.exists() && newData.exists()"
     },
     "applications": {
       ".read": "true",
