@@ -168,8 +168,8 @@ function getApplicantData() {
                 } else {
                     document.getElementById("all-documents").removeChild(document.getElementById("passport-field"));
                 }
-                var elem = document.getElementById("documentsSection");
-                elem.style.visibility = 'visible';
+                //var elem = document.getElementById("documentsSection");
+                //elem.style.visibility = 'visible';
 
             });
             
@@ -195,18 +195,37 @@ function openDocument(url) {
 
 
 function submitResult() {
-    console.log("undergrad is checked: " + (document.getElementById("undergrad-checkbox").checked));
-    console.log("purpose is checked: " + (document.getElementById("purpose-checkbox").checked));
-    console.log("english exam is checked: " + (document.getElementById("englishexam-checkbox").checked));
-    console.log("passport is checked: " + (document.getElementById("passport-checkbox").checked));
-    console.log("permission is checked: " + (document.getElementById("permission-checkbox").checked));
-    console.log("master's transcript is checked: " + (document.getElementById("mastersdegree-checkbox").checked));
-    console.log("ales is checked: " + (document.getElementById("ales-checkbox").checked));
 
-    var verified = ((document.getElementById("undergrad-checkbox").checked) && (document.getElementById("purpose-checkbox").checked) &&
-        (document.getElementById("englishexam-checkbox").checked) && (document.getElementById("passport-checkbox").checked) &&
-        (document.getElementById("permission-checkbox").checked) && (document.getElementById("mastersdegree-checkbox").checked) &&
-        (document.getElementById("ales-checkbox").checked));
+    var verified = true;
+
+    if(document.getElementById("undergrad-checkbox") !== null){
+        verified = verified && (document.getElementById("undergrad-checkbox").checked);
+    }
+
+
+    if(document.getElementById("purpose-checkbox") !== null){
+        verified = verified && (document.getElementById("purpose-checkbox").checked);
+    }
+
+    if(document.getElementById("englishexam-checkbox") !== null){
+        verified = verified && (document.getElementById("englishexam-checkbox").checked);
+    }
+
+    if(document.getElementById("passport-checkbox") !== null){
+        verified = verified && (document.getElementById("passport-checkbox").checked);
+    }
+
+    if(document.getElementById("permission-checkbox") !== null){
+        verified = verified && (document.getElementById("permission-checkbox").checked);
+    }
+
+    if(document.getElementById("mastersdegree-checkbox") !== null){
+        verified = verified && (document.getElementById("mastersdegree-checkbox").checked);
+    }
+
+    if(document.getElementById("ales-checkbox") !== null){
+        verified = verified && (document.getElementById("ales-checkbox").checked);
+    }
 
 
 

@@ -204,7 +204,6 @@ function submit(term, department) {
     /* For each applicant, check whether he/she will be accepted or not. */
     listItemsAsArray.forEach(function (listItem) {
         var checked = listItem.firstChild.lastChild.firstChild.checked;
-
         /* The applicant is accepted. */
         if (checked) {
             firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update({
