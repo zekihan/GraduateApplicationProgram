@@ -14,6 +14,7 @@
       ".read": "true",
       "$term": {
         "$department": {
+          ".indexOn": "gradschoolControl/isVerified",
           "$appid": {
             ".read": "root.child('users').child(auth.uid).child('applications').child($appid).exists() || root.child('users').child(auth.uid).child('role').val() == 1 || root.child('users').child(auth.uid).child('role').val() == 2",
             ".write": "!data.exists() && newData.exists()",
