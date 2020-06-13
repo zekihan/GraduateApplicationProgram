@@ -27,7 +27,7 @@ function signInWithEmail() {
     // hideSpinner();
 }
 
-function phoneVerify(credential, email, firstName, lastName, myWindow) {
+function phoneVerify(credential, email, firstName, lastName) {
     var url = "/checkUserExists"
     var body = {
         email: email
@@ -45,7 +45,7 @@ function phoneVerify(credential, email, firstName, lastName, myWindow) {
                     });
                     break;
                 case "false": //Go to phone verification
-                    myWindow = window.open("phone", "myWindow", "width=800,height=450"); // Opens a new window
+                    var myWindow = window.open("phone", "myWindow", "width=800,height=450"); // Opens a new window
                     var phone;
                     window.phone = function (value) {
                         phone = value;
@@ -111,8 +111,7 @@ function onSignIn(googleUser) {
             var credential = firebase.auth.GoogleAuthProvider.credential(
                 googleUser.getAuthResponse().id_token);
             var profile = googleUser.getBasicProfile();
-            var myWindow = window.open("", "myWindow", "width=800,height=450"); // Opens a new window
-            phoneVerify(credential, profile.getEmail(), profile.getGivenName(), profile.getFamilyName(), myWindow);
+            phoneVerify(credential, profile.getEmail(), profile.getGivenName(), profile.getFamilyName());
             console.log("Successful authentication");
         } else {
             console.log('User already signed-in Firebase.');
@@ -141,8 +140,7 @@ function checkLoginState(event) {
                         fields: 'name, email'
                     },
                     function (response) {
-                        var myWindow = window.open("", "myWindow", "width=800,height=450"); // Opens a new window
-                        phoneVerify(credential, response.email, response.name, "", myWindow);
+                        phoneVerify(credential, response.email, response.name, "");
                     });
                 console.log("Successful authentication");
             } else {
