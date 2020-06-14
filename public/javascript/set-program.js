@@ -1,5 +1,17 @@
 
 
+
+function createProgram(newProgram,nameIn,explanationIn) {
+    newProgram.set ({
+        isTaking: 1,
+        name : nameIn,
+        explanation : explanationIn
+    });
+}
+
+
+
+
 function setProgram(){
     
     //console.log('setProgram içinde');
@@ -25,9 +37,6 @@ function setProgram(){
         return;
     }
 
-    
-    
-
     var userId = firebase.auth().currentUser.uid;
     var userRef =firebase.database().ref("users/" + userId);
     
@@ -38,24 +47,13 @@ function setProgram(){
         var newMasterRef = masterRef.push();
         var phdRef = rootRef.child('departments/' + departmentId + '/program/phd');
         var newPhdRef = phdRef.push();
-        console.log("typeInput: " + typeIn);
-        console.log("name: " + nameIn);
     
-        if(typeIn == "Master") {
-            console.log("Master içinde");
-            newMasterRef.set ({
-                isTaking: 1,
-                name : nameIn,
-                explanation : explanationIn
-            }); 
+        if(typeIn == "Master") {          
+            createProgram(newMasterRef,nameIn,explanationIn);
             
         }
         else if(typeIn == "Phd") {
-            newPhdRef.set ({
-                isTaking: 1,
-                name : nameIn,
-                explanation : explanationIn
-            });
+            createProgram(mewPhdRef,nameIn,explanationIn);
             
         }
         
