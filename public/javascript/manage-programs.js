@@ -8,6 +8,15 @@ function getAddProgramPage() {
     
 }
 
+function pushOperation(container,program,programType) {
+    container.push({
+        type: programType, //"MASTER", or "PHD"
+        id:program.key,
+        name: program.child("name").val(),
+        isTaking: program.child("isTaking").val(),
+        explanation:program.child("explanation").val()                          
+      });
+}
 
 
 function getPrograms() {
@@ -24,25 +33,11 @@ function getPrograms() {
                 var masterRef =  firebase.database().ref('departments/' + departmentId + '/program/masters');
                 masterRef.once("value").then(function (masterPrograms) {
                       masterPrograms.forEach(function (program) {
-                        console.log("name masters: "+ program.child("name").val().toString());
-                        programArray.push({
-                        type:"MASTER",
-                        id:program.key,
-                        name: program.child("name").val(),
-                        isTaking: program.child("isTaking").val(),
-                        explanation:program.child("explanation").val()                          
-                      });
+                        pushOperation(programArray,program,"MASTER");                       
                 });
                 phDRef.once("value").then(function (phdPrograms) {
                     phdPrograms.forEach(function (program) {
-                        console.log("name phd: "+ program.child("name").val().toString());
-                        programArray.push({
-                        type:"PHD",
-                        id:program.key,
-                        name: program.child("name").val(),
-                        isTaking: program.child("isTaking").val(),
-                        explanation:program.child("explanation").val()                       
-                    });
+                        pushOperation(programArray,program,"PHD"); 
               });
               displayPrograms(programArray,departmentId);
                 });
