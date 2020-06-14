@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Settings</title>
+    <title>Departments</title>
     <link rel="icon" href="../../assets/iyte-logo.svg">
     
     <!-- Bootstrap core CSS -->
@@ -14,33 +14,34 @@
 
     <!-- Custom styles for this template -->
     <link href="../../styles/sidebar.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="../../styles/verification.css">
+    <link rel="stylesheet" href="../../styles/confirm.css">
 </head>
 
-<body onload="getUserInformation()">
+<body onload="getDepartments()">
     <!-- Dashboard -->
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">
-                <div class="row justify-content-start">
-                    <div class="col-3">
-                    <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
-                    </div>
-                    <div class="col-8">
-                    Izmir Institute of Technology
-                    </div>
+              <div class="row justify-content-start">
+                <div class="col-3">
+                  <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
                 </div>
+                <div class="col-8">
+                  Izmir Institute of Technology
+                </div>
+              </div>
             </div>
-    
-            <div class="list-group list-group-flush">
-                <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        
+          <div class="list-group list-group-flush">
+            <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
                 <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create Application</a>
                 <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
                 <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
                 <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available Programs</a>
                 <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
-            </div>
+          </div>
         </div>
         <!-- /#sidebar-wrapper -->
     
@@ -59,59 +60,18 @@
                 </ul>
             </nav>
 
-            <div class="container-fluid">
-
-                <div class="row py-5 mt-2 justify-content-center">
-                    <h2>Account Settings</h2>
-                </div>
-
-                <div class="row ml-3 mr-3">
-                    <div class="col-md-5">
-                        <div class="row justify-content-center">
-                            <img src="../../assets/default-pp.png">
-                        </div>
-                        <div class="row justify-content-center">
-                            <input type="text" readonly class="form-control-plaintext mr-5 ml-5" id="nameAndLastname" style="text-align: center;">
-                        </div>
-                        
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <label for="inputEmail3">Email</label>
-                                <input type="text" readonly class="form-control-plaintext" id="staticEmail">
-                            </li>
-                            <li class="list-group-item">
-                                <label for="inputEmail3">Phone</label>
-                                <input type="text" readonly class="form-control-plaintext" id="staticPhone">
-                            </li>
-
-                          </ul>
-
-                        <div class="other-infos infos-zone">
-                                <div class="row">
-
-                                    <div class="col-auto mt-3">
-                                        <button type="button" class="btn btn-secondary" onclick="changePhone()">Change Phone</button>
-                                    </div>
-
-                                    <div class="col-auto mt-3">
-                                        <button type="button" class="btn btn-secondary"
-                                            onclick="resetPassword()">Reset Password</button>
-                                    </div>
-
-                                    <div class="col-auto mt-3">
-                                        <button type="button" class="btn btn-danger"
-                                            onclick="applicantDeleteAccount()">Delete Your Account</button>
-                                    </div>
-                                </div>
-                            </form>
+            <div class="container-fluid" style="overflow-y: scroll; height:calc(100vh - 65px)">
+                <!-- Listview of unchecked applications -->
+                <div class="my-3 p-3 bg-white rounded shadow-sm">
+                    <h6 class="border-bottom border-gray pb-2 mb-0">All Departments</h6>
+                    <div id="spinner" class="text-center">
+                        <div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status">
+                          <span class="sr-only">Loading applicant's data...</span>
                         </div>
                     </div>
+                    <div id="department-container"></div>
                 </div>
-                    
+
             </div>
 
         </div>
@@ -135,9 +95,7 @@
     <script src="/__/firebase/7.14.2/firebase-app.js"></script>
     <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
     <script src="/__/firebase/7.14.2/firebase-database.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
     <script src="/__/firebase/init.js"></script>
-
     <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
 
@@ -145,9 +103,8 @@
         content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
 
     <script src="../../javascript/logout.js" defer></script>
-    <script src="../../javascript/check-login-state.js" defer></script>
-        
-    <script src="../../javascript/settings.js"></script>
-    
+    <script src="../../javascript/check-login-state.js" defer></script>   
+    <script src="../../javascript/list-departments-1.js" defer></script>
 </body>
+
 </html>
