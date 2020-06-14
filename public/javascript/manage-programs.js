@@ -120,7 +120,7 @@ function displayPrograms(programs,deptId) {
         programLink.classList.add("details-link");
         programLink.innerHTML = "Remove Program";
         programLink.style.color = "#c81912";      
-        programRow.onclick = function () {
+        programLink.onclick = function () {
             if (confirm("The " + program.name + " program will be deleted. Are you sure?")) {
                 removeProgram(program.id,deptId,program.type);
               alert("Program is deleted!");
