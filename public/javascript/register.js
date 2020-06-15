@@ -11,7 +11,6 @@ function signUp() {
     $('.error-msg').text("");
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-    checkPassword();
     var password_again = document.getElementById('password-again').value;
     var firstName = document.getElementById('firstName').value;
     var lastName = document.getElementById('lastName').value;
