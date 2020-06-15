@@ -2,6 +2,11 @@ function getLoginPage() {
     location.href = "login.html";
 }
 
+
+function isPasswordValid(password){
+    return (password.length >= 6);
+}
+
 function signUp() {
     $('.error-msg').text("");
     var email = document.getElementById('email').value;
@@ -13,6 +18,12 @@ function signUp() {
         $("#firstName-error").text("This field cannot be empty.");
         return false;
     }
+
+    if(!isPasswordValid(password)){
+        $("#password-error").text("Password must be at least 6 characters long.");
+        return false;
+    }
+
     if (lastName === "") {
         $("#lastName-error").text("This field cannot be empty.");
         return false;

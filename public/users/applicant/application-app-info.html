@@ -39,7 +39,8 @@
                     Application</a>
                 <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
                 <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
-                <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available Programs</a>
+                <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available
+                    Programs</a>
                 <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
             </div>
         </div>
@@ -98,7 +99,7 @@
                                 <span class="error-msg" style="color:red;" id="degreeSelection-error"></span>
                             </div>
 
-                            <div id="grad-transcript-input">
+                            <div id="grad-transcript-input" style="display: none;">
                                 <label for="passport">Master's Degree Transcript</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -134,7 +135,7 @@
                                 <span class="error-msg" style="color:red;" id="studentTypeSelection-error"></span>
                             </div>
 
-                            <div class="mb-3" id="passport-input-field">
+                            <div class="mb-3" id="passport-input-field" style="display: none;">
                                 <label for="passport">Passport (Only foreign students)</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -160,7 +161,7 @@
                                 <span class="error-msg" style="color:red;" id="isWorking-error"></span>
                             </div>
 
-                            <div id="permission-letters-input" class="mb-3">
+                            <div id="permission-letters-input" class="mb-3" style="display: none;">
                                 <label for="passport">Permission Letter (Only working students) </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -286,7 +287,7 @@
 
             </div>
 
-            
+
         </div>
     </div>
 
@@ -329,34 +330,40 @@
             deptId = $("#departmentSelection :selected").attr("id");
             $('#programSelection').find('option:not(:first)').remove();
             $('#degreeSelection').find('option:not(:first)').remove();
+            $('#programSelection').find('option:not(:first)').remove();
             setVisibilityOfGradTranscriptInput($('#degreeSelection'))
-            firebase.database().ref('departments').child(deptId).once('value').then(function (snapshot) {
-                var masters = snapshot.child('program/masters').val();
-                var phd = snapshot.child('program/phd').val();
-                if (phd != null) {
-                    $('#degreeSelection').append('<option id="phd" value="phd">PhD</option>')
-                }
-                if (masters != null) {
-                    $('#degreeSelection').append(
-                        '<option id="masters" value="masters">Master\'s Degree</option>')
-                }
-            });
+            if ((deptId != undefined)) {
+                firebase.database().ref('departments').child(deptId).once('value').then(function (snapshot) {
+                    var masters = snapshot.child('program/masters').val();
+                    var phd = snapshot.child('program/phd').val();
+                    if (phd != null) {
+                        $('#degreeSelection').append('<option id="phd" value="phd">PhD</option>')
+                    }
+                    if (masters != null) {
+                        $('#degreeSelection').append(
+                            '<option id="masters" value="masters">Master\'s Degree</option>')
+                    }
+                });
+            }
         });
         $('#degreeSelection').on("change", function () {
             deptId = $("#departmentSelection :selected").attr("id");
             degree = $("#degreeSelection :selected").attr("id");
-            firebase.database().ref('departments').child(deptId).child('program').child(degree).once('value')
-                .then(function (snapshot) {
-                    $('#programSelection').find('option:not(:first)').remove();
-                    snapshot.forEach(childSnapshot => {
-                        var name = childSnapshot.child('name').val();
-                        var isTaking = childSnapshot.child('isTaking').val();
-                        if (isTaking) {
-                            $('#programSelection').append(
-                                `<option value="${name}">${name}</option>`)
-                        }
+            $('#programSelection').find('option:not(:first)').remove();
+            if ((deptId != undefined) && (degree != undefined)) {
+                firebase.database().ref('departments').child(deptId).child('program').child(degree).once(
+                        'value')
+                    .then(function (snapshot) {
+                        snapshot.forEach(childSnapshot => {
+                            var name = childSnapshot.child('name').val();
+                            var isTaking = childSnapshot.child('isTaking').val();
+                            if (isTaking) {
+                                $('#programSelection').append(
+                                    `<option value="${name}">${name}</option>`)
+                            }
+                        });
                     });
-                });
+            }
         });
         $('#create-app').click(function () {
             $('#buttons').html(
