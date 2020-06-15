@@ -1,5 +1,5 @@
 function getUserInformation() {
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(async function (user) {
         if (user) {
 
             //User id
@@ -11,18 +11,38 @@ function getUserInformation() {
             //reference path : 'users/userId'
             var refPath = 'users/' + userId;
 
+            document.getElementById("email-placeholder").innerHTML = "25%";
+            document.getElementById("email-placeholder").style.width = "25%";
+
+            document.getElementById("phone-placeholder").innerHTML = "25%";
+            document.getElementById("phone-placeholder").style.width = "25%";
+
             var phone;
             var name;
             var lastname;
 
             firebase.database().ref(refPath).once('value').then(function (snapshot) {
+
                 phone = snapshot.child('phone').val();
                 name = snapshot.child('name').val();
                 lastname = snapshot.child('lastName').val();
+
+
+                document.getElementById("email-placeholder-container").parentNode.removeChild(document.getElementById("email-placeholder-container"));
+                document.getElementById("phone-placeholder-container").parentNode.removeChild(document.getElementById("phone-placeholder-container"));
+
                 document.getElementById("nameAndLastname").value = name + ' ' + lastname;
                 document.getElementById("staticEmail").value = userEmail;
                 document.getElementById("staticPhone").value = phone;
+
+
             });
+
+            document.getElementById("email-placeholder").innerHTML = "100%";
+            document.getElementById("email-placeholder").style.width = "100%";
+
+            document.getElementById("phone-placeholder").innerHTML = "100%";
+            document.getElementById("phone-placeholder").style.width = "100%";
 
 
         }
