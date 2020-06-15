@@ -152,6 +152,11 @@ function addDataToTables(applicationData, departmentId) {
     interviewTableRow.appendChild(interviewTableDataTag3);
 
     document.getElementById('interviewEntries').appendChild(interviewTableRow);
+
+    var element = document.getElementById("spinner");
+    element.parentNode.removeChild(element);
+    var element1 = document.getElementById("spinner1");
+    element1.parentNode.removeChild(element1);
 }
 
 function timeConverter(timestamp) {
