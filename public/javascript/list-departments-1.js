@@ -34,6 +34,19 @@ function getDepartments() {
 }
 
 
+function containsDegree(departmentPrograms,degreeType) {
+        result=false;
+        departmentPrograms.forEach(function (program) {
+                    if (program.degree == degreeType) {
+                        result=true;
+                        return;
+                    }
+        });
+        return result;
+
+}
+
+
 
 function prettyFormat(output) {
     switch (output) {
@@ -89,15 +102,23 @@ function displayDepartments(departments) {
         departmentAndProgramText.appendChild(departmentName);
 
         var programName = document.createElement("P");
-        var programText = "Programs :";
+        var programText = "Programs : ";
 
-        //Get programs(degrees)
-        if(department.programs[0] != null){
-            programText += " " + department.programs[0].degree;
-            if(department.programs[1] != null){
-                programText += " & " + department.programs[1].degree;
+      
+        var numberDegree=0;
+        var departmentPrograms=department.programs;
+        if (containsDegree(departmentPrograms,"M.Sc")) {
+            programText += "M.Sc";
+            numberDegree++;
+        }  if (containsDegree(departmentPrograms,"PhD")) {
+            if (numberDegree == 1) { // if M.Sc is added
+                programText +=" & ";
             }
+            programText += "PhD";
+            numberDegree++;
         }
+        
+        
 
         programName.innerHTML = programText;
         departmentAndProgramText.appendChild(programName);

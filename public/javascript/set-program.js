@@ -53,7 +53,7 @@ function setProgram(){
             
         }
         else if(typeIn == "Phd") {
-            createProgram(mewPhdRef,nameIn,explanationIn);
+            createProgram(newPhdRef,nameIn,explanationIn);
             
         }
         

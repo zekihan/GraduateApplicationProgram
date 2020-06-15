@@ -114,14 +114,16 @@ function displayPrograms(programs,deptId) {
         var programLink = document.createElement("A");
         programLink.classList.add("details-link");
         programLink.innerHTML = "Remove Program";
-        programLink.style.color = "#c81912";      
+        programLink.style.color = "#c81912"; 
+        programLink.href = "manage-programs.html";    
         programLink.onclick = function () {
-            if (confirm("The " + program.name + " program will be deleted. Are you sure?")) {
+            if (confirm(program.name + " program will be deleted. Are you sure?")) {
                 removeProgram(program.id,deptId,program.type);
-              alert("Program is deleted!");
-              location.href = "manage-programs.html";
-            }                     
-        
+              alert(program.name +" program is deleted!");
+              
+            }  else {
+                alert(program.name + " program is not deleted!");
+            }
         }
         programRow.appendChild(programLink);
         
