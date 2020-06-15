@@ -95,7 +95,7 @@ function populateUser(uid, firstName, lastName, phone) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            window.location.href = "/users/applicant/applicant-dashboard"
+            //window.location.href = "/users/applicant/applicant-dashboard"
         }
     };
     xhr.open("POST", url, true);
