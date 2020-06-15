@@ -15,6 +15,9 @@ function getCookie(cname) {
 }
 
 function verify() {
+    $('#buttons').html(
+        '<button class="btn btn-primary btn-block mt-2" onclick="verify()" type="button" disabled><span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span> Verifing...</button>'
+    ).addClass('disabled');
     var phone = getCookie("phone")
     var url = '/verifyCode'
     var body = {

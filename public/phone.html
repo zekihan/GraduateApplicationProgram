@@ -17,15 +17,16 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <a class="navbar-brand"><img src="assets/iyte-logo.svg" alt=""
-                width="32" height="32"> Izmir Institute of Technology</a>
+        <a class="navbar-brand"><img src="assets/iyte-logo.svg" alt="" width="32" height="32"> Izmir Institute of
+            Technology</a>
         <ul class="navbar-nav px-3">
         </ul>
     </nav>
 
     <div class="container" style="width: fit-content; padding-top: 15%;">
         <div class="form-group row">
-            <p class="card-text">We will send you a text message with a verification code that <br> you'll need to enter
+            <p class="card-text">We will send you a text message with a verification code that <br> you'll need to
+                enter
                 on the next screen.</p>
         </div>
         <div class="form-group row">
@@ -35,11 +36,12 @@
             <div class="col-auto">
                 <input id="phone" name="phone" type="tel">
             </div>
-            <div class="col-auto">
+            <div id="buttons" class="col-auto">
                 <button type="button" class="btn btn-primary" id="sendCode" onclick="">Send</button>
             </div>
         </div>
     </div>
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -54,6 +56,9 @@
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sendCode', {
             'size': 'invisible',
             'callback': function (recaptchaToken) {
+                $('#buttons').html(
+                    '<button type="button" class="btn btn-primary" id="sendCode" onclick="" disabled><span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span> Sending...</button>'
+                ).addClass('disabled');
                 var phone = document.getElementById('dialCode').innerText + document.getElementById('phone')
                     .value;
                 var url = '/sendCode'
