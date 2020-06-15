@@ -60,7 +60,7 @@ function getApplicantData() {
 
                 if (referenceLetter2Path !== "#") {
                     firebase.storage().ref(referenceLetter2Path).getDownloadURL().then(function (url) {
-                        document.getElementById("reference1").onclick = function () {
+                        document.getElementById("reference2").onclick = function () {
                             open(url);
                         }
                     }).catch(function (error) {
@@ -100,7 +100,7 @@ function getApplicantData() {
                 if (mastersTranscriptPath !== "#") {
                     console.log("hey");
                     firebase.storage().ref(mastersTranscriptPath).getDownloadURL().then(function (url) {
-                        document.getElementById("mastersTranscript").onclick = function () {
+                        document.getElementById("mastersTranscriptButton").onclick = function () {
                             open(url);
                         }
                     }).catch(function (error) {
