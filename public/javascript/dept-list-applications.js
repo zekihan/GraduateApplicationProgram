@@ -40,6 +40,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
 });
 
 function getApplicants(data, deptId, term) {
+    var applicants = new Array();
     if (data) {
         $("#applicant-container").html(`<h6 class="border-bottom border-gray pb-2 mb-0">Applications</h6>
         <div id="spinner" class="text-center">
@@ -47,7 +48,6 @@ function getApplicants(data, deptId, term) {
                 <span class="sr-only">Loading applicant's data...</span>
             </div>
         </div>`);
-        var applicants = new Array();
         Object.entries(data).forEach(function (entry) {
             var application = Object.entries(entry[1])[0][1];
             applicants.push({
@@ -61,6 +61,14 @@ function getApplicants(data, deptId, term) {
                 date: application.date
             });
         });
+        displayApplicants(applicants);
+    }else{
+        $("#applicant-container").html(`<h6 class="border-bottom border-gray pb-2 mb-0">Applications</h6>
+        <div id="spinner" class="text-center">
+            <div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status">
+                <span class="sr-only">Loading applicant's data...</span>
+            </div>
+        </div>`);
         displayApplicants(applicants);
     }
 }
