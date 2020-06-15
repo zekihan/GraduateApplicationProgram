@@ -2,7 +2,7 @@ function getApplicants() {
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            
+
             //Get the user id
             var userId = firebase.auth().currentUser.uid;
 
@@ -13,7 +13,7 @@ function getApplicants() {
             firebase.database().ref("users/" + userId).once("value").then(function (user) {
                 var departmentId = user.child("department").val().toString();
 
-                
+
                 firebase.database().ref('departments/' + departmentId).once('value').then(function (department) {
 
                     //If applicants have already been accepted/rejected by the department user.
@@ -45,8 +45,8 @@ function getApplicants() {
                                     });
                                 }
                             });
+                            displayApplicants(applicants, realTerm, departmentId);
                         });
-                        displayApplicants(applicants);
                     });
                 });
 
@@ -67,15 +67,11 @@ function displayUsabilityText() {
 }
 
 /* Display all applicants (Put each applicant into HTML) */
-function displayApplicants(applicants) {
+function displayApplicants(applicants, term, department) {
 
     var ol = document.createElement("OL");
     ol.id = "sortable";
     ol.style.listStyleType = "none";
-
-    //Common term and department information
-    var term = applicants[0].term;
-    var department = applicants[0].department;
 
     applicants.forEach(function (applicant) {
 
@@ -163,7 +159,9 @@ function displayApplicants(applicants) {
 
     document.getElementById("list-container").removeChild(document.getElementById("spinner"));
     document.getElementById("list-container").appendChild(ol);
-    document.getElementById("submit-button").onclick = function () { submit(term, department); }
+    document.getElementById("submit-button").onclick = function () {
+        submit(term, department);
+    }
 }
 
 
@@ -210,7 +208,7 @@ function submit(term, department) {
                 isAccepted: true
             });
 
-        /* The applicant is rejected. */
+            /* The applicant is rejected. */
         } else {
             firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update({
                 isAccepted: false
