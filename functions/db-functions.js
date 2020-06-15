@@ -58,6 +58,7 @@ exports.deptPagination = functions.https.onRequest(async (request, response) => 
             responseBody = {
                 pages
             }
+            console.log(responseBody);
             response.status(200).send(responseBody);
             return responseBody;
         })
