@@ -110,7 +110,7 @@ function submitResult() {
                         console.log(updates);
                         return firebase.database().ref().update(updates);
                     });
-                    window.location.href = "my-application"
+                    window.location.href = "/users/applicant/applicant-dashboard"; //Then direct the user to dashboard page.
                 });
             });
 
