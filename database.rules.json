@@ -40,6 +40,10 @@
       "$department": {
         ".write": "root.child('users').child(auth.uid).child('role').val() == 1"
       }
+    },
+    "applicantGuide": {
+      ".read": "auth.uid != null",
+      ".write": "false"
     }
   }
 }
