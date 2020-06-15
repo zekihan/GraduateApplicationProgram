@@ -28,7 +28,8 @@ function getDepartmentsApplicants() {
                         var termInfo = realTerm.key;
                         console.log("is accepted: " + application.child("departmentControl/isAccepted").val());
                         //Change this afterwards
-                        if (/*application.child("departmentControl/isAccepted").val()*/true) {
+                        if (application.child("departmentControl/isAccepted").val() && 
+                            application.child("gradschoolControl/isVerified").val()) {
                             applicants.push({
                                 applicationId: application.key,
                                 program: application.child("content").child("program").val(),
