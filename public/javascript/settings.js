@@ -104,6 +104,7 @@ function applicantDeleteAccount() {
                     firebase.auth().currentUser.delete().then(function () {
                         firebase.database().ref("users/" + userId).remove();
                         alert('Your account has been successfully deleted!');
+                        signOut();
                         window.location.href = "login";
                     });
                 } else {
@@ -117,6 +118,7 @@ function applicantDeleteAccount() {
                                 firebase.auth().currentUser.delete().then(function () {
                                     firebase.database().ref("users/" + userId).remove();
                                     alert('Your account has been successfully deleted!');
+                                    signOut();
                                     window.location.href = "login";
                                 });
                             }
