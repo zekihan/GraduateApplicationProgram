@@ -10,6 +10,10 @@
       ".read": "true",
       ".write": "!data.exists() && newData.exists()"
     },
+    "tmp": {
+      ".read": "false",
+      ".write": "true"
+    },
     "applications": {
       ".read": "true",
       "$term": {
