@@ -24,6 +24,9 @@
             }, {
                 "source": "/dept-pagination",
                 "function": "db-deptPagination"
+            }, {
+                "source": "/sendAcceptanceEmail",
+                "function": "mail-sendAcceptanceEmail"
             }
         ],
         "ignore": [
