@@ -2,29 +2,40 @@ function getRegisterPage() {
     location.href = "register.html";
 }
 
+
+
+function rememberUser() {
+    if (document.getElementById("rememberMe").checked) {
+        // save username and password
+        localStorage.setItem('usrname', $('#inputEmail').val());
+        localStorage.setItem('pass', $('#inputPassword').val());
+        localStorage.setItem('chkbx', $('#rememberMe').val());
+    } else {
+        localStorage.setItem('usrname', '');
+        localStorage.setItem('pass', '');
+        localStorage.setItem('chkbx', '');
+    }
+}
+
 function signInWithEmail() {
-    // showSpinner();
     var email = document.getElementById('inputEmail').value;
-    console.log('Email: ' + email);
     var password = document.getElementById('inputPassword').value;
-    console.log('Password: ' + password);
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         if (errorCode === 'auth/wrong-password') {
             alert('Wrong password.');
-        }else if (errorCode === 'auth/user-not-found'){
+        } else if (errorCode === 'auth/user-not-found') {
             alert('No such account');
             location.href = "register.html";
-        }else if (errorCode === 'auth/invalid-email'){
+        } else if (errorCode === 'auth/invalid-email') {
             alert('No such account');
-        }else if (errorCode === 'auth/user-disabled'){
+        } else if (errorCode === 'auth/user-disabled') {
             alert('Account Disabled');
         }
     });
     console.log("Successful authentication");
-    // hideSpinner();
 }
 
 function phoneVerify(credential, email, firstName, lastName) {

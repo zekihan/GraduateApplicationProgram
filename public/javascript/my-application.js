@@ -79,6 +79,7 @@ function addDataToTables(applicationData, departmentId) {
         var isAccepted = "-";
         var isVerified = "-";
         var result = "-";
+        var departmentId = "-";
     } else {
         var createDate = applicationData.get('createDate');
         createDate = timeConverter(createDate);
