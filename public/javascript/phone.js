@@ -29,6 +29,24 @@ function verify() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             console.log(xhr.response)
             opener.verify(true)
+        } else if (xhr.readyState == 4 && xhr.status == 315) {
+            console.log(xhr.response)
+            $('#buttons').html(
+                '<button class="btn btn-primary btn-block mt-2" onclick="verify()" type="button">Submit</button>'
+            );
+            $("#phone-error").text("Invalid Code.");
+        } else if (xhr.readyState == 4 && xhr.status == 316) {
+            console.log(xhr.response)
+            $('#buttons').html(
+                '<button class="btn btn-primary btn-block mt-2" onclick="verify()" type="button">Submit</button>'
+            );
+            $("#phone-error").text(xhr.response);
+        } else if (xhr.readyState == 4) {
+            console.log(xhr.response)
+            $('#buttons').html(
+                '<button class="btn btn-primary btn-block mt-2" onclick="verify()" type="button">Submit</button>'
+            );
+            $("#phone-error").text(xhr.response);
         }
     };
     xhr.open("POST", url, true);
