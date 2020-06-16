@@ -1,7 +1,6 @@
-function getLoginPage() {
-    location.href = "login.html";
+function getDashboard() {
+    location.href = "users/applicant/applicant-dashboard.html";
 }
-
 
 function isPasswordValid(password){
     return (password.length >= 6);
@@ -94,6 +93,7 @@ function createAccount(email, password, firstName, lastName, phone) {
                 photoURL: "#",
             });
             populateUser(currentUser.uid, firstName, lastName, phone);
+            getDashboard();
         })
         .catch((error) => {
             console.log(error.code);
