@@ -2,9 +2,9 @@ function getApplicationData() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             //Get firebase database instance
-            var userId = firebase.auth().currentUser.uid;
+            var userId = user.uid;
             firebase.database().ref('users/' + userId + '/applications').once('value').then(function (snapshot) {
-                if (snapshot === null) {
+                if (snapshot.val() === null) {
                     addDataToTables(null, null);
                     return;
                 }
@@ -91,7 +91,7 @@ function addDataToTables(applicationData, departmentId) {
         var isAccepted = applicationData.get('isAccepted');
         var isVerified = applicationData.get('isVerified');
         var result = applicationData.get('result');
-        if (isVerified === 1) {
+        if (isVerified === true) {
             if (isAccepted === true) {
                 if (result === true) {
                     currentStatus = 'Your application has been accepted';
@@ -103,7 +103,7 @@ function addDataToTables(applicationData, departmentId) {
             } else {
                 currentStatus = 'Waiting for department response';
             }
-        } else if (isVerified === 0) {
+        } else if (isVerified === false) {
             currentStatus = 'Application has been rejected';
         } else {
             currentStatus = 'Waiting Graduate School to verify documents';
