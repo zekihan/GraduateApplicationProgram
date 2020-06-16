@@ -8,26 +8,31 @@ function getDepartments() {
         var allDepartments = new Array();
         var departmentsPrograms = new Array();
         departments.forEach(function (department) {
-            var departmentsPrograms = new Array();
-            department.child("program").forEach(function (program) {
-                var degree = program.key;
-                program.forEach(function (programId) {
-                    //If the program is accepting students
-                    if (programId.child("isTaking").val() === 1) {
-                        departmentsPrograms.push({
-                            degree: prettyFormat(program.key),
-                            id: programId.key,
-                            name: programId.child("name").val()
-                        });
-                    }
+            var programChild = department.child("program");
+            if(programChild.val()){
+                var departmentsPrograms = new Array();
+                programChild.forEach(function (program) {
+                    var degree = program.key;
+                    program.forEach(function (programId) {
+                        //If the program is accepting students
+                        if (programId.child("isTaking").val() === 1) {
+                            departmentsPrograms.push({
+                                degree: prettyFormat(program.key),
+                                id: programId.key,
+                                name: programId.child("name").val()
+                            });
+                        }
+                    });
+            
                 });
-            });
             allDepartments.push({
                 departmentName: department.child("name").val(),
                 isConfirmed: department.child("confirmed").val(),
                 departmentId: department.key,
                 programs: departmentsPrograms
             });
+            }
+            
         });
         displayDepartments(allDepartments);
     });
