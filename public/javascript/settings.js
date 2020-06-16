@@ -61,13 +61,17 @@ function changePhone() {
                 myWindow.location.href = 'phoneVerify';
             }
             window.verify = function (value) {
+
                 if (value) {
                     myWindow.close();
                     firebase.database().ref('users/' + userId).update({
                         phone: phone
                     });
+                    firebase.database().ref().child("tmp").remove();
                     window.location.reload();
-                } else {
+
+                } else { 
+                    firebase.database().ref().child("tmp").remove();
                     myWindow.close();
                     $("#phone-error").text("Phone verification failed.");
                 }

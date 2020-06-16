@@ -96,7 +96,7 @@ function getApplicantData() {
                 //Get Master's Transcript's URL
                 if (mastersTranscriptPath !== "#") {
                     firebase.storage().ref(mastersTranscriptPath).getDownloadURL().then(function (url) {
-                        document.getElementById("mastersTranscript").onclick = function () {
+                        document.getElementById("mastersTranscriptButton").onclick = function () {
                             open(url);
                         }
                     }).catch(function (error) {
