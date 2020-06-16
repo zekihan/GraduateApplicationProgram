@@ -113,12 +113,12 @@ function applicantDeleteAccount() {
                     });
                 } else {
                     console.log("inside else");
+                    var canBeDeleted = true;
                     snapshot.forEach(function (applicationId) {
                         var department = applicationId.child("department").val();
                         var term = applicationId.child("term").val();
-                        var canBeDeleted = true;
-                        firebase.database().ref("applications/" + term + "/" + department + "/" + applicationId).once('value').then(function (snapshot) {
-                            canBeDeleted = canBeDeleted && snapshot.child("gradschoolControl/isVerified").val();
+                        firebase.database().ref("applications/" + term + "/" + department + "/" + applicationId.key).once('value').then(function (snapshot) {
+                            canBeDeleted = canBeDeleted && !(snapshot.child("gradschoolControl/isVerified").val());
                         }).catch(function (error) {});
                     });
                     if(canBeDeleted){
