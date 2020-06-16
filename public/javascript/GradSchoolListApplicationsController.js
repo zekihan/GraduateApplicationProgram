@@ -38,7 +38,6 @@ function getPage(data, term) {
             applicants.push({
                 isVerified: app.child('gradschoolControl/isVerified').val(),
                 program: app.child("content").child("program").val(),
-                email: app.child("content").child("email").val(),
                 term: term,
                 department: entry[1][1],
                 applicationId: entry[1][0],

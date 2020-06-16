@@ -102,6 +102,8 @@ function getApplicantData() {
                     }).catch(function (error) {
                         //handle errors here
                     });
+                }else{
+                    document.getElementById("all-documents").removeChild(document.getElementById("mastersTranscript"));
                 }
 
 
