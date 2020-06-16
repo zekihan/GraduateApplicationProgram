@@ -44,7 +44,6 @@ exports.sendAcceptanceEmail = functions.https.onRequest(async (request, response
                 sgMail.send(msg);
             });
             response.status(200).send("ok");
-            return responseBody;
         })
         .catch(error => {
             console.log("Error: " + error.message);
