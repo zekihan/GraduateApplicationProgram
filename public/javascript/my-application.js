@@ -92,13 +92,13 @@ function addDataToTables(applicationData, departmentId) {
         var isVerified = applicationData.get('isVerified');
         var result = applicationData.get('result');
         if (isVerified === 1) {
-            if (isAccepted === 'true') {
-                if (result === 'true') {
+            if (isAccepted === true) {
+                if (result === true) {
                     currentStatus = 'Your application has been accepted';
                 } else {
                     currentStatus = 'Waiting for announcements';
                 }
-            } else if (isAccepted === 'false') {
+            } else if (isAccepted === false) {
                 currentStatus = 'Application has been rejected';
             } else {
                 currentStatus = 'Waiting for department response';
