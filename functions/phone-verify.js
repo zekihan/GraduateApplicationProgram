@@ -51,19 +51,26 @@ exports.verifyCode = functions.https.onRequest(async (request, res) => {
         version: 'v3',
     });
 
+    var status = 200;
+    var response = "ok";
     var phoneSessionId;
     await admin.database().ref('/tmp/phones').child(phoneNumber).child('sessionInfo').once('value').then(snapshot => {
         phoneSessionId = snapshot.val();
         console.log(phoneSessionId);
         return phoneSessionId;
     }).catch(err => {
-        response.status(400).send(err.message);
+        console.log('Error: ' + err.message)
+        status = 316;
+        response = err.message;
     });
 
     await identityToolkit.relyingparty.verifyPhoneNumber({
         code: verificationCode,
         sessionInfo: phoneSessionId,
-    });
-
-    res.status(200).send("OK");
+    }).catch(err => {
+        console.log('Error: ' + err.message)
+        status = 315;
+        response = err.message;
+    })
+    res.status(status).send(response);
 });
