@@ -1,0 +1,15 @@
+*Regarding Your Application To Iztech Gradute Application Program*
+
+Dear {{name}} {{lastname}},
+
+Your application to {{applied}} {{program}} at Iztech has been accepted.
+
+You can verify result at my applications page at your dashoard
+
+or with this link ( {{linkToMyapplication}} ).
+
+This is an automated email, replies will not receive a response.
+
+This email sent to: {{email}}
+
+© 1992-2020 Izmir Institute of Technology
