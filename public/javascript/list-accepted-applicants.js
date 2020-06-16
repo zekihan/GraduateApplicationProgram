@@ -11,7 +11,7 @@ function getDepartmentsApplicants() {
             firebase.database().ref("departments/" + departmentId).once('value').then(function (snapshot) {
                 var department = snapshot.child("name").val();
                 displayTitle(department);
-            
+
             }).catch(function (error) {
                 console.log(error);
             });
@@ -28,9 +28,11 @@ function getDepartmentsApplicants() {
                         var termInfo = realTerm.key;
                         console.log("is accepted: " + application.child("departmentControl/isAccepted").val());
                         //Change this afterwards
-                        if (application.child("departmentControl/isAccepted").val() && 
+                        console.log("before if");
+                        if (application.child("departmentControl/isAccepted").val() &&
                             application.child("gradschoolControl/isVerified").val()) {
-                            applicants.push({
+                            console.log("after if");
+                                applicants.push({
                                 applicationId: application.key,
                                 program: application.child("content").child("program").val(),
                                 term: termInfo,
@@ -60,7 +62,7 @@ function parseDepartmentId() {
     return queries[1];
 }
 
-function displayTitle(department){
+function displayTitle(department) {
     document.getElementById("department-title").innerHTML = department + " Department Accepted Students";
 }
 
@@ -161,8 +163,10 @@ function displayApplicants(applicants) {
 
         document.getElementById("applicant-container").appendChild(div);
     });
-    document.getElementById("confirmButton").onclick = function(){ confirmAndAnnounce(applicants); }
-    
+    document.getElementById("confirmButton").onclick = function () {
+        confirmAndAnnounce(applicants);
+    }
+
     var element = document.getElementById("spinner");
     element.parentNode.removeChild(element);
 }
@@ -193,7 +197,7 @@ function timeConverter(timestamp) {
 
 function prettyFormat(output) {
     switch (output) {
-        case "mastersDegree":   
+        case "mastersDegree":
         case "masters":
             return "M.Sc";
         case "phd":
@@ -205,24 +209,36 @@ function prettyFormat(output) {
 
 /* Convert department id to corresponding department name. */
 async function intToDepartmentStr(departmentIdentifier) {
-    await firebase.database().ref("departments").once("value").then(async function(departments){
+    await firebase.database().ref("departments").once("value").then(async function (departments) {
         return dept = await departments.child(departmentIdentifier).child("name").val();
     });
 }
 
 
 function confirmAndAnnounce(applicants) {
-    console.log("dept: " + applicants[0].department);
     var dept = applicants[0].department;
-    
+
     //Update all applicants' result as true
-    applicants.forEach(function(applicant){
+    applicants.forEach(function (applicant) {
         console.log("id: " + applicant.applicationId);
         firebase.database().ref('applications/' + applicant.term + '/' + applicant.department + '/' + applicant.applicationId + '/gradschoolControl').set({
             isVerified: true,
             result: true
         });
     });
+
+    
+    var url = '/sendAcceptanceEmail?term=2020-2&deptId=5'
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.response)
+        }else{
+        }
+    };
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({}));
 
     var update = {
         confirmed: true
@@ -231,6 +247,6 @@ function confirmAndAnnounce(applicants) {
     //Update the department as confirmed
     firebase.database().ref("departments/" + dept).update(update);
 
-    window.location.href = "list-departments";
+    //window.location.href = "list-departments";
 
 }

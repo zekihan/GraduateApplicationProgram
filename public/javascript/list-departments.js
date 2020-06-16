@@ -165,5 +165,5 @@ function displayDepartments(departments) {
 
 function getDepartment(departmentId) {
     var queryString = "?department=" + departmentId;
-    window.location.href = "list-accepted-applicants.html" + queryString;
+    window.location.href = "list-accepted-applicants" + queryString;
 }
