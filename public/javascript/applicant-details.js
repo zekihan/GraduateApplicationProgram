@@ -69,7 +69,6 @@ function getApplicantData() {
                     });
                     //If document is not present in the database, don't display the link for it
                 } else {
-                    console.log("hey");
                     document.getElementById("all-documents").removeChild(document.getElementById("referenceLetter2"));
                 }
 
