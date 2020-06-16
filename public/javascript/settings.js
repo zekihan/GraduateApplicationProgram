@@ -116,19 +116,21 @@ function applicantDeleteAccount() {
                     snapshot.forEach(function (applicationId) {
                         var department = applicationId.child("department").val();
                         var term = applicationId.child("term").val();
+                        var canBeDeleted = true;
                         firebase.database().ref("applications/" + term + "/" + department + "/" + applicationId).once('value').then(function (snapshot) {
-
-                            if (snapshot.child("gradschoolControl/isVerified").val() === false) {
-                                firebase.auth().currentUser.delete().then(function () {
-                                    firebase.database().ref("users/" + userId).remove();
-                                    alert('Your account has been successfully deleted!');
-                                    signOut();
-                                    window.location.href = "login";
-                                });
-                            }
-
+                            canBeDeleted = canBeDeleted && snapshot.child("gradschoolControl/isVerified").val();
                         }).catch(function (error) {});
                     });
+                    if(canBeDeleted){
+                        firebase.auth().currentUser.delete().then(function () {
+                            firebase.database().ref("users/" + userId).remove();
+                            alert('Your account has been successfully deleted!');
+                            signOut();
+                            window.location.href = "login";
+                        });
+                    }else{
+                        alert("You cannot delete your account, you have applications that are in verification process!");
+                    }
                 }
             }).catch(function (error) {});
         }
