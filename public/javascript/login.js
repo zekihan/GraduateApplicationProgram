@@ -3,20 +3,6 @@ function getRegisterPage() {
 }
 
 
-
-function rememberUser() {
-    if (document.getElementById("rememberMe").checked) {
-        // save username and password
-        localStorage.setItem('usrname', $('#inputEmail').val());
-        localStorage.setItem('pass', $('#inputPassword').val());
-        localStorage.setItem('chkbx', $('#rememberMe').val());
-    } else {
-        localStorage.setItem('usrname', '');
-        localStorage.setItem('pass', '');
-        localStorage.setItem('chkbx', '');
-    }
-}
-
 function signInWithEmail() {
     var email = document.getElementById('inputEmail').value;
     var password = document.getElementById('inputPassword').value;

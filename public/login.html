@@ -29,32 +29,14 @@
     <!-- Input fields -->
     <h5 class="login-header">Log In</h6>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <input autocomplete="on" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <input autocomplete="on" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
       <div class="checkbox">
         <div class="row">
           <div class="col-6">
-            <label>
-              <input id="rememberMe" type="checkbox" onclick="rememberUser()"> Remember me
-            </label>
           </div>
-
-          
-    <script>
-      if (localStorage.chkbx && localStorage.getItem("chkbx") !== '') {
-          document.getElementById("rememberMe").checked = true;
-          document.getElementById("inputEmail").value = localStorage.getItem("usrname");
-          document.getElementById("inputPassword").value = localStorage.getItem("pass");
-      } else {
-        console.log("else");
-          document.getElementById("rememberMe").checked = false;
-          document.getElementById("inputEmail").value ='';
-          document.getElementById("inputPassword").value = '';
-      }
-    </script>
-
           <div class="col-6 sign-up-link">
             <a href="forgotMyPass.html">Forgot my password</a>
           </div>
