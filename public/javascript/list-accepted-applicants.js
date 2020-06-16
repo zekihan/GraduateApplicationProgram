@@ -32,7 +32,7 @@ function getDepartmentsApplicants() {
                         if (application.child("departmentControl/isAccepted").val() &&
                             application.child("gradschoolControl/isVerified").val()) {
                             console.log("after if");
-                                applicants.push({
+                            applicants.push({
                                 applicationId: application.key,
                                 program: application.child("content").child("program").val(),
                                 term: termInfo,
@@ -216,37 +216,40 @@ async function intToDepartmentStr(departmentIdentifier) {
 
 
 function confirmAndAnnounce(applicants) {
-    var dept = applicants[0].department;
 
-    //Update all applicants' result as true
-    applicants.forEach(function (applicant) {
-        console.log("id: " + applicant.applicationId);
-        firebase.database().ref('applications/' + applicant.term + '/' + applicant.department + '/' + applicant.applicationId + '/gradschoolControl').set({
-            isVerified: true,
-            result: true
+    if (applicants.length > 0) {
+        var dept = applicants[0].department;
+        var term = applicants[0].term;
+
+
+        //Update all applicants' result as true
+        applicants.forEach(function (applicant) {
+            console.log("id: " + applicant.applicationId);
+            firebase.database().ref('applications/' + applicant.term + '/' + applicant.department + '/' + applicant.applicationId + '/gradschoolControl').set({
+                isVerified: true,
+                result: true
+            });
         });
-    });
 
-    
-    var url = '/sendAcceptanceEmail?term=2020-2&deptId=5'
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log(xhr.response)
-        }else{
-        }
-    };
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({}));
 
-    var update = {
-        confirmed: true
-    };
+        var url = `/sendAcceptanceEmail?term=${term}&deptId=${dept}`
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.response)
+            } else {}
+        };
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({}));
 
-    //Update the department as confirmed
-    firebase.database().ref("departments/" + dept).update(update);
+        var update = {
+            confirmed: true
+        };
 
-    //window.location.href = "list-departments";
+        //Update the department as confirmed
+        firebase.database().ref("departments/" + dept).update(update);
 
+        window.location.href = "list-departments";
+    }
 }
