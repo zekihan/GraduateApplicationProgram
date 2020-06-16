@@ -2,9 +2,9 @@ function getApplicationData() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             //Get firebase database instance
-            var userId = firebase.auth().currentUser.uid;
+            var userId = user.uid;
             firebase.database().ref('users/' + userId + '/applications').once('value').then(function (snapshot) {
-                if (snapshot === null) {
+                if (snapshot.val() === null) {
                     addDataToTables(null, null);
                     return;
                 }
