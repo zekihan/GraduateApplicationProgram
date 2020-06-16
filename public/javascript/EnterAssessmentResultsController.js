@@ -204,13 +204,13 @@ function submit(term, department) {
         var checked = listItem.firstChild.lastChild.firstChild.checked;
         /* The applicant is accepted. */
         if (checked) {
-            firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').set({
+            firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update({
                 isAccepted: true
             });
 
             /* The applicant is rejected. */
         } else {
-            firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').set({
+            firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update({
                 isAccepted: false
             });
         }

@@ -3,8 +3,9 @@ function getDepartments() {
         var allDepartments = new Array();
         var departmentsPrograms = new Array();
         departments.forEach(function (department) {
-            var departmentsPrograms = new Array();
-            department.child("program").forEach(function (program) {
+            if(department.child("acceptanceDone").val()){
+                var departmentsPrograms = new Array();
+                department.child("program").forEach(function (program) {
                 var degree = program.key;
                 program.forEach(function (programId) {
                     //If the program is accepting students
@@ -23,6 +24,8 @@ function getDepartments() {
                 departmentId: department.key,
                 programs: departmentsPrograms
             });
+            }
+            
         });
         displayDepartments(allDepartments);
     });
