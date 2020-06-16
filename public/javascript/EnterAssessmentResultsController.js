@@ -45,7 +45,7 @@ function getApplicants() {
                                     });
                                 }
                             });
-                            displayApplicants(applicants, realTerm, departmentId);
+                            displayApplicants(applicants, realTerm.key, departmentId);
                         });
                     });
                 });
@@ -204,13 +204,13 @@ function submit(term, department) {
         var checked = listItem.firstChild.lastChild.firstChild.checked;
         /* The applicant is accepted. */
         if (checked) {
-            firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update({
+            firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').set({
                 isAccepted: true
             });
 
             /* The applicant is rejected. */
         } else {
-            firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').update({
+            firebase.database().ref('applications/' + term + '/' + department + '/' + listItem.id + '/departmentControl').set({
                 isAccepted: false
             });
         }

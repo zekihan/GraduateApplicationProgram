@@ -24,12 +24,13 @@ function getApplicantData() {
                 //Get applicant's personal information
                 var name = snapshot.child('content/name').val();
                 var lastname = snapshot.child('content/lastName').val();
+                var email = snapshot.child('content/email').val();
                 var socialSecurityNo = snapshot.child('content/socialSecurityNumber').val();
                 var isForeign = snapshot.child('content/isForeign').val();
                 var isWorking = snapshot.child('content/isWorking').val();
 
                 //Put personal data into html table
-                displayPersonalInfo(name, lastname, socialSecurityNo, isForeign, isWorking);
+                displayPersonalInfo(name, lastname, email, socialSecurityNo, isForeign, isWorking);
 
 
                 //Get document paths
@@ -180,9 +181,9 @@ function getApplicantData() {
 
 }
 
-function displayPersonalInfo(name, lastname, socialSecurityNo, isForeign, isWorking) {
+function displayPersonalInfo(name, lastname, email, socialSecurityNo, isForeign, isWorking) {
     document.getElementById("nameAndLastName").innerHTML = name + ' ' + lastname;
-    document.getElementById("email").innerHTML = "NaN";
+    document.getElementById("email").innerHTML = email;
     document.getElementById("social-security-no").innerHTML = socialSecurityNo;
     document.getElementById("isForeign").innerHTML = isForeign;
     document.getElementById("isWorking").innerHTML = isWorking;
