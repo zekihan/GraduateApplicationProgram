@@ -23,7 +23,7 @@ exports.sendAcceptanceEmail = functions.https.onRequest(async (request, response
                 var data = {
                     email:snap.child('content').child('email').val(),
                     name:snap.child('content').child('name').val(),
-                    lastname:snap.child('content').child('lastname').val(),
+                    lastname:snap.child('content').child('lastName').val(),
                     program:snap.child('content').child('program').val(),
                     applied:snap.child('content').child('appliedProgram').val(),
                     linkToMyapplication:'https://grad-application.web.app/users/applicant/my-application'
