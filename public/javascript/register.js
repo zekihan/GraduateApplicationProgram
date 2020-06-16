@@ -1,5 +1,5 @@
-function getDashboard() {
-    location.href = "users/applicant/applicant-dashboard.html";
+function getLogin() {
+    location.href = "login.html";
 }
 
 function isPasswordValid(password){
@@ -93,7 +93,7 @@ function createAccount(email, password, firstName, lastName, phone) {
                 photoURL: "#",
             });
             populateUser(currentUser.uid, firstName, lastName, phone);
-            getDashboard();
+            getLogin();
         })
         .catch((error) => {
             console.log(error.code);
