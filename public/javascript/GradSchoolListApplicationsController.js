@@ -1,6 +1,13 @@
 var userId;
 var term;
 
+var departmentMap = new Map(); 
+firebase.database().ref("departments/").once('value').then(function (snapshot) {
+    return snapshot.forEach(function (dep) {
+        departmentMap.set(dep.key, dep.child("name").val());
+    });
+});
+
 firebase.auth().onAuthStateChanged(async function (user) {
     //User is not signed in.
     if (user) {
@@ -182,8 +189,6 @@ function timeConverter(timestamp) {
 }
 
 
-
-
 function prettyFormat(output) {
     switch (output) {
         case "mastersDegree":
@@ -196,15 +201,7 @@ function prettyFormat(output) {
     }
 }
 
-
 /* Convert department id to corresponding department name. */
 function intToDepartmentStr(departmentIdentifier) {
-    switch (departmentIdentifier) {
-        case "1":
-            return "Computer Engineering Department";
-        case "2":
-            return "Mechanical Engineering Department";
-        default:
-            return "NaN";
-    }
+    return departmentMap.get(departmentIdentifier);
 }
