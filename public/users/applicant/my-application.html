@@ -2,153 +2,153 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>My Applications</title>
-    <link rel="icon" href="../../assets/iyte-logo.svg">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>My Applications</title>
+  <link rel="icon" href="../../assets/iyte-logo.svg">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../../styles/sidebar.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="../../styles/sidebar.css" rel="stylesheet">
 
 </head>
 
 <body onload="getApplicationData()">
-    <!-- Dashboard -->
-    <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">
-                <div class="row justify-content-start">
-                    <div class="col-3">
-                        <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
-                    </div>
-                    <div class="col-8">
-                        Izmir Institute of Technology
-                    </div>
-                </div>
-            </div>
-
-            <div class="list-group list-group-flush">
-                <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create
-                    Application</a>
-                <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
-                <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
-                <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available
-                    Programs</a>
-                <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
-            </div>
+  <!-- Dashboard -->
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+        <div class="row justify-content-start">
+          <div class="col-3">
+            <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+          </div>
+          <div class="col-8">
+            Izmir Institute of Technology
+          </div>
         </div>
-        <!-- /#sidebar-wrapper -->
+      </div>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
+      <div class="list-group list-group-flush">
+        <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create
+          Application</a>
+        <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
+        <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
+        <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available
+          Programs</a>
+        <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <ul class="navbar-nav ml-1">
-                    <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
-                </ul>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
 
-                <ul class="navbar-nav ml-auto mt-1 mb-1">
-                    <li class="nav-item active">
-                        <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
-                    </li>
-                </ul>
-            </nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <ul class="navbar-nav ml-1">
+          <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
+        </ul>
 
-            <div class="container-fluid">
+        <ul class="navbar-nav ml-auto mt-1 mb-1">
+          <li class="nav-item active">
+            <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
+          </li>
+        </ul>
+      </nav>
 
-                <div class="my-3 p-3 bg-white rounded shadow-sm">
-                    <div class="application-section">
-                        <h5 class="page-title">Application Details</h5>
+      <div class="container-fluid">
 
-                        <div class="table-responsive">
-                            <table class="table table-striped table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>Department</th>
-                                        <th>Current Status</th>
-                                        <th>Application Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="applicationEntries">
-                                </tbody>
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+          <div class="application-section">
+            <h5 class="page-title">Application Details</h5>
 
-                            </table>
-                        </div>
-                    </div>
+            <div class="table-responsive">
+              <table class="table table-striped table-sm">
+                <thead>
+                  <tr>
+                    <th>Department</th>
+                    <th>Current Status</th>
+                    <th>Application Date</th>
+                  </tr>
+                </thead>
+                <tbody id="applicationEntries">
+                </tbody>
 
-                    <div id="spinner" class="text-center">
-                        <div class="spinner-border" style="width: 1.5rem; height: 1.5rem;" role="status">
-                            <span class="sr-only">Loading applicant's data...</span>
-                        </div>
-                    </div>
+              </table>
+            </div>
+          </div>
 
-                    <div class="interview-section">
-                        <h5 class="page-title">Interview Details</h5>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>Place</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="interviewEntries">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+          <div id="spinner" class="text-center">
+            <div class="spinner-border" style="width: 1.5rem; height: 1.5rem;" role="status">
+              <span class="sr-only">Loading applicant's data...</span>
+            </div>
+          </div>
 
-                    <div id="spinner1" class="text-center">
-                        <div class="spinner-border" style="width: 1.5rem; height: 1.5rem;" role="status">
-                            <span class="sr-only">Loading applicant's data...</span>
-                        </div>
-                    </div>
+          <div class="interview-section">
+            <h5 class="page-title">Interview Details</h5>
+            <div class="table-responsive">
+              <table class="table table-striped table-sm">
+                <thead>
+                  <tr>
+                    <th>Place</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody id="interviewEntries">
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-                </div>
+          <div id="spinner1" class="text-center">
+            <div class="spinner-border" style="width: 1.5rem; height: 1.5rem;" role="status">
+              <span class="sr-only">Loading applicant's data...</span>
+            </div>
+          </div>
 
-                <main role="main" style="margin-top: 40px;
+        </div>
+
+        <main role="main" style="margin-top: 40px;
                     margin-left: 20px;
                     margin-right: 20px;">
-                </main>
-            </div>
-        </div>
+        </main>
+      </div>
     </div>
-    <!-- /#dashboard-wrapper -->
+  </div>
+  <!-- /#dashboard-wrapper -->
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="../../vendor/jquery/jquery.min.js"></script>
+  <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 
-    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
-    <script src="/__/firebase/init.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
 
-    <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
-    <script src="https://apis.google.com/js/platform.js"></script>
+  <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
+  <script src="https://apis.google.com/js/platform.js"></script>
 
-    <meta name="google-signin-client_id"
-        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+  <meta name="google-signin-client_id"
+    content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
 
-    <script src="../../javascript/logout.js" defer></script>
-    <script src="../../javascript/check-login-state.js" defer></script>
-    <script src="../../javascript/my-application.js" defer></script>
+  <script src="../../javascript/logout.js" defer></script>
+  <script src="../../javascript/check-login-state.js" defer></script>
+  <script src="../../javascript/my-application.js" defer></script>
 </body>
 
 </html>

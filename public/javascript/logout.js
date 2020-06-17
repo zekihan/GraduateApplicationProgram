@@ -5,7 +5,7 @@ FB.init({
     version: 'v2.6'
 });
 gapi.load('auth2', function () {
-        gapi.auth2.init();
+    gapi.auth2.init();
 });
 
 function signOut() {

@@ -2,425 +2,425 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Application Form</title>
-    <link rel="icon" href="../../assets/iyte-logo.svg">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Application Form</title>
+  <link rel="icon" href="../../assets/iyte-logo.svg">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../../styles/sidebar.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="../../styles/sidebar.css" rel="stylesheet">
 
 </head>
 
 <body>
-    <!-- Dashboard -->
-    <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">
-                <div class="row justify-content-start">
-                    <div class="col-3">
-                        <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
-                    </div>
-                    <div class="col-8">
-                        Izmir Institute of Technology
-                    </div>
-                </div>
-            </div>
-
-            <div class="list-group list-group-flush">
-                <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create
-                    Application</a>
-                <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
-                <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
-                <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available
-                    Programs</a>
-                <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
-            </div>
+  <!-- Dashboard -->
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+        <div class="row justify-content-start">
+          <div class="col-3">
+            <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+          </div>
+          <div class="col-8">
+            Izmir Institute of Technology
+          </div>
         </div>
-        <!-- /#sidebar-wrapper -->
+      </div>
+
+      <div class="list-group list-group-flush">
+        <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create
+          Application</a>
+        <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
+        <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
+        <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available
+          Programs</a>
+        <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
 
 
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <ul class="navbar-nav ml-1">
-                    <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
-                </ul>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <ul class="navbar-nav ml-1">
+          <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
+        </ul>
 
-                <ul class="navbar-nav ml-auto mt-1 mb-1">
-                    <li class="nav-item active">
-                        <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
-                    </li>
-                </ul>
-            </nav>
+        <ul class="navbar-nav ml-auto mt-1 mb-1">
+          <li class="nav-item active">
+            <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
+          </li>
+        </ul>
+      </nav>
 
-            <div class="container-fluid" style="overflow-y: scroll; height:calc(100vh - 65px)">
-
-
-
-                <div class="row py-5 mt-2 justify-content-center">
-                    <h2>Application form</h2>
-                </div>
-
-                <div class="row m-3">
-
-                    <!-- Application Form Section -->
-                    <div class="col mr-4 ml-4">
-
-                        <h4 class="mb-3">Student application information</h4>
-
-                        <!-- Student Type Input (foreign, turkish) -->
-                        <form class="needs-validation" novalidate>
-
-                            <div class="mb-3">
-                                <label for="departmentSelection">Department To Apply</label>
-                                <select class="custom-select" id="departmentSelection" aria-label="">
-                                    <option selected>Choose...</option>
-                                </select>
-                                <span class="error-msg" style="color:red;" id="departmentSelection-error"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="studentType">Degree to Apply</label>
-
-                                <select class="custom-select" id="degreeSelection" aria-label=""
-                                    onchange="setVisibilityOfGradTranscriptInput(this)">
-                                    <option selected>Choose...</option>
-                                </select>
-                                <span class="error-msg" style="color:red;" id="degreeSelection-error"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="departmentSelection">Program To Apply</label>
-                                <select class="custom-select" id="programSelection" aria-label="">
-                                    <option selected>Choose...</option>
-                                </select>
-                                <span class="error-msg" style="color:red;" id="programSelection-error"></span>
-                            </div>
-
-                            <div id="grad-transcript-input" style="display: none;">
-                                <label for="passport">Master's Degree Transcript</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" accept=".pdf" class="custom-file-input"
-                                            id="mastersTranscript" aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                    </div>
-                                </div>
-                                <span class="error-msg" style="color:red;" id="mastersTranscript-error"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="studentType">Applicant Type</label>
-
-                                <select class="custom-select" id="studentTypeSelection" aria-label=""
-                                    onchange="setVisibilityOfPassportInput(this)">
-                                    <option selected>Choose...</option>
-                                    <option value="turkish">Turkish Applicant</option>
-                                    <option value="foreign">Foreign Applicant</option>
-                                </select>
-                                <span class="error-msg" style="color:red;" id="studentTypeSelection-error"></span>
-                            </div>
-
-                            <div class="mb-3" id="passport-input-field" style="display: none;">
-                                <label for="passport">Passport (Only foreign students)</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" accept=".pdf" class="custom-file-input" id="passport"
-                                            aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                    </div>
-                                </div>
-                                <span class="error-msg" style="color:red;" id="passport-error"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="studentType">Is currently working ?</label>
-                                <select class="custom-select" id="isWorking" aria-label="" required
-                                    onchange="setVisibilityOfPermissionLetterInput(this)">
-                                    <option selected>Choose...</option>
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
-                                </select>
-                                <span class="error-msg" style="color:red;" id="isWorking-error"></span>
-                            </div>
-
-                            <div id="permission-letters-input" class="mb-3" style="display: none;">
-                                <label for="passport">Permission Letter (Only working students) </label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" accept=".pdf" class="custom-file-input" id="permissionLetter"
-                                            aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                    </div>
-                                </div>
-                                <span class="error-msg" style="color:red;" id="permissionLetter-error"></span>
-                            </div>
+      <div class="container-fluid" style="overflow-y: scroll; height:calc(100vh - 65px)">
 
 
-                            <div class="mb-3">
-                                <label for="photo">Photo</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" accept=".jpg,.jpeg,.png" class="custom-file-input"
-                                            id="photoFile" aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                    </div>
-                                </div>
-                                <span class="error-msg" style="color:red;" id="photoFile-error"></span>
-                            </div>
 
-                            <div class="mb-3">
-                                <label for="undergrad-transcript">Undergraduate Transcript</label>
-
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" accept=".pdf" class="custom-file-input"
-                                            id="underGradTransFile" aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                    </div>
-                                </div>
-                                <span class="error-msg" style="color:red;" id="undergradTranscript-error"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="ales-result">ALES Result</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" accept=".pdf" class="custom-file-input" id="alesFile"
-                                            aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                    </div>
-                                </div>
-                                <span class="error-msg" style="color:red;" id="alesFile-error"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="english-exam-result">English Exam Result</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" accept=".pdf" class="custom-file-input" id="englishFile"
-                                            aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                    </div>
-                                </div>
-                                <span class="error-msg" style="color:red;" id="englishFile-error"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="reference-letters">Reference Letters</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" accept=".pdf" class="custom-file-input" id="referenceFiles"
-                                            aria-describedby="inputGroupFileAddon01" multiple>
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                    </div>
-                                </div>
-                                <span class="error-msg" style="color:red;" id="referenceFiles-error"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="statement-of-purpose">Statement Of Purpose </label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" accept=".pdf" class="custom-file-input" id="purposeFile"
-                                            aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                    </div>
-                                </div>
-                                <span class="error-msg" style="color:red;" id="purposeFile-error"></span>
-                            </div>
-
-                            <hr class="mb-4">
-                            <div id="buttons">
-                                <button class="btn btn-primary btn-lg btn-block" id="create-app" type="button"
-                                    onclick="submitResult()">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <footer class="my-5 pt-5 text-muted text-center text-small">
-                    <p class="mb-1">&copy; 1992-2020 Izmir Institute Of Technology</p>
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><a href="#">Privacy</a></li>
-                        <li class="list-inline-item"><a href="#">Terms</a></li>
-                        <li class="list-inline-item"><a href="#">Support</a></li>
-                    </ul>
-                </footer>
-
-            </div>
-
-
+        <div class="row py-5 mt-2 justify-content-center">
+          <h2>Application form</h2>
         </div>
-    </div>
+
+        <div class="row m-3">
+
+          <!-- Application Form Section -->
+          <div class="col mr-4 ml-4">
+
+            <h4 class="mb-3">Student application information</h4>
+
+            <!-- Student Type Input (foreign, turkish) -->
+            <form class="needs-validation" novalidate>
+
+              <div class="mb-3">
+                <label for="departmentSelection">Department To Apply</label>
+                <select class="custom-select" id="departmentSelection" aria-label="">
+                  <option selected>Choose...</option>
+                </select>
+                <span class="error-msg" style="color:red;" id="departmentSelection-error"></span>
+              </div>
+
+              <div class="mb-3">
+                <label for="studentType">Degree to Apply</label>
+
+                <select class="custom-select" id="degreeSelection" aria-label=""
+                  onchange="setVisibilityOfGradTranscriptInput(this)">
+                  <option selected>Choose...</option>
+                </select>
+                <span class="error-msg" style="color:red;" id="degreeSelection-error"></span>
+              </div>
+
+              <div class="mb-3">
+                <label for="departmentSelection">Program To Apply</label>
+                <select class="custom-select" id="programSelection" aria-label="">
+                  <option selected>Choose...</option>
+                </select>
+                <span class="error-msg" style="color:red;" id="programSelection-error"></span>
+              </div>
+
+              <div id="grad-transcript-input" style="display: none;">
+                <label for="passport">Master's Degree Transcript</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" accept=".pdf" class="custom-file-input" id="mastersTranscript"
+                      aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+                <span class="error-msg" style="color:red;" id="mastersTranscript-error"></span>
+              </div>
+
+              <div class="mb-3">
+                <label for="studentType">Applicant Type</label>
+
+                <select class="custom-select" id="studentTypeSelection" aria-label=""
+                  onchange="setVisibilityOfPassportInput(this)">
+                  <option selected>Choose...</option>
+                  <option value="turkish">Turkish Applicant</option>
+                  <option value="foreign">Foreign Applicant</option>
+                </select>
+                <span class="error-msg" style="color:red;" id="studentTypeSelection-error"></span>
+              </div>
+
+              <div class="mb-3" id="passport-input-field" style="display: none;">
+                <label for="passport">Passport (Only foreign students)</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" accept=".pdf" class="custom-file-input" id="passport"
+                      aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+                <span class="error-msg" style="color:red;" id="passport-error"></span>
+              </div>
+
+              <div class="mb-3">
+                <label for="studentType">Is currently working ?</label>
+                <select class="custom-select" id="isWorking" aria-label="" required
+                  onchange="setVisibilityOfPermissionLetterInput(this)">
+                  <option selected>Choose...</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <span class="error-msg" style="color:red;" id="isWorking-error"></span>
+              </div>
+
+              <div id="permission-letters-input" class="mb-3" style="display: none;">
+                <label for="passport">Permission Letter (Only working students) </label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" accept=".pdf" class="custom-file-input" id="permissionLetter"
+                      aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+                <span class="error-msg" style="color:red;" id="permissionLetter-error"></span>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="photo">Photo</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" accept=".jpg,.jpeg,.png" class="custom-file-input" id="photoFile"
+                      aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+                <span class="error-msg" style="color:red;" id="photoFile-error"></span>
+              </div>
+
+              <div class="mb-3">
+                <label for="undergrad-transcript">Undergraduate Transcript</label>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" accept=".pdf" class="custom-file-input" id="underGradTransFile"
+                      aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+                <span class="error-msg" style="color:red;" id="undergradTranscript-error"></span>
+              </div>
+
+              <div class="mb-3">
+                <label for="ales-result">ALES Result</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" accept=".pdf" class="custom-file-input" id="alesFile"
+                      aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+                <span class="error-msg" style="color:red;" id="alesFile-error"></span>
+              </div>
+
+              <div class="mb-3">
+                <label for="english-exam-result">English Exam Result</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" accept=".pdf" class="custom-file-input" id="englishFile"
+                      aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+                <span class="error-msg" style="color:red;" id="englishFile-error"></span>
+              </div>
+
+              <div class="mb-3">
+                <label for="reference-letters">Reference Letters</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" accept=".pdf" class="custom-file-input" id="referenceFiles"
+                      aria-describedby="inputGroupFileAddon01" multiple>
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+                <span class="error-msg" style="color:red;" id="referenceFiles-error"></span>
+              </div>
+
+              <div class="mb-3">
+                <label for="statement-of-purpose">Statement Of Purpose </label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">.pdf</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" accept=".pdf" class="custom-file-input" id="purposeFile"
+                      aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+                <span class="error-msg" style="color:red;" id="purposeFile-error"></span>
+              </div>
+
+              <hr class="mb-4">
+              <div id="buttons">
+                <button class="btn btn-primary btn-lg btn-block" id="create-app" type="button"
+                  onclick="submitResult()">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+          <p class="mb-1">&copy; 1992-2020 Izmir Institute Of Technology</p>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+          </ul>
+        </footer>
+
+      </div>
+
 
     </div>
-    <!-- /#page-content-wrapper -->
+  </div>
 
-    </div>
-    <!-- /#dashboard-wrapper -->
+  </div>
+  <!-- /#page-content-wrapper -->
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </div>
+  <!-- /#dashboard-wrapper -->
 
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
+  <!-- Bootstrap core JavaScript -->
+  <script src="../../vendor/jquery/jquery.min.js"></script>
+  <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
+  <script src="https://apis.google.com/js/platform.js"></script>
+
+  <meta name="google-signin-client_id"
+    content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+
+  <script src="../../javascript/logout.js" defer></script>
+  <script src="../../javascript/check-login-state.js" defer></script>
+  <script src="../../javascript/application-form.js"></script>
+
+  <script>
+    fillDepartment();
+    $('#departmentSelection').on("change", function () {
+      deptId = $("#departmentSelection :selected").attr("id");
+      $('#programSelection').find('option:not(:first)').remove();
+      $('#degreeSelection').find('option:not(:first)').remove();
+      $('#programSelection').find('option:not(:first)').remove();
+      setVisibilityOfGradTranscriptInput($('#degreeSelection'))
+      if ((deptId != undefined)) {
+        firebase.database().ref('departments').child(deptId).once('value').then(function (snapshot) {
+          var masters = snapshot.child('program/masters').val();
+          var phd = snapshot.child('program/phd').val();
+          if (phd != null) {
+            $('#degreeSelection').append('<option id="phd" value="phd">PhD</option>')
+          }
+          if (masters != null) {
+            $('#degreeSelection').append(
+              '<option id="masters" value="masters">Master\'s Degree</option>')
+          }
         });
-    </script>
-
-    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
-    <script src="/__/firebase/init.js"></script>
-    <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
-    <script src="https://apis.google.com/js/platform.js"></script>
-
-    <meta name="google-signin-client_id"
-        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
-
-    <script src="../../javascript/logout.js" defer></script>
-    <script src="../../javascript/check-login-state.js" defer></script>
-    <script src="../../javascript/application-form.js"></script>
-
-    <script>
-        fillDepartment();
-        $('#departmentSelection').on("change", function () {
-            deptId = $("#departmentSelection :selected").attr("id");
-            $('#programSelection').find('option:not(:first)').remove();
-            $('#degreeSelection').find('option:not(:first)').remove();
-            $('#programSelection').find('option:not(:first)').remove();
-            setVisibilityOfGradTranscriptInput($('#degreeSelection'))
-            if ((deptId != undefined)) {
-                firebase.database().ref('departments').child(deptId).once('value').then(function (snapshot) {
-                    var masters = snapshot.child('program/masters').val();
-                    var phd = snapshot.child('program/phd').val();
-                    if (phd != null) {
-                        $('#degreeSelection').append('<option id="phd" value="phd">PhD</option>')
-                    }
-                    if (masters != null) {
-                        $('#degreeSelection').append(
-                            '<option id="masters" value="masters">Master\'s Degree</option>')
-                    }
-                });
-            }
-        });
-        $('#degreeSelection').on("change", function () {
-            deptId = $("#departmentSelection :selected").attr("id");
-            degree = $("#degreeSelection :selected").attr("id");
-            $('#programSelection').find('option:not(:first)').remove();
-            if ((deptId != undefined) && (degree != undefined)) {
-                firebase.database().ref('departments').child(deptId).child('program').child(degree).once(
-                        'value')
-                    .then(function (snapshot) {
-                        snapshot.forEach(childSnapshot => {
-                            var name = childSnapshot.child('name').val();
-                            var isTaking = childSnapshot.child('isTaking').val();
-                            if (isTaking) {
-                                $('#programSelection').append(
-                                    `<option value="${name}">${name}</option>`)
-                            }
-                        });
-                    });
-            }
-        });
-        $('#create-app').click(function () {
-            $('#buttons').html(
-                '<button class="btn btn-primary btn-lg btn-block" id="create-app" type="button" disabled><span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...</button>'
-            ).addClass('disabled');
-        });
-        $(".custom-file-input").on("change", function () {
-            var length = $(this).get(0).files.length;
-            if (length === 0) {
-                var fileNames = 'Choose file';
-                $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
-            } else if (length === 1) {
-                var accepted = $(this).attr("accept").split(",");
-                var x = $(this).get(0).files[0].name.split(".");
-                var file_ext = x[x.length - 1];
-                if (accepted.includes("." + file_ext)) {
-                    if ($(this).get(0).files[0].size < 10000000) {
-                        var fileNames = '';
-                        fileNames += '"' + $(this).get(0).files[0].name + '"';
-                        $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
-                    } else {
-                        $(this).siblings(".custom-file-label").addClass("selected").html(
-                            "File size cannot exceed 10MB.");
-                        $(this).get(0).files = null;
-                    }
-                } else {
-                    $(this).siblings(".custom-file-label").addClass("selected").html(
-                        "Wrong file format");
-                    $(this).get(0).files = null;
-                }
-            } else if (length === 2) {
-                var accepted = $(this).attr("accept").split(",");
-                var x = $(this).get(0).files[0].name.split(".");
-                var file_ext1 = x[x.length - 1];
-                x = $(this).get(0).files[1].name.split(".");
-                var file_ext2 = x[x.length - 1];
-                if (accepted.includes("." + file_ext1) && accepted.includes("." + file_ext2)) {
-                    if ($(this).get(0).files[0].size < 10000000 && $(this).get(0).files[1].size < 10000000) {
-                        var fileNames = '';
-                        fileNames += '"' + $(this).get(0).files[0].name + '",';
-                        fileNames += '"' + $(this).get(0).files[1].name + '"';
-                        $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);;
-                    } else {
-                        $(this).siblings(".custom-file-label").addClass("selected").html(
-                            "File size cannot exceed 10MB.");
-                        $(this).get(0).files = null;
-                    }
-                } else {
-                    $(this).siblings(".custom-file-label").addClass("selected").html(
-                        "Wrong file format");
-                    $(this).get(0).files = null;
-                }
-            } else {
-                $(this).siblings(".custom-file-label").addClass("selected").html("Can not select more than 2.");
-                $(this).get(0).files = null;
-            }
-        });
-    </script>
+      }
+    });
+    $('#degreeSelection').on("change", function () {
+      deptId = $("#departmentSelection :selected").attr("id");
+      degree = $("#degreeSelection :selected").attr("id");
+      $('#programSelection').find('option:not(:first)').remove();
+      if ((deptId != undefined) && (degree != undefined)) {
+        firebase.database().ref('departments').child(deptId).child('program').child(degree).once(
+            'value')
+          .then(function (snapshot) {
+            snapshot.forEach(childSnapshot => {
+              var name = childSnapshot.child('name').val();
+              var isTaking = childSnapshot.child('isTaking').val();
+              if (isTaking) {
+                $('#programSelection').append(
+                  `<option value="${name}">${name}</option>`)
+              }
+            });
+          });
+      }
+    });
+    $('#create-app').click(function () {
+      $('#buttons').html(
+        '<button class="btn btn-primary btn-lg btn-block" id="create-app" type="button" disabled><span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...</button>'
+      ).addClass('disabled');
+    });
+    $(".custom-file-input").on("change", function () {
+      var length = $(this).get(0).files.length;
+      if (length === 0) {
+        var fileNames = 'Choose file';
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
+      } else if (length === 1) {
+        var accepted = $(this).attr("accept").split(",");
+        var x = $(this).get(0).files[0].name.split(".");
+        var file_ext = x[x.length - 1];
+        if (accepted.includes("." + file_ext)) {
+          if ($(this).get(0).files[0].size < 10000000) {
+            var fileNames = '';
+            fileNames += '"' + $(this).get(0).files[0].name + '"';
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);
+          } else {
+            $(this).siblings(".custom-file-label").addClass("selected").html(
+              "File size cannot exceed 10MB.");
+            $(this).get(0).files = null;
+          }
+        } else {
+          $(this).siblings(".custom-file-label").addClass("selected").html(
+            "Wrong file format");
+          $(this).get(0).files = null;
+        }
+      } else if (length === 2) {
+        var accepted = $(this).attr("accept").split(",");
+        var x = $(this).get(0).files[0].name.split(".");
+        var file_ext1 = x[x.length - 1];
+        x = $(this).get(0).files[1].name.split(".");
+        var file_ext2 = x[x.length - 1];
+        if (accepted.includes("." + file_ext1) && accepted.includes("." + file_ext2)) {
+          if ($(this).get(0).files[0].size < 10000000 && $(this).get(0).files[1].size < 10000000) {
+            var fileNames = '';
+            fileNames += '"' + $(this).get(0).files[0].name + '",';
+            fileNames += '"' + $(this).get(0).files[1].name + '"';
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileNames);;
+          } else {
+            $(this).siblings(".custom-file-label").addClass("selected").html(
+              "File size cannot exceed 10MB.");
+            $(this).get(0).files = null;
+          }
+        } else {
+          $(this).siblings(".custom-file-label").addClass("selected").html(
+            "Wrong file format");
+          $(this).get(0).files = null;
+        }
+      } else {
+        $(this).siblings(".custom-file-label").addClass("selected").html("Can not select more than 2.");
+        $(this).get(0).files = null;
+      }
+    });
+  </script>
 </body>
 
 </body>

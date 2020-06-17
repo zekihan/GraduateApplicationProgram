@@ -1,12 +1,11 @@
-
 /* Used with dept-list-applications.html, list-applications.html */
 
-.details-link{
+.details-link {
     font-size: small;
     margin-top: 0.5rem;
 }
 
-.verification-text{
+.verification-text {
     font-size: small;
     margin-top: 0.5rem;
 }
@@ -16,15 +15,15 @@
     font-size: medium;
 }
 
-.applicant-info{
+.applicant-info {
     margin-left: -2.5rem;
 }
 
-[type="checkbox"]+span:not(.lever){
+[type="checkbox"]+span:not(.lever) {
     font-size: small;
 }
 
-.applicant-row{
+.applicant-row {
     cursor: pointer;
 }
 

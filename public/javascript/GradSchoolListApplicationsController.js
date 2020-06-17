@@ -1,7 +1,7 @@
 var userId;
 var term;
 
-var departmentMap = new Map(); 
+var departmentMap = new Map();
 firebase.database().ref("departments/").once('value').then(function (snapshot) {
     return snapshot.forEach(function (dep) {
         departmentMap.set(dep.key, dep.child("name").val());

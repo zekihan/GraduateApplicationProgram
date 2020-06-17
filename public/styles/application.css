@@ -1,15 +1,15 @@
 /* Top Section (Logo and App Title) */
 /* Used in application-app-info.html, application-personal-info.html, student-review.html, application-details.html*/
-.logo-and-title{
+.logo-and-title {
     margin: 5rem auto 5.5rem;
 }
 
-.iztech-logo{
+.iztech-logo {
     float: left;
     margin-block-start: -2.5rem;
 }
 
-.school-title{
+.school-title {
     margin-left: 10rem;
 }
 
@@ -17,14 +17,16 @@
 /* Common among files & sections */
 .container {
     max-width: 960px;
-  }
-  
-.lh-condensed { line-height: 1.25; }
+}
+
+.lh-condensed {
+    line-height: 1.25;
+}
 
 
 /* Application Form Section */
 /* Used in application-app-info.html*/
-#passport-input-field{
+#passport-input-field {
     display: none;
 }
 
@@ -32,10 +34,10 @@
     display: none;
 }
 
-#grad-transcript-input{
+#grad-transcript-input {
     display: none;
 }
 
-#basic-settings{
+#basic-settings {
     margin: 4rem auto auto 3rem;
 }

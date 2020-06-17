@@ -2,108 +2,110 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>User Guide</title>
-        <link rel="icon" href="../../assets/iyte-logo.svg">
-      
-        <!-- Bootstrap core CSS -->
-        <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      
-        <!-- Custom styles for this template -->
-        <link href="../../styles/sidebar.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>User Guide</title>
+  <link rel="icon" href="../../assets/iyte-logo.svg">
 
-    <title>User Guide</title>
+  <!-- Bootstrap core CSS -->
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../styles/sidebar.css" rel="stylesheet">
+
+  <title>User Guide</title>
 </head>
 
 <body onload="getSteps()">
-    <!-- Dashboard -->
-    <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">
-              <div class="row justify-content-start">
-                <div class="col-3">
-                  <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
-                </div>
-                <div class="col-8">
-                  Izmir Institute of Technology
-                </div>
-              </div>
-            </div>
-    
-          <div class="list-group list-group-flush">
-            <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create Application</a>
-                <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
-                <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
-                <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available Programs</a>
-                <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+  <!-- Dashboard -->
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+        <div class="row justify-content-start">
+          <div class="col-3">
+            <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+          </div>
+          <div class="col-8">
+            Izmir Institute of Technology
           </div>
         </div>
-        <!-- /#sidebar-wrapper -->
-    
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-    
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <ul class="navbar-nav ml-1">
-                    <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
-                </ul>
-                
-                <ul class="navbar-nav ml-auto mt-1 mb-1">
-                    <li class="nav-item active" >
-                        <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
-                    </li>
-                </ul>
-            </nav>
+      </div>
 
-            <div class="container-fluid">
+      <div class="list-group list-group-flush">
+        <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create
+          Application</a>
+        <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
+        <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
+        <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available
+          Programs</a>
+        <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
 
-                <div id="spinner" class="text-center">
-                    <div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status">
-                      <span class="sr-only">Loading applicant's data...</span>
-                    </div>
-                </div>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
 
-                <div class="accordion m-4" id="steps-accordion">
-                    
-                </div>
-            </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <ul class="navbar-nav ml-1">
+          <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
+        </ul>
+
+        <ul class="navbar-nav ml-auto mt-1 mb-1">
+          <li class="nav-item active">
+            <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container-fluid">
+
+        <div id="spinner" class="text-center">
+          <div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status">
+            <span class="sr-only">Loading applicant's data...</span>
+          </div>
+        </div>
+
+        <div class="accordion m-4" id="steps-accordion">
 
         </div>
-        <!-- /#page-content-wrapper -->
+      </div>
 
     </div>
-    <!-- /#dashboard-wrapper -->
+    <!-- /#page-content-wrapper -->
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </div>
+  <!-- /#dashboard-wrapper -->
 
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="../../vendor/jquery/jquery.min.js"></script>
+  <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
-    <script src="/__/firebase/init.js"></script>
-    <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
-    <script src="https://apis.google.com/js/platform.js"></script>
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 
-    <meta name="google-signin-client_id"
-        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
+  <script src="https://apis.google.com/js/platform.js"></script>
 
-    <script src="../../javascript/logout.js" defer></script>
-    <script src="../../javascript/check-login-state.js" defer></script>
-    <script src="../../javascript/applicant-guide.js" defer></script>
+  <meta name="google-signin-client_id"
+    content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+
+  <script src="../../javascript/logout.js" defer></script>
+  <script src="../../javascript/check-login-state.js" defer></script>
+  <script src="../../javascript/applicant-guide.js" defer></script>
 
 </body>
 

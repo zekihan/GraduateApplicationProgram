@@ -2,211 +2,215 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../assets/iyte-logo.svg">
-    <title>Review Applicant</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../assets/iyte-logo.svg">
+  <title>Review Applicant</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      
-    <!-- Custom styles for this template -->
-    <link href="../../styles/sidebar.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../styles/application.css">
-    <link rel="stylesheet" href="../../styles/details.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../styles/sidebar.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles/application.css">
+  <link rel="stylesheet" href="../../styles/details.css">
 
 </head>
 
 <!-- Visibility of interview buttons will be set up as the page starts loading up. (TODO:Use another function to fetch data from db and use this function inside of it) -->
 
 <body onload="onLoad()">
-    <!-- Dashboard -->
-    <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">
-                <div class="row justify-content-start">
-                    <div class="col-3">
-                        <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
-                    </div>
-                    <div class="col-8">
-                        Izmir Institute of Technology
-                    </div>
-                </div>
-            </div>
-
-            <div class="list-group list-group-flush">
-                <a href="department-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="dept-list-applications.html" class="list-group-item list-group-item-action bg-light">Review Applications</a>
-                <a href="enter-assessment-results.html" class="list-group-item list-group-item-action bg-light">Enter Assessments</a>
-                <a href="manage-programs.html" class="list-group-item list-group-item-action bg-light">Program Management</a>
-                <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
-            </div>
+  <!-- Dashboard -->
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+        <div class="row justify-content-start">
+          <div class="col-3">
+            <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+          </div>
+          <div class="col-8">
+            Izmir Institute of Technology
+          </div>
         </div>
-        <!-- /#sidebar-wrapper -->
+      </div>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <ul class="navbar-nav ml-1">
-                    <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
-                </ul>
-
-                <ul class="navbar-nav ml-auto mt-1 mb-1">
-                    <li class="nav-item active">
-                        <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
-                    </li>
-                </ul>
-            </nav>
-
-            <div class="container-fluid">
-                <div class="row m-3 mt-5 justify-content-center">
-                    <!-- Student Personal Information Side-Section -->
-                    <div class="col-md-5 order-md-2 mb-4">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="text-muted">Personal Information</span>
-                            <span class="badge badge-secondary badge-pill">5</span>
-                        </h4>
-                        <ul class="list-group mb-3">
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Name & Lastname: </h6>
-                                </div>
-                                <span id="nameAndLastName" class="text-muted"></span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Email: </h6>
-                                </div>
-                                <span id="email" class="text-muted"></span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Social Security No: </h6>
-                                </div>
-                                <span id="social-security-no" class="text-muted"></span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Foreign Student: </h6>
-                                </div>
-                                <span id="isForeign" class="text-muted"></span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Is Working?</h6>
-                                </div>
-                                <span id="isWorking" class="text-muted"></span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Is an interview set?</h6>
-                                </div>
-                                <span id="interview-info" class="text-muted"></span>
-                            </li>
-                            <br>
-                            <button id="set-interview-btn" type="button" onclick="setInterview()" class="btn btn-outline-success">Set an interview</button>
-                            <br>
-                            <button id="cancel-interview-btn" type="button" onclick="cancelInterview()" class="btn btn-outline-danger">Cancel the interview</button>
-                        </ul>
-                    </div>
-    
-                    <!-- Open Documents And Verify Section -->
-                    <div class="col-md-7 order-md-1">
-                        <h4 class="mb-3">Related Documents</h4>
-                        <form class="needs-validation" novalidate>
-    
-                            <label for="undergrad">Undergraduate Transcript</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                </div>
-                                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
-                                    placeholder="Undergraduate Transcript">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="undergrad-btn">Open</button>
-                                </div>
-                            </div>
-    
-                            <label for="ales">ALES Result</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                </div>
-                                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
-                                    placeholder="ALES Result">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="ales-btn">Open</button>
-                                </div>
-                            </div>
-    
-                            <label for="enExam">English Exam Result</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                </div>
-                                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
-                                    placeholder="English Exam Result">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="en-Exam-btn">Open</button>
-                                </div>
-                            </div>
-    
-                            <label for="refLetter">Reference Letter</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                </div>
-                                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
-                                    placeholder="Reference Letters">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="ref-letter-btn">Open</button>
-                                </div>
-                            </div>
-    
-                            <label for="masterTranscript">Master's Degree Transcript</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                </div>
-                                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
-                                    placeholder="Reference Letters">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="mas-transcript-btn">Open</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
+      <div class="list-group list-group-flush">
+        <a href="department-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="dept-list-applications.html" class="list-group-item list-group-item-action bg-light">Review
+          Applications</a>
+        <a href="enter-assessment-results.html" class="list-group-item list-group-item-action bg-light">Enter
+          Assessments</a>
+        <a href="manage-programs.html" class="list-group-item list-group-item-action bg-light">Program Management</a>
+        <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+      </div>
     </div>
-    <!-- /#dashboard-wrapper -->
+    <!-- /#sidebar-wrapper -->
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/paginationjs/pagination.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
 
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <ul class="navbar-nav ml-1">
+          <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
+        </ul>
 
-    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
-    <script src="/__/firebase/init.js"></script>
-    <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
-    <script src="https://apis.google.com/js/platform.js"></script>
+        <ul class="navbar-nav ml-auto mt-1 mb-1">
+          <li class="nav-item active">
+            <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
+          </li>
+        </ul>
+      </nav>
 
-    <meta name="google-signin-client_id"
-        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+      <div class="container-fluid">
+        <div class="row m-3 mt-5 justify-content-center">
+          <!-- Student Personal Information Side-Section -->
+          <div class="col-md-5 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-muted">Personal Information</span>
+              <span class="badge badge-secondary badge-pill">5</span>
+            </h4>
+            <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Name & Lastname: </h6>
+                </div>
+                <span id="nameAndLastName" class="text-muted"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Email: </h6>
+                </div>
+                <span id="email" class="text-muted"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Social Security No: </h6>
+                </div>
+                <span id="social-security-no" class="text-muted"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Foreign Student: </h6>
+                </div>
+                <span id="isForeign" class="text-muted"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Is Working?</h6>
+                </div>
+                <span id="isWorking" class="text-muted"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Is an interview set?</h6>
+                </div>
+                <span id="interview-info" class="text-muted"></span>
+              </li>
+              <br>
+              <button id="set-interview-btn" type="button" onclick="setInterview()" class="btn btn-outline-success">Set
+                an interview</button>
+              <br>
+              <button id="cancel-interview-btn" type="button" onclick="cancelInterview()"
+                class="btn btn-outline-danger">Cancel the interview</button>
+            </ul>
+          </div>
 
-    <script src="../../javascript/logout.js" defer></script>
-    <script src="../../javascript/check-login-state.js" defer></script>
-    <script src="../../javascript/student-review.js" defer></script>
+          <!-- Open Documents And Verify Section -->
+          <div class="col-md-7 order-md-1">
+            <h4 class="mb-3">Related Documents</h4>
+            <form class="needs-validation" novalidate>
+
+              <label for="undergrad">Undergraduate Transcript</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
+                  placeholder="Undergraduate Transcript">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" id="undergrad-btn">Open</button>
+                </div>
+              </div>
+
+              <label for="ales">ALES Result</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
+                  placeholder="ALES Result">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" id="ales-btn">Open</button>
+                </div>
+              </div>
+
+              <label for="enExam">English Exam Result</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
+                  placeholder="English Exam Result">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" id="en-Exam-btn">Open</button>
+                </div>
+              </div>
+
+              <label for="refLetter">Reference Letter</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
+                  placeholder="Reference Letters">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" id="ref-letter-btn">Open</button>
+                </div>
+              </div>
+
+              <label for="masterTranscript">Master's Degree Transcript</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" disabled
+                  placeholder="Reference Letters">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" id="mas-transcript-btn">Open</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+  </div>
+  <!-- /#dashboard-wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../../vendor/jquery/jquery.min.js"></script>
+  <script src="../../vendor/paginationjs/pagination.js"></script>
+  <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
+  <script src="https://apis.google.com/js/platform.js"></script>
+
+  <meta name="google-signin-client_id"
+    content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+
+  <script src="../../javascript/logout.js" defer></script>
+  <script src="../../javascript/check-login-state.js" defer></script>
+  <script src="../../javascript/student-review.js" defer></script>
 
 </body>
 

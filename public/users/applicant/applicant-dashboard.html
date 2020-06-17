@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Dashboard</title>
-   <link rel="icon" href="../../assets/iyte-logo.svg">
+  <link rel="icon" href="../../assets/iyte-logo.svg">
 
   <!-- Bootstrap core CSS -->
   <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -18,206 +18,335 @@
 </head>
 
 <body>
-    <!-- Dashboard -->
-    <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-          <div></div>
-            <div class="sidebar-heading">
-              <div class="row justify-content-start">
-                <div class="col-3">
-                  <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
-                </div>
-                <div class="col-8">
-                  Izmir Institute of Technology
-                </div>
-              </div>
-            </div>
-    
-          <div class="list-group list-group-flush">
-            <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create Application</a>
-            <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
-            <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
-            <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available Programs</a>
-            <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+  <!-- Dashboard -->
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div></div>
+      <div class="sidebar-heading">
+        <div class="row justify-content-start">
+          <div class="col-3">
+            <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+          </div>
+          <div class="col-8">
+            Izmir Institute of Technology
           </div>
         </div>
-        <!-- /#sidebar-wrapper -->
-    
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-    
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <ul class="navbar-nav ml-1">
-                    <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
-                </ul>
-                
-                <ul class="navbar-nav ml-auto mt-1 mb-1">
-                    <li class="nav-item active" >
-                        <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
-                    </li>
-                </ul>
-            </nav>
+      </div>
 
-            <div class="container-fluid" style="overflow-y: scroll; height:calc(100vh - 65px)">
-                <h1 class="mt-4">General Application Requirements</h1>
-                <hr noshade="grey">
-                <h3>A. Application Requirements for Master of Science Programs</h3>
-                <hr>
-                <h5>Applicants are required to either have a Bachelor’s degree or be about to graduate at the end of the term in which they apply.</h5>
-                <p>Applicants are required to either have a Bachelor’s degree or be about to graduate at the end of the term in which they apply.</p>
-                <hr>
-                <h5>2. ALES Requirement</h5>
-                <p>Applicants must earn a minimum score of 60 on the ALES quantitative exam or 151 on the GRE quantitative exam. ALES and GRE scores are valid for 5 years.</p>
-                <h6>*For the ALES/GRE conversion table,<a style="color: #e7305b;" href="https://mfbe.iyte.edu.tr/wp-content/uploads/sites/110/2017/12/GRE-ALES-d%C3%B6n%C3%BC%C5%9F%C3%BCm-tablosunu-g%C3%B6rmek-i%C3%A7in-l%C3%BCtfen-t%C4%B1klay%C4%B1n%C4%B1z..pdf"> click here.</a></h6>
-                <p>ALES score is not required for admission to the Master of Science in Engineering Management (non-thesis) Program if the applicants have at least 1250 days of working experience documented by the relevant government body (in Turkey, SGK).
+      <div class="list-group list-group-flush">
+        <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create
+          Application</a>
+        <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
+        <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
+        <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available Programs</a>
+        <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
 
-                  ALES scores are not required for admission to the Master of Science in Architectural Restoration (non-thesis) or the Master of Science in Mathematics (non-thesis).
-                  
-                  An ALES score is not required for the graduates of Ph.D./ proficiency in arts/ specialty in medicine/ specialty in dentistry/ specialty in veterinary medicine/ specialty in pharmacology in their applications to graduate programs. In the evaluation of these candidates, regardless of the type of score to enter the graduate program or their area of specialty, the ALES score will be taken into account as 70 points. These candidates must certify that they meet the above-mentioned requirements. (Diploma for graduates, transcript for the applicants who are in the phase of graduation etc.)</p>
-                  <hr>
-                  <h5>3. Language Requirement</h5>
-                  <p>The medium of instruction is 100% English. However, proof of English proficiency is not required for application to master’s degree programs. Upon acceptance, students must fulfill at least one of the foreign language requirement conditions or pass the IzTech English Proficiency Exam in order to begin their graduate programs.
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
 
-                    Candidates who do not fulfill at least one of the exemption conditions and cannot pass the English Proficiency Exam of the IzTech School of Foreign Languages are enrolled in the IzTech English Preparatory School and are subject to the IzTech School of Foreign Languages English Preparatory School Regulations. Students who fulfill the requirements of these regulations are eligible to enroll in the master’s degree program.
-                    
-                    However, applicants who apply to the non-thesis Master’s in Engineering Management must fulfill at least one of the foreign language exemption conditions or pass the IzTech School of Foreign Languages English Proficiency Exam. Those who do not will not be enrolled in the English Preparatory School.</p>
-                    <h6>For English proficiency exemption conditions, <a style="color: #e7305b;" href="https://mfbe.iyte.edu.tr/basvurular/lisansustu-basvurular/yabanci-dil-muafiyet-sartlari-ve-muafiyet-sinavi/">click here.</a></h6>
-                    <hr>
-                    <h5>4. Science Preparatory Program</h5>
-                    <p>Students whose bachelor’s degree is in a field other than that of the master’s program to which they were accepted, or students whose bachelor’s degree was earned at a university other than IzTech, may be required to participate in a science preparatory program to strengthen scientific knowledge. The duration of the science preparatory program is at most two semesters.</p>
-                    <h6>Bilimsel Hazırlık Programı Olan Yüksek Lisans Programları</h6>
-                    <ul>
-                      <li><p>Computer Engineering</p></li>
-                      <li><p>Electronics and Communications Engineering</p></li>
-                      <li><p>Energy Engineering</p></li>
-                      <li><p>Physics</p></li>
-                      <li><p>Civil Engineering</p></li>
-                      <li><p>Chemistry</p></li>
-                      <li><p>Chemical Engineering</p></li>
-                      <li><p>Mechanical Engineering</p></li>
-                      <li> <p>Mathematics</p></li>
-                      <li><p>City Planning</p></li>
-                    </ul>    
-                    <br>
-                    <h2>For required documents and information for  master’s degree applications, <a style="color: #e7305b;" href="https://mfbe.iyte.edu.tr/basvurular/lisansustu-basvurular/yuksek-lisans-basvurusu/">click here.</a></h2>
-                    <hr noshade="grey">
-                    <br>
-                    <h3>B. Application Requirements for Ph.D. Programs with a Bachelor’s Degree</h3>
-                    <hr>
-                    <h5>1. Degree Requirement</h5>
-                    <p>Applicants are required to have a bachelor’s degree and a minimum CGPA of 3.0 out of 4.0 (equal to 76.66 out of 100).</p>
-                    <h6>Grade Conversion Table Equivalency Table of 4.00 and 100 Grading System  <a style="color: #e7305b;" href="https://oyp.yok.gov.tr/Documents/Anasayfa/4lukSistem.pdf">click here.</a></h6>
-                    <hr>
-                    <h5>2. ALES Requirement</h5>
-                    <p>Applicants must earn a minimum score of 80 on the ALES quantitative exam or 156 on the GRE quantitative exam. ALES and GRE scores are valid for 5 years.</p>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <ul class="navbar-nav ml-1">
+          <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
+        </ul>
 
-                    <h6>*For the ALES/GRE conversion table, <a style="color: #e7305b" href="https://mfbe.iyte.edu.tr/wp-content/uploads/sites/110/2017/12/GRE-ALES-d%C3%B6n%C3%BC%C5%9F%C3%BCm-tablosunu-g%C3%B6rmek-i%C3%A7in-l%C3%BCtfen-t%C4%B1klay%C4%B1n%C4%B1z..pdf">click here.</a></h6>
-                    <hr>
-                    <h5>3. Language Requirement</h5>
-                    <p>In order to apply, applicants must have a minimum score of 55 from an English proficiency exam such as YDS, YDS-e, or YÖKDİL (taken within the past five years) or a minimum score of 66 from the TOEFL iBT Test (taken within the past two years).
+        <ul class="navbar-nav ml-auto mt-1 mb-1">
+          <li class="nav-item active">
+            <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
+          </li>
+        </ul>
+      </nav>
 
-                      The medium of instruction in our institution is 100% English. The above mentioned foreign language test scores are the minimum scores required for application. Admitted applicants must fulfill at least one of the foreign language exemption requirements or pass the English Proficiency Exam of the IzTech School of Foreign Languages in order to start their programs.
-                      
-                      Candidates who do not fulfill at least one of the exemption conditions and cannot pass the English Proficiency Exam of the IzTech School of Foreign Languages are enrolled in the IzTech English Preparatory School and are subject to the IzTech School of Foreign Languages English Preparatory School Regulations. Students who fulfill the requirements of these regulations are eligible to enroll in the Ph.D. program.</p>
+      <div class="container-fluid" style="overflow-y: scroll; height:calc(100vh - 65px)">
+        <h1 class="mt-4">General Application Requirements</h1>
+        <hr noshade="grey">
+        <h3>A. Application Requirements for Master of Science Programs</h3>
+        <hr>
+        <h5>Applicants are required to either have a Bachelor’s degree or be about to graduate at the end of the term in
+          which they apply.</h5>
+        <p>Applicants are required to either have a Bachelor’s degree or be about to graduate at the end of the term in
+          which they apply.</p>
+        <hr>
+        <h5>2. ALES Requirement</h5>
+        <p>Applicants must earn a minimum score of 60 on the ALES quantitative exam or 151 on the GRE quantitative exam.
+          ALES and GRE scores are valid for 5 years.</p>
+        <h6>*For the ALES/GRE conversion table,<a style="color: #e7305b;"
+            href="https://mfbe.iyte.edu.tr/wp-content/uploads/sites/110/2017/12/GRE-ALES-d%C3%B6n%C3%BC%C5%9F%C3%BCm-tablosunu-g%C3%B6rmek-i%C3%A7in-l%C3%BCtfen-t%C4%B1klay%C4%B1n%C4%B1z..pdf">
+            click here.</a></h6>
+        <p>ALES score is not required for admission to the Master of Science in Engineering Management (non-thesis)
+          Program if the applicants have at least 1250 days of working experience documented by the relevant government
+          body (in Turkey, SGK).
 
-                      <h6>For English proficiency exemption conditions, <a style="color: #e7305b" href="https://mfbe.iyte.edu.tr/basvurular/lisansustu-basvurular/yabanci-dil-muafiyet-sartlari-ve-muafiyet-sinavi/">click here.</a></h6>
-                      <hr>
-                      <h5>4. Science Preparatory Program</h5>
+          ALES scores are not required for admission to the Master of Science in Architectural Restoration (non-thesis)
+          or the Master of Science in Mathematics (non-thesis).
 
-                      <p>Students whose bachelor’s degree is in a field other than that of the doctoral program to which they were accepted, or students whose bachelor’s degree was earned at a university other than IzTech, may be required to participate in a science preparatory program to strengthen scientific knowledge. The duration of the science preparatory program is at most two semesters.</p>
-                    
+          An ALES score is not required for the graduates of Ph.D./ proficiency in arts/ specialty in medicine/
+          specialty in dentistry/ specialty in veterinary medicine/ specialty in pharmacology in their applications to
+          graduate programs. In the evaluation of these candidates, regardless of the type of score to enter the
+          graduate program or their area of specialty, the ALES score will be taken into account as 70 points. These
+          candidates must certify that they meet the above-mentioned requirements. (Diploma for graduates, transcript
+          for the applicants who are in the phase of graduation etc.)</p>
+        <hr>
+        <h5>3. Language Requirement</h5>
+        <p>The medium of instruction is 100% English. However, proof of English proficiency is not required for
+          application to master’s degree programs. Upon acceptance, students must fulfill at least one of the foreign
+          language requirement conditions or pass the IzTech English Proficiency Exam in order to begin their graduate
+          programs.
 
-                      <h5>Ph.D. Programs with Science Preparatory Programs</h5>
+          Candidates who do not fulfill at least one of the exemption conditions and cannot pass the English Proficiency
+          Exam of the IzTech School of Foreign Languages are enrolled in the IzTech English Preparatory School and are
+          subject to the IzTech School of Foreign Languages English Preparatory School Regulations. Students who fulfill
+          the requirements of these regulations are eligible to enroll in the master’s degree program.
 
-                      <ul>
-                        <li><p>Bioengineering</p></li>
-                        <li><p>Electronics and Communications Engineering</p></li>
-                        <li><p>Physics</p></li>
-                        <li><p>Civil Engineering</p></li>
-                        <li><p>Chemistry</p></li>
-                        <li><p>Chemical Engineering</p></li>
-                        <li><p>Mechanical Engineering</p></li>
-                        <li><p>Molecular Biology and Genetics</p></li>
-                        <li><p>City Planning</p></li>
-                      </ul>  
-                   <br>
+          However, applicants who apply to the non-thesis Master’s in Engineering Management must fulfill at least one
+          of the foreign language exemption conditions or pass the IzTech School of Foreign Languages English
+          Proficiency Exam. Those who do not will not be enrolled in the English Preparatory School.</p>
+        <h6>For English proficiency exemption conditions, <a style="color: #e7305b;"
+            href="https://mfbe.iyte.edu.tr/basvurular/lisansustu-basvurular/yabanci-dil-muafiyet-sartlari-ve-muafiyet-sinavi/">click
+            here.</a></h6>
+        <hr>
+        <h5>4. Science Preparatory Program</h5>
+        <p>Students whose bachelor’s degree is in a field other than that of the master’s program to which they were
+          accepted, or students whose bachelor’s degree was earned at a university other than IzTech, may be required to
+          participate in a science preparatory program to strengthen scientific knowledge. The duration of the science
+          preparatory program is at most two semesters.</p>
+        <h6>Bilimsel Hazırlık Programı Olan Yüksek Lisans Programları</h6>
+        <ul>
+          <li>
+            <p>Computer Engineering</p>
+          </li>
+          <li>
+            <p>Electronics and Communications Engineering</p>
+          </li>
+          <li>
+            <p>Energy Engineering</p>
+          </li>
+          <li>
+            <p>Physics</p>
+          </li>
+          <li>
+            <p>Civil Engineering</p>
+          </li>
+          <li>
+            <p>Chemistry</p>
+          </li>
+          <li>
+            <p>Chemical Engineering</p>
+          </li>
+          <li>
+            <p>Mechanical Engineering</p>
+          </li>
+          <li>
+            <p>Mathematics</p>
+          </li>
+          <li>
+            <p>City Planning</p>
+          </li>
+        </ul>
+        <br>
+        <h2>For required documents and information for master’s degree applications, <a style="color: #e7305b;"
+            href="https://mfbe.iyte.edu.tr/basvurular/lisansustu-basvurular/yuksek-lisans-basvurusu/">click here.</a>
+        </h2>
+        <hr noshade="grey">
+        <br>
+        <h3>B. Application Requirements for Ph.D. Programs with a Bachelor’s Degree</h3>
+        <hr>
+        <h5>1. Degree Requirement</h5>
+        <p>Applicants are required to have a bachelor’s degree and a minimum CGPA of 3.0 out of 4.0 (equal to 76.66 out
+          of 100).</p>
+        <h6>Grade Conversion Table Equivalency Table of 4.00 and 100 Grading System <a style="color: #e7305b;"
+            href="https://oyp.yok.gov.tr/Documents/Anasayfa/4lukSistem.pdf">click here.</a></h6>
+        <hr>
+        <h5>2. ALES Requirement</h5>
+        <p>Applicants must earn a minimum score of 80 on the ALES quantitative exam or 156 on the GRE quantitative exam.
+          ALES and GRE scores are valid for 5 years.</p>
 
-                  <h2>For required documents and information for application to Ph.D. programs with a bachelor’s degree, <a style="color: #e7305b;" href="https://mfbe.iyte.edu.tr/basvurular/lisansustu-basvurular/doktora-basvurusu/">click here.</a></h2>
-                  <hr>
-                  <h3>C. Application Requirements for Ph.D. Programs with a Master’s Degree</h3>
-                  <hr>
-                  <h5>1. Degree Requirement</h5>
-                  <p>Applicants are required to have a master’s degree.</p>
-                      <hr>
-                  <h5>2. ALES Requirement</h5>
-                  <p>Applicants must earn a minimum score of 60 on the ALES quantitative exam or 151 on the GRE quantitative exam. ALES and GRE scores are valid for 5 years.</p>
+        <h6>*For the ALES/GRE conversion table, <a style="color: #e7305b"
+            href="https://mfbe.iyte.edu.tr/wp-content/uploads/sites/110/2017/12/GRE-ALES-d%C3%B6n%C3%BC%C5%9F%C3%BCm-tablosunu-g%C3%B6rmek-i%C3%A7in-l%C3%BCtfen-t%C4%B1klay%C4%B1n%C4%B1z..pdf">click
+            here.</a></h6>
+        <hr>
+        <h5>3. Language Requirement</h5>
+        <p>In order to apply, applicants must have a minimum score of 55 from an English proficiency exam such as YDS,
+          YDS-e, or YÖKDİL (taken within the past five years) or a minimum score of 66 from the TOEFL iBT Test (taken
+          within the past two years).
 
-                  <h6>*For the ALES/GRE conversion table, <a style="color: #e7305b" href="https://mfbe.iyte.edu.tr/wp-content/uploads/sites/110/2017/12/GRE-ALES-d%C3%B6n%C3%BC%C5%9F%C3%BCm-tablosunu-g%C3%B6rmek-i%C3%A7in-l%C3%BCtfen-t%C4%B1klay%C4%B1n%C4%B1z..pdf">click here.</a></h6>
+          The medium of instruction in our institution is 100% English. The above mentioned foreign language test scores
+          are the minimum scores required for application. Admitted applicants must fulfill at least one of the foreign
+          language exemption requirements or pass the English Proficiency Exam of the IzTech School of Foreign Languages
+          in order to start their programs.
 
-                  <p>An ALES score is not required for the graduates of Ph.D./ proficiency in arts/ specialty in medicine/ specialty in dentistry/ specialty in veterinary medicine/ specialty in pharmacology in their applications to graduate programs. In the evaluation of these candidates, regardless of the type of score to enter the graduate program or their area of specialty, the ALES score will be taken into account as 70 points. These candidates must certify that they meet the above-mentioned requirements. (Diploma for graduates, transcript for the applicants who are in the phase of graduation etc.)</p>
-                  <hr>
-                  <h5>3. Language Requirement</h5>
+          Candidates who do not fulfill at least one of the exemption conditions and cannot pass the English Proficiency
+          Exam of the IzTech School of Foreign Languages are enrolled in the IzTech English Preparatory School and are
+          subject to the IzTech School of Foreign Languages English Preparatory School Regulations. Students who fulfill
+          the requirements of these regulations are eligible to enroll in the Ph.D. program.</p>
 
-                  <p>In order to apply, applicants must have a minimum score of 55 from an English proficiency exam such as YDS, YDS-e, or YÖKDİL (taken within the past 5 years) or a minimum score of 66 from the TOEFL iBT Test (taken within the past 2 years).
+        <h6>For English proficiency exemption conditions, <a style="color: #e7305b"
+            href="https://mfbe.iyte.edu.tr/basvurular/lisansustu-basvurular/yabanci-dil-muafiyet-sartlari-ve-muafiyet-sinavi/">click
+            here.</a></h6>
+        <hr>
+        <h5>4. Science Preparatory Program</h5>
 
-                    The medium of instruction is 100% English. The above mentioned foreign language test scores are the minimum scores required for application. Admitted applicants must fulfill at least one of the foreign language exemption requirements or pass the English Proficiency Exam of the IzTech School of Foreign Languages in order to start their programs.
-                    
-                    Candidates who do not fulfill at least one of the exemption conditions and cannot pass the English Proficiency Exam of the IzTech School of Foreign Languages are enrolled in the IzTech English Preparatory School and are subject to the IzTech School of Foreign Languages English Preparatory School Regulations. Students who fulfill the requirements of these regulations are eligible to enroll in the Ph.D. program.</p>
+        <p>Students whose bachelor’s degree is in a field other than that of the doctoral program to which they were
+          accepted, or students whose bachelor’s degree was earned at a university other than IzTech, may be required to
+          participate in a science preparatory program to strengthen scientific knowledge. The duration of the science
+          preparatory program is at most two semesters.</p>
 
-                    <h6>For English proficiency exemption conditions, <a style="color: #e7305b" href="https://mfbe.iyte.edu.tr/basvurular/lisansustu-basvurular/yabanci-dil-muafiyet-sartlari-ve-muafiyet-sinavi/">click here.</a></h6>
-                    <hr>
-                    <h5>4. Science Preparatory Program</h5>
-                    <p>Students whose bachelor’s or master’s degree is in a field other than that of the doctoral program to which they were accepted, or students whose bachelor’s or master’s degree was earned at a university other than IzTech, may be required to participate in a science preparatory program to strengthen scientific knowledge. The duration of the science preparatory program is at most two semesters.</p>
-                    <h5>Ph.D. Programs with Science Preparatory Programs</h6>
-                    <ul>
-                      <li><p>Bioengineering</p></li>
-                      <li><p>Electronics and Communications Engineering</p></li>
-                      <li><p>Physics</p></li>
-                      <li><p>Civil Engineering</p></li>
-                      <li><p>Chemistry</p></li>
-                      <li><p>Chemical Engineering</p></li>
-                      <li><p>Mechanical Engineering</p></li>
-                      <li><p>Molecular Biology and Genetics</p></li>
-                      <li><p>City Planning</p></li>
-                    </ul>  
-                    <br>
-                    <h2>For required documents and information for application to Ph.D. programs with a master’s degree, <a style="color: #e7305b;" href="https://mfbe.iyte.edu.tr/en/graduate-application/applications-to-ph-d-programs-with-a-masters-degree/">click here.</a></h2>
-                    <br>
-            </div>
 
-        </div>
-        <!-- /#page-content-wrapper -->
+        <h5>Ph.D. Programs with Science Preparatory Programs</h5>
+
+        <ul>
+          <li>
+            <p>Bioengineering</p>
+          </li>
+          <li>
+            <p>Electronics and Communications Engineering</p>
+          </li>
+          <li>
+            <p>Physics</p>
+          </li>
+          <li>
+            <p>Civil Engineering</p>
+          </li>
+          <li>
+            <p>Chemistry</p>
+          </li>
+          <li>
+            <p>Chemical Engineering</p>
+          </li>
+          <li>
+            <p>Mechanical Engineering</p>
+          </li>
+          <li>
+            <p>Molecular Biology and Genetics</p>
+          </li>
+          <li>
+            <p>City Planning</p>
+          </li>
+        </ul>
+        <br>
+
+        <h2>For required documents and information for application to Ph.D. programs with a bachelor’s degree, <a
+            style="color: #e7305b;"
+            href="https://mfbe.iyte.edu.tr/basvurular/lisansustu-basvurular/doktora-basvurusu/">click here.</a></h2>
+        <hr>
+        <h3>C. Application Requirements for Ph.D. Programs with a Master’s Degree</h3>
+        <hr>
+        <h5>1. Degree Requirement</h5>
+        <p>Applicants are required to have a master’s degree.</p>
+        <hr>
+        <h5>2. ALES Requirement</h5>
+        <p>Applicants must earn a minimum score of 60 on the ALES quantitative exam or 151 on the GRE quantitative exam.
+          ALES and GRE scores are valid for 5 years.</p>
+
+        <h6>*For the ALES/GRE conversion table, <a style="color: #e7305b"
+            href="https://mfbe.iyte.edu.tr/wp-content/uploads/sites/110/2017/12/GRE-ALES-d%C3%B6n%C3%BC%C5%9F%C3%BCm-tablosunu-g%C3%B6rmek-i%C3%A7in-l%C3%BCtfen-t%C4%B1klay%C4%B1n%C4%B1z..pdf">click
+            here.</a></h6>
+
+        <p>An ALES score is not required for the graduates of Ph.D./ proficiency in arts/ specialty in medicine/
+          specialty in dentistry/ specialty in veterinary medicine/ specialty in pharmacology in their applications to
+          graduate programs. In the evaluation of these candidates, regardless of the type of score to enter the
+          graduate program or their area of specialty, the ALES score will be taken into account as 70 points. These
+          candidates must certify that they meet the above-mentioned requirements. (Diploma for graduates, transcript
+          for the applicants who are in the phase of graduation etc.)</p>
+        <hr>
+        <h5>3. Language Requirement</h5>
+
+        <p>In order to apply, applicants must have a minimum score of 55 from an English proficiency exam such as YDS,
+          YDS-e, or YÖKDİL (taken within the past 5 years) or a minimum score of 66 from the TOEFL iBT Test (taken
+          within the past 2 years).
+
+          The medium of instruction is 100% English. The above mentioned foreign language test scores are the minimum
+          scores required for application. Admitted applicants must fulfill at least one of the foreign language
+          exemption requirements or pass the English Proficiency Exam of the IzTech School of Foreign Languages in order
+          to start their programs.
+
+          Candidates who do not fulfill at least one of the exemption conditions and cannot pass the English Proficiency
+          Exam of the IzTech School of Foreign Languages are enrolled in the IzTech English Preparatory School and are
+          subject to the IzTech School of Foreign Languages English Preparatory School Regulations. Students who fulfill
+          the requirements of these regulations are eligible to enroll in the Ph.D. program.</p>
+
+        <h6>For English proficiency exemption conditions, <a style="color: #e7305b"
+            href="https://mfbe.iyte.edu.tr/basvurular/lisansustu-basvurular/yabanci-dil-muafiyet-sartlari-ve-muafiyet-sinavi/">click
+            here.</a></h6>
+        <hr>
+        <h5>4. Science Preparatory Program</h5>
+        <p>Students whose bachelor’s or master’s degree is in a field other than that of the doctoral program to which
+          they were accepted, or students whose bachelor’s or master’s degree was earned at a university other than
+          IzTech, may be required to participate in a science preparatory program to strengthen scientific knowledge.
+          The duration of the science preparatory program is at most two semesters.</p>
+        <h5>Ph.D. Programs with Science Preparatory Programs</h6>
+          <ul>
+            <li>
+              <p>Bioengineering</p>
+            </li>
+            <li>
+              <p>Electronics and Communications Engineering</p>
+            </li>
+            <li>
+              <p>Physics</p>
+            </li>
+            <li>
+              <p>Civil Engineering</p>
+            </li>
+            <li>
+              <p>Chemistry</p>
+            </li>
+            <li>
+              <p>Chemical Engineering</p>
+            </li>
+            <li>
+              <p>Mechanical Engineering</p>
+            </li>
+            <li>
+              <p>Molecular Biology and Genetics</p>
+            </li>
+            <li>
+              <p>City Planning</p>
+            </li>
+          </ul>
+          <br>
+          <h2>For required documents and information for application to Ph.D. programs with a master’s degree, <a
+              style="color: #e7305b;"
+              href="https://mfbe.iyte.edu.tr/en/graduate-application/applications-to-ph-d-programs-with-a-masters-degree/">click
+              here.</a></h2>
+          <br>
+      </div>
 
     </div>
-    <!-- /#dashboard-wrapper -->
+    <!-- /#page-content-wrapper -->
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </div>
+  <!-- /#dashboard-wrapper -->
 
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="../../vendor/jquery/jquery.min.js"></script>
+  <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
-    <script src="/__/firebase/init.js"></script>
-    <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
-    <script src="https://apis.google.com/js/platform.js"></script>
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 
-    <meta name="google-signin-client_id"
-        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
+  <script src="https://apis.google.com/js/platform.js"></script>
 
-    <script src="../../javascript/logout.js" defer></script>
-    <script src="../../javascript/check-login-state.js" defer></script>
-    
+  <meta name="google-signin-client_id"
+    content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+
+  <script src="../../javascript/logout.js" defer></script>
+  <script src="../../javascript/check-login-state.js" defer></script>
+
 
 </body>
 

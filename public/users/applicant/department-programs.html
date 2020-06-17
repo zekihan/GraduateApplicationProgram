@@ -3,112 +3,113 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Applications</title>
-    <link rel="icon" href="../../assets/iyte-logo.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Applications</title>
+  <link rel="icon" href="../../assets/iyte-logo.svg">
 
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="../../vendor/paginationjs/pagination.css" rel="stylesheet">
+  <link href="../../vendor/paginationjs/pagination.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../../styles/sidebar.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="../../styles/sidebar.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../styles/confirm.css">
-    <link rel="stylesheet" href="../../styles/verification.css">
-    <link rel="stylesheet" href="../../styles/list-of-departments.css">
+  <link rel="stylesheet" href="../../styles/confirm.css">
+  <link rel="stylesheet" href="../../styles/verification.css">
+  <link rel="stylesheet" href="../../styles/list-of-departments.css">
 </head>
 
 <body onload="getDepartmentPrograms()">
 
-    <!-- Dashboard -->
-    <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">
-                <div class="row justify-content-start">
-                    <div class="col-3">
-                        <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
-                    </div>
-                    <div class="col-8">
-                        Izmir Institute of Technology
-                    </div>
-                </div>
-            </div>
-
-            <div class="list-group list-group-flush">
-                <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create Application</a>
-                <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
-                <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
-                <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available Programs</a>
-                <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
-            </div>
+  <!-- Dashboard -->
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+        <div class="row justify-content-start">
+          <div class="col-3">
+            <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+          </div>
+          <div class="col-8">
+            Izmir Institute of Technology
+          </div>
         </div>
-        <!-- /#sidebar-wrapper -->
+      </div>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <ul class="navbar-nav ml-1">
-                    <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
-                </ul>
-
-                <ul class="navbar-nav ml-auto mt-1 mb-1">
-                    <li class="nav-item active">
-                        <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
-                    </li>
-                </ul>
-            </nav>
-
-            <div class="container-fluid" style="overflow-y: scroll; height:calc(100vh - 65px)">
-                <div id="list-container" class="my-3 p-3 bg-white rounded shadow-sm">
-                    <h6 class="border-bottom border-gray pb-2 mb-0">Programs</h6>
-                    <div id="spinner" class="text-center" style="margin-top: 1.5rem;">
-                        <div class="spinner-border" role="status">
-                            <span class="sr-only">Loading programs...</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
+      <div class="list-group list-group-flush">
+        <a href="applicant-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="application-personal-info.html" class="list-group-item list-group-item-action bg-light">Create
+          Application</a>
+        <a href="userGuide.html" class="list-group-item list-group-item-action bg-light">Applicant's Guide</a>
+        <a href="my-application.html" class="list-group-item list-group-item-action bg-light">My Application</a>
+        <a href="list-departments-1.html" class="list-group-item list-group-item-action bg-light">Available Programs</a>
+        <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+      </div>
     </div>
-    <!-- /#dashboard-wrapper -->
+    <!-- /#sidebar-wrapper -->
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/paginationjs/pagination.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
 
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <ul class="navbar-nav ml-1">
+          <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
+        </ul>
 
-    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
-    <script src="/__/firebase/init.js"></script>
-    <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
-    <script src="https://apis.google.com/js/platform.js"></script>
+        <ul class="navbar-nav ml-auto mt-1 mb-1">
+          <li class="nav-item active">
+            <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
+          </li>
+        </ul>
+      </nav>
 
-    <meta name="google-signin-client_id"
-        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+      <div class="container-fluid" style="overflow-y: scroll; height:calc(100vh - 65px)">
+        <div id="list-container" class="my-3 p-3 bg-white rounded shadow-sm">
+          <h6 class="border-bottom border-gray pb-2 mb-0">Programs</h6>
+          <div id="spinner" class="text-center" style="margin-top: 1.5rem;">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading programs...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+  </div>
+  <!-- /#dashboard-wrapper -->
 
-    <script src="../../javascript/logout.js" defer></script>
-    <script src="../../javascript/check-login-state.js" defer></script>
-    <script src="../../javascript/department-programs.js" defer></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="../../vendor/jquery/jquery.min.js"></script>
+  <script src="../../vendor/paginationjs/pagination.js"></script>
+  <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
+  <script src="https://apis.google.com/js/platform.js"></script>
+
+  <meta name="google-signin-client_id"
+    content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+
+  <script src="../../javascript/logout.js" defer></script>
+  <script src="../../javascript/check-login-state.js" defer></script>
+  <script src="../../javascript/department-programs.js" defer></script>
 </body>
 
 </html>

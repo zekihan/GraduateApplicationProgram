@@ -1,15 +1,10 @@
-
-
-
-
-
 function getDepartments() {
     firebase.database().ref('departments').once('value').then(function (departments) {
         var allDepartments = new Array();
         var departmentsPrograms = new Array();
         departments.forEach(function (department) {
             var programChild = department.child("program");
-            if(programChild.val()){
+            if (programChild.val()) {
                 var departmentsPrograms = new Array();
                 programChild.forEach(function (program) {
                     var degree = program.key;
@@ -23,31 +18,31 @@ function getDepartments() {
                             });
                         }
                     });
-            
+
                 });
-            allDepartments.push({
-                departmentName: department.child("name").val(),
-                isConfirmed: department.child("confirmed").val(),
-                departmentId: department.key,
-                programs: departmentsPrograms
-            });
+                allDepartments.push({
+                    departmentName: department.child("name").val(),
+                    isConfirmed: department.child("confirmed").val(),
+                    departmentId: department.key,
+                    programs: departmentsPrograms
+                });
             }
-            
+
         });
         displayDepartments(allDepartments);
     });
 }
 
 
-function containsDegree(departmentPrograms,degreeType) {
-        result=false;
-        departmentPrograms.forEach(function (program) {
-                    if (program.degree == degreeType) {
-                        result=true;
-                        return;
-                    }
-        });
-        return result;
+function containsDegree(departmentPrograms, degreeType) {
+    result = false;
+    departmentPrograms.forEach(function (program) {
+        if (program.degree == degreeType) {
+            result = true;
+            return;
+        }
+    });
+    return result;
 
 }
 
@@ -109,28 +104,29 @@ function displayDepartments(departments) {
         var programName = document.createElement("P");
         var programText = "Programs : ";
 
-      
-        var numberDegree=0;
-        var departmentPrograms=department.programs;
-        if (containsDegree(departmentPrograms,"M.Sc")) {
+
+        var numberDegree = 0;
+        var departmentPrograms = department.programs;
+        if (containsDegree(departmentPrograms, "M.Sc")) {
             programText += "M.Sc";
             numberDegree++;
-        }  if (containsDegree(departmentPrograms,"PhD")) {
+        }
+        if (containsDegree(departmentPrograms, "PhD")) {
             if (numberDegree == 1) { // if M.Sc is added
-                programText +=" & ";
+                programText += " & ";
             }
             programText += "PhD";
             numberDegree++;
         }
-        
-        
+
+
 
         programName.innerHTML = programText;
         departmentAndProgramText.appendChild(programName);
 
         departmentRow.appendChild(departmentAndProgramText);
 
-        
+
         var departmentLink = document.createElement("A");
         departmentLink.classList.add("details-link");
         departmentLink.innerHTML = "View Programs";
@@ -141,13 +137,13 @@ function displayDepartments(departments) {
             getDepartment(department.departmentId);
         }
         departmentRow.appendChild(departmentLink);
-        
+
         departmentRow.style.marginTop = "1rem";
         document.getElementById("department-container").appendChild(departmentRow);
     });
 
     var element = document.getElementById("spinner");
-        element.parentNode.removeChild(element);
+    element.parentNode.removeChild(element);
 }
 
 

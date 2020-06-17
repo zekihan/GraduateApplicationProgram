@@ -71,29 +71,34 @@
 @B_navHeight: @B_activeHeight;
 
 
-.paginationjs{
+.paginationjs {
   line-height: 1.6;
   font-family: "Marmelad", "Lucida Grande", "Arial", "Hiragino Sans GB", Georgia, sans-serif;
   font-size: @N_fontSize;
   box-sizing: initial;
-  &:after{
+
+  &:after {
     display: table;
     content: " ";
     clear: both;
   }
-  .paginationjs-pages{
+
+  .paginationjs-pages {
     float: left;
-    ul{
+
+    ul {
       float: left;
       margin: 0;
       padding: 0;
     }
-    li{
+
+    li {
       float: left;
       border: 1px solid @borderColor;
       border-right: none;
       list-style: none;
-      > a{
+
+      >a {
         min-width: @N_minWidth;
         height: @N_height;
         line-height: @N_lineHeight;
@@ -103,47 +108,58 @@
         color: #333;
         text-decoration: none;
         text-align: center;
-        &:hover{
+
+        &:hover {
           background: #eee;
         }
       }
-      &.active{
+
+      &.active {
         border: none;
-        > a{
+
+        >a {
           height: @N_activeHeight;
           line-height: @N_activeHeight;
           background: @activeBgColor;
           color: #fff;
         }
       }
-      &.disabled{
-        > a{
+
+      &.disabled {
+        >a {
           opacity: .3;
-          &:hover{
+
+          &:hover {
             background: none;
           }
         }
       }
-      &:first-child{
+
+      &:first-child {
         border-radius: 3px 0 0 3px;
-        > a{
+
+        >a {
           border-radius: 3px 0 0 3px;
         }
       }
-      &:last-child{
+
+      &:last-child {
         border-right: 1px solid @borderColor;
         border-radius: 0 3px 3px 0;
-        > a{
+
+        >a {
           border-radius: 0 3px 3px 0;
         }
       }
     }
   }
-  .paginationjs-go-input{
+
+  .paginationjs-go-input {
     float: left;
     margin-left: 10px;
     font-size: @N_fontSize;
-    > input[type="text"]{
+
+    >input[type="text"] {
       width: @N_inputWidth;
       height: @N_inputHeight;
       background: #fff;
@@ -158,11 +174,13 @@
       box-sizing: initial;
     }
   }
-  .paginationjs-go-button{
+
+  .paginationjs-go-button {
     float: left;
     margin-left: 10px;
     font-size: @N_fontSize;
-    > input[type="button"]{
+
+    >input[type="button"] {
       min-width: @N_buttonMinWidth;
       height: @N_buttonHeight;
       line-height: @N_buttonLineHeight;
@@ -177,12 +195,14 @@
       box-shadow: none;
       color: #333;
       cursor: pointer;
-      &:hover{
+
+      &:hover {
         background-color: #f8f8f8;
       }
     }
   }
-  .paginationjs-nav{
+
+  .paginationjs-nav {
     float: left;
     height: @N_navHeight;
     line-height: @N_navHeight;
@@ -190,35 +210,41 @@
     font-size: @N_fontSize;
   }
 
-  &.paginationjs-small{
+  &.paginationjs-small {
     font-size: @S_fontSize;
-    .paginationjs-pages{
-      li{
-        > a{
+
+    .paginationjs-pages {
+      li {
+        >a {
           min-width: @S_minWidth;
           height: @S_height;
           line-height: @S_lineHeight;
           font-size: @S_fontSize;
         }
-        &.active{
-          > a{
+
+        &.active {
+          >a {
             height: @S_activeHeight;
             line-height: @S_activeHeight;
           }
         }
       }
     }
-    .paginationjs-go-input{
+
+    .paginationjs-go-input {
       font-size: @S_fontSize;
-      > input[type="text"]{
+
+      >input[type="text"] {
         width: @S_inputWidth;
         height: @S_inputHeight;
         font-size: @S_fontSize;
       }
     }
-    .paginationjs-go-button{
+
+    .paginationjs-go-button {
       font-size: @S_fontSize;
-      > input[type="button"]{
+
+      >input[type="button"] {
         min-width: @S_buttonMinWidth;
         height: @S_buttonHeight;
         line-height: @S_buttonLineHeight;
@@ -226,41 +252,49 @@
         font-size: @S_fontSize;
       }
     }
-    .paginationjs-nav{
+
+    .paginationjs-nav {
       height: 26px;
       line-height: 26px;
       font-size: @S_fontSize;
     }
   }
-  &.paginationjs-big{
+
+  &.paginationjs-big {
     font-size: @B_fontSize;
-    .paginationjs-pages{
-      li{
-        > a{
+
+    .paginationjs-pages {
+      li {
+        >a {
           min-width: @B_minWidth;
           height: @B_height;
           line-height: @B_lineHeight;
           font-size: @B_fontSize;
         }
-        &.active{
-          > a{
+
+        &.active {
+          >a {
             height: @B_activeHeight;
             line-height: @B_activeHeight;
           }
         }
       }
     }
-    .paginationjs-go-input{
+
+    .paginationjs-go-input {
       font-size: @B_fontSize;
-      > input[type="text"]{
+
+      >input[type="text"] {
         width: @B_inputWidth;
         height: @B_inputHeight;
         font-size: @B_fontSize;
       }
     }
-    .paginationjs-go-button{
+
+    .paginationjs-go-button {
       font-size: @B_fontSize;
-      > input[type="button"]{
+
+      >input[type="button"] {
         min-width: @B_buttonMinWidth;
         height: @B_buttonHeight;
         line-height: @B_buttonLineHeight;
@@ -268,7 +302,8 @@
         font-size: @B_fontSize;
       }
     }
-    .paginationjs-nav{
+
+    .paginationjs-nav {
       height: @B_navHeight;
       line-height: @B_navHeight;
       font-size: @B_fontSize;
@@ -276,39 +311,46 @@
   }
 }
 
-.paginationjs{
-  &.paginationjs-theme-blue{
-    .paginationjs-pages{
-      li{
+.paginationjs {
+  &.paginationjs-theme-blue {
+    .paginationjs-pages {
+      li {
         border-color: @Blue_color_border;
-        > a{
+
+        >a {
           color: @Blue_color_font;
-          &:hover{
+
+          &:hover {
             background: @Blue_bgColor_hover;
           }
         }
-        &.active{
-          > a{
+
+        &.active {
+          >a {
             background: @Blue_bgColor_active;
             color: #fff;
           }
         }
-        &.disabled > a:hover{
-            background: none;
+
+        &.disabled>a:hover {
+          background: none;
         }
       }
     }
-    .paginationjs-go-input{
-      > input[type="text"]{
+
+    .paginationjs-go-input {
+      >input[type="text"] {
         border-color: @Blue_color_border;
       }
     }
-    .paginationjs-go-button{
-      > input[type="button"]{
+
+    .paginationjs-go-button {
+      >input[type="button"] {
         background: @Blue_bgColor_active;
         border-color: @Blue_color_border;
         color: #fff;
-        &:hover{
+
+        &:hover {
           background-color: @Blue_bgColor_buttonHover;
         }
       }
@@ -316,39 +358,46 @@
   }
 }
 
-.paginationjs{
-  &.paginationjs-theme-green{
-    .paginationjs-pages{
-      li{
+.paginationjs {
+  &.paginationjs-theme-green {
+    .paginationjs-pages {
+      li {
         border-color: @Green_color_border;
-        > a{
+
+        >a {
           color: @Green_color_font;
-          &:hover{
+
+          &:hover {
             background: @Green_bgColor_hover;
           }
         }
-        &.active{
-          > a{
+
+        &.active {
+          >a {
             background: @Green_bgColor_active;
             color: #fff;
           }
         }
-        &.disabled > a:hover{
+
+        &.disabled>a:hover {
           background: none;
         }
       }
     }
-    .paginationjs-go-input{
-      > input[type="text"]{
+
+    .paginationjs-go-input {
+      >input[type="text"] {
         border-color: @Green_color_border;
       }
     }
-    .paginationjs-go-button{
-      > input[type="button"]{
+
+    .paginationjs-go-button {
+      >input[type="button"] {
         background: @Green_bgColor_active;
         border-color: @Green_color_border;
         color: #fff;
-        &:hover{
+
+        &:hover {
           background-color: @Green_bgColor_buttonHover;
         }
       }
@@ -356,39 +405,46 @@
   }
 }
 
-.paginationjs{
-  &.paginationjs-theme-yellow{
-    .paginationjs-pages{
-      li{
+.paginationjs {
+  &.paginationjs-theme-yellow {
+    .paginationjs-pages {
+      li {
         border-color: @Yellow_color_border;
-        > a{
+
+        >a {
           color: @Yellow_color_font;
-          &:hover{
+
+          &:hover {
             background: @Yellow_bgColor_hover;
           }
         }
-        &.active{
-          > a{
+
+        &.active {
+          >a {
             background: @Yellow_bgColor_active;
             color: #fff;
           }
         }
-        &.disabled > a:hover{
+
+        &.disabled>a:hover {
           background: none;
         }
       }
     }
-    .paginationjs-go-input{
-      > input[type="text"]{
+
+    .paginationjs-go-input {
+      >input[type="text"] {
         border-color: @Yellow_color_border;
       }
     }
-    .paginationjs-go-button{
-      > input[type="button"]{
+
+    .paginationjs-go-button {
+      >input[type="button"] {
         background: @Yellow_bgColor_active;
         border-color: @Yellow_color_border;
         color: #fff;
-        &:hover{
+
+        &:hover {
           background-color: @Yellow_bgColor_buttonHover;
         }
       }
@@ -396,39 +452,46 @@
   }
 }
 
-.paginationjs{
-  &.paginationjs-theme-red{
-    .paginationjs-pages{
-      li{
+.paginationjs {
+  &.paginationjs-theme-red {
+    .paginationjs-pages {
+      li {
         border-color: @Red_color_border;
-        > a{
+
+        >a {
           color: @Red_color_font;
-          &:hover{
+
+          &:hover {
             background: @Red_bgColor_hover;
           }
         }
-        &.active{
-          > a{
+
+        &.active {
+          >a {
             background: @Red_bgColor_active;
             color: #fff;
           }
         }
-        &.disabled > a:hover{
+
+        &.disabled>a:hover {
           background: none;
         }
       }
     }
-    .paginationjs-go-input{
-      > input[type="text"]{
+
+    .paginationjs-go-input {
+      >input[type="text"] {
         border-color: @Red_color_border;
       }
     }
-    .paginationjs-go-button{
-      > input[type="button"]{
+
+    .paginationjs-go-button {
+      >input[type="button"] {
         background: @Red_bgColor_active;
         border-color: @Red_color_border;
         color: #fff;
-        &:hover{
+
+        &:hover {
           background-color: @Red_bgColor_buttonHover;
         }
       }
@@ -437,46 +500,51 @@
 }
 
 /* Hacks for IE 6~9 */
-.paginationjs{
-  .paginationjs-pages{
-    li{
-      > a{
+.paginationjs {
+  .paginationjs-pages {
+    li {
+      >a {}
 
-      }
-      &.paginationjs-next{
+      &.paginationjs-next {
         *border-right: 1px solid @borderColor;
         border-right: 1px solid #aaa\0;
       }
     }
   }
-  .paginationjs-go-input{
+
+  .paginationjs-go-input {
     *margin-left: 5px;
     margin-left: 5px\0;
-    > input[type="text"]{
+
+    >input[type="text"] {
       *line-height: @N_inputHeight;
       line-height: 28px\0;
       *vertical-align: middle;
       vertical-align: middle\0;
     }
   }
-  .paginationjs-go-button{
+
+  .paginationjs-go-button {
     *margin-left: 5px;
     margin-left: 5px\0;
-    > input[type="button"]{
+
+    >input[type="button"] {
       *vertical-align: middle;
       vertical-align: middle\0;
     }
   }
-  &.paginationjs-big{
-    .paginationjs-pages{
-      li{
-        > a{
+
+  &.paginationjs-big {
+    .paginationjs-pages {
+      li {
+        >a {
           line-height: 36px\0;
         }
       }
     }
-    .paginationjs-go-input{
-      > input[type="text"]{
+
+    .paginationjs-go-input {
+      >input[type="text"] {
         *height: 35px;
         height: 36px\0;
         *line-height: 36px;

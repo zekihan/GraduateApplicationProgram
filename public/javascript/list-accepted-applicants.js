@@ -251,7 +251,7 @@ function confirmAndAnnounce(applicants) {
         firebase.database().ref("departments/" + dept).update(update);
 
         window.location.href = "list-departments";
-    }else{
+    } else {
         alert("No applicants in the department to announce!");
     }
 }

@@ -3,29 +3,29 @@ function getDepartments() {
         var allDepartments = new Array();
         var departmentsPrograms = new Array();
         departments.forEach(function (department) {
-            if(department.child("acceptanceDone").val()){
+            if (department.child("acceptanceDone").val()) {
                 var departmentsPrograms = new Array();
                 department.child("program").forEach(function (program) {
-                var degree = program.key;
-                program.forEach(function (programId) {
-                    //If the program is accepting students
-                    if (programId.child("isTaking").val() === 1) {
-                        departmentsPrograms.push({
-                            degree: prettyFormat(program.key),
-                            id: programId.key,
-                            name: programId.child("name").val()
-                        });
-                    }
+                    var degree = program.key;
+                    program.forEach(function (programId) {
+                        //If the program is accepting students
+                        if (programId.child("isTaking").val() === 1) {
+                            departmentsPrograms.push({
+                                degree: prettyFormat(program.key),
+                                id: programId.key,
+                                name: programId.child("name").val()
+                            });
+                        }
+                    });
                 });
-            });
-            allDepartments.push({
-                departmentName: department.child("name").val(),
-                isConfirmed: department.child("confirmed").val(),
-                departmentId: department.key,
-                programs: departmentsPrograms
-            });
+                allDepartments.push({
+                    departmentName: department.child("name").val(),
+                    isConfirmed: department.child("confirmed").val(),
+                    departmentId: department.key,
+                    programs: departmentsPrograms
+                });
             }
-            
+
         });
         displayDepartments(allDepartments);
     });
@@ -44,13 +44,13 @@ function prettyFormat(output) {
     }
 }
 
-function containsDegree(departmentPrograms,degreeType) {
-    result=false;
+function containsDegree(departmentPrograms, degreeType) {
+    result = false;
     departmentPrograms.forEach(function (program) {
-                if (program.degree == degreeType) {
-                    result=true;
-                    return;
-                }
+        if (program.degree == degreeType) {
+            result = true;
+            return;
+        }
     });
     return result;
 
@@ -101,14 +101,15 @@ function displayDepartments(departments) {
         var programName = document.createElement("P");
         var programText = "Programs : ";
 
-        var numberDegree=0;
-        var departmentPrograms=department.programs;
-        if (containsDegree(departmentPrograms,"M.Sc")) {
+        var numberDegree = 0;
+        var departmentPrograms = department.programs;
+        if (containsDegree(departmentPrograms, "M.Sc")) {
             programText += "M.Sc";
             numberDegree++;
-        }  if (containsDegree(departmentPrograms,"PhD")) {
+        }
+        if (containsDegree(departmentPrograms, "PhD")) {
             if (numberDegree == 1) { // if M.Sc is added
-                programText +=" & ";
+                programText += " & ";
             }
             programText += "PhD";
             numberDegree++;
@@ -141,7 +142,7 @@ function displayDepartments(departments) {
             departmentRow.appendChild(confirmedIcon);
             departmentRow.appendChild(confirmedText);
 
-        //If applicants of that department are still waiting to be confirmed
+            //If applicants of that department are still waiting to be confirmed
         } else {
             var departmentLink = document.createElement("A");
             departmentLink.classList.add("details-link");
@@ -159,7 +160,7 @@ function displayDepartments(departments) {
     });
 
     var element = document.getElementById("spinner");
-        element.parentNode.removeChild(element);
+    element.parentNode.removeChild(element);
 }
 
 

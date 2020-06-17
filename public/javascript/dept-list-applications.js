@@ -62,7 +62,7 @@ function getApplicants(data, deptId, term) {
             });
         });
         displayApplicants(applicants);
-    }else{
+    } else {
         $("#applicant-container").html(`<h6 class="border-bottom border-gray pb-2 mb-0">Applications</h6>
         <div id="spinner" class="text-center">
             <div class="spinner-border mt-5" style="width: 2rem; height: 2rem;" role="status">

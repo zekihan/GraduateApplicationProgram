@@ -11,7 +11,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             pageRole = getCurrentPageRole();
             console.log(pageRole);
 
-            if(role !== pageRole){
+            if (role !== pageRole) {
                 signOut();
             }
         });
@@ -21,7 +21,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
 });
 
-function getCurrentPageRole(){
+function getCurrentPageRole() {
     var url = window.location.href;
     var i = url.indexOf("/users") + 7;
     url = url.slice(i, url.length)
@@ -31,7 +31,7 @@ function getCurrentPageRole(){
     console.log(roleStr);
 
     var role;
-    switch(roleStr) {
+    switch (roleStr) {
         case "applicant":
             role = 0;
             break;
@@ -45,7 +45,6 @@ function getCurrentPageRole(){
             console.log("invalid role from url detected");
             role = 0
             break;
-      }
-      return role;
+    }
+    return role;
 }
-

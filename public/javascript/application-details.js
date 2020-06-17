@@ -102,7 +102,7 @@ function getApplicantData() {
                     }).catch(function (error) {
                         //handle errors here
                     });
-                }else{
+                } else {
                     document.getElementById("all-documents").removeChild(document.getElementById("mastersTranscript"));
                 }
 
@@ -175,11 +175,11 @@ function getApplicantData() {
                 //elem.style.visibility = 'visible';
 
             });
-            
+
         }
-        
+
     });
-    
+
 
 }
 
@@ -201,32 +201,32 @@ function submitResult() {
 
     var verified = true;
 
-    if(document.getElementById("undergrad-checkbox") !== null){
+    if (document.getElementById("undergrad-checkbox") !== null) {
         verified = verified && (document.getElementById("undergrad-checkbox").checked);
     }
 
 
-    if(document.getElementById("purpose-checkbox") !== null){
+    if (document.getElementById("purpose-checkbox") !== null) {
         verified = verified && (document.getElementById("purpose-checkbox").checked);
     }
 
-    if(document.getElementById("englishexam-checkbox") !== null){
+    if (document.getElementById("englishexam-checkbox") !== null) {
         verified = verified && (document.getElementById("englishexam-checkbox").checked);
     }
 
-    if(document.getElementById("passport-checkbox") !== null){
+    if (document.getElementById("passport-checkbox") !== null) {
         verified = verified && (document.getElementById("passport-checkbox").checked);
     }
 
-    if(document.getElementById("permission-checkbox") !== null){
+    if (document.getElementById("permission-checkbox") !== null) {
         verified = verified && (document.getElementById("permission-checkbox").checked);
     }
 
-    if(document.getElementById("mastersdegree-checkbox") !== null){
+    if (document.getElementById("mastersdegree-checkbox") !== null) {
         verified = verified && (document.getElementById("mastersdegree-checkbox").checked);
     }
 
-    if(document.getElementById("ales-checkbox") !== null){
+    if (document.getElementById("ales-checkbox") !== null) {
         verified = verified && (document.getElementById("ales-checkbox").checked);
     }
 

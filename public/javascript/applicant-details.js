@@ -48,7 +48,7 @@ function getApplicantData() {
                 var referenceLetter2Path = snapshot.child('content/referenceLetters/1').val();
                 var undergradTranscriptPath = snapshot.child('content/undergradTranscript').val();
 
-                
+
                 if (referenceLetter1Path !== "#") {
                     firebase.storage().ref(referenceLetter1Path).getDownloadURL().then(function (url) {
                         document.getElementById("reference1").onclick = function () {
@@ -106,7 +106,7 @@ function getApplicantData() {
                     }).catch(function (error) {
                         //handle errors here
                     });
-                }else{
+                } else {
                     document.getElementById("all-documents").removeChild(document.getElementById("mastersTranscript"));
                 }
 

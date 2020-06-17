@@ -2,7 +2,7 @@ function getLogin() {
     location.href = "login.html";
 }
 
-function isPasswordValid(password){
+function isPasswordValid(password) {
     return (password.length >= 6);
 }
 
@@ -18,7 +18,7 @@ function signUp() {
         return false;
     }
 
-    if(!isPasswordValid(password)){
+    if (!isPasswordValid(password)) {
         $("#password-error").text("Password must be at least 6 characters long.");
         return false;
     }
@@ -113,7 +113,7 @@ function populateUser(uid, firstName, lastName, phone) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            
+
         }
     };
     xhr.open("POST", url, true);

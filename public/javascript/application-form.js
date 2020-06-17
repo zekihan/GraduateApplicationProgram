@@ -275,7 +275,7 @@ function getInfo() {
 function fillDepartment() {
     firebase.database().ref('departments').once('value').then(function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
-            if(childSnapshot.child("program").val()){
+            if (childSnapshot.child("program").val()) {
                 var deptId = childSnapshot.key;
                 var deptName = childSnapshot.child('name').val();
                 s = `<option id="${deptId}" value="${deptId}">${deptName}</option>`;

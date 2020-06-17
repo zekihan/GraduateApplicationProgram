@@ -17,10 +17,10 @@ function onLoad() {
 
     firebase.database().ref('applications/' + termInfo + '/' + department + '/' + applicationId).once('value').then(function (snapshot) {
 
-        if(snapshot.val() === null){
+        if (snapshot.val() === null) {
             window.location.href = "dept-list-applications";
         }
-        
+
         var departmentControl = snapshot.child('departmentControl');
         var content = snapshot.child('content');
         //Get applicant's personal information
@@ -43,15 +43,15 @@ function onLoad() {
         setDocumentLink(content.child('mastersTranscript').val(), 'mas-transcript-btn');
         setDocumentLink(content.child('referenceLetters/0').val(), 'ref-letter-btn');
     });
-        
+
 }
 
-function cancelInterview(){
+function cancelInterview() {
     firebase.database().ref('applications/' + termInfo + '/' + department + '/' + applicationId + '/departmentControl/interviewInfo').remove();
     window.location.reload();
 }
 
-function setInterview(){
+function setInterview() {
     getSetInterviewPage(applicationId, termInfo, department);
 }
 
@@ -63,8 +63,8 @@ function getSetInterviewPage(applicationId, term, department) {
     window.location.href = "set-interview.html" + queryString;
 }
 
-function setDocumentLink(path, buttonId){
-    if(path !== "#"){
+function setDocumentLink(path, buttonId) {
+    if (path !== "#") {
         firebase.storage().ref(path).getDownloadURL().then(function (url) {
             document.getElementById(buttonId).onclick = function () {
                 open(url);
@@ -84,7 +84,7 @@ function displayPersonalInfo(name, lastname, email, socialSecurityNo, isForeign,
 
     if (interviewInfo) {
         document.getElementById("interview-info").innerHTML = "Yes";
-    }else{
+    } else {
         document.getElementById("interview-info").innerHTML = "No";
     }
 }
@@ -95,9 +95,8 @@ function showSetInterviewButton(interview) {
         document.getElementById("cancel-interview-btn").disabled = false;
         document.getElementById("set-interview-btn").disabled = false;
 
-    } else{
+    } else {
         document.getElementById("set-interview-btn").disabled = false;
         document.getElementById("cancel-interview-btn").disabled = true;
     }
 }
-

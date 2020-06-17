@@ -2,155 +2,162 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Settings</title>
-    
-    <!-- Bootstrap core CSS -->
-    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Settings</title>
 
-    <!-- Custom styles for this template -->
-    <link href="../../styles/sidebar.css" rel="stylesheet">
-    
+  <!-- Bootstrap core CSS -->
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../styles/sidebar.css" rel="stylesheet">
+
 </head>
 
 <body onload="getUserInformation()">
-    <!-- Dashboard -->
-    <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">
-                <div class="row justify-content-start">
-                    <div class="col-3">
-                    <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
-                    </div>
-                    <div class="col-8">
-                    Izmir Institute of Technology
-                    </div>
-                </div>
+  <!-- Dashboard -->
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+        <div class="row justify-content-start">
+          <div class="col-3">
+            <img src="../../assets/iyte-logo.svg" alt="" style="width:50px">
+          </div>
+          <div class="col-8">
+            Izmir Institute of Technology
+          </div>
+        </div>
+      </div>
+
+      <div class="list-group list-group-flush">
+        <a href="grad-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="list-applications.html" class="list-group-item list-group-item-action bg-light">List Applications</a>
+        <a href="list-departments.html" class="list-group-item list-group-item-action bg-light">List Accepted
+          Applications</a>
+        <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <ul class="navbar-nav ml-1">
+          <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
+        </ul>
+
+        <ul class="navbar-nav ml-auto mt-1 mb-1">
+          <li class="nav-item active">
+            <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container-fluid">
+
+        <div class="row py-5 mt-2 justify-content-center">
+          <h2>Account Settings</h2>
+        </div>
+
+        <div class="row ml-3 mr-3">
+          <div class="col-md-5">
+            <div class="row justify-content-center">
+              <img src="../../assets/default-pp.png">
             </div>
-    
-            <div class="list-group list-group-flush">
-                <a href="grad-dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="list-applications.html" class="list-group-item list-group-item-action bg-light">List Applications</a>
-                <a href="list-departments.html" class="list-group-item list-group-item-action bg-light">List Accepted Applications</a>
-                <a href="settings.html" class="list-group-item list-group-item-action bg-light">Settings</a>
+            <div class="row justify-content-center">
+              <input type="text" readonly class="form-control-plaintext mr-5 ml-5" id="nameAndLastname"
+                style="text-align: center;">
+            </div>
+
+          </div>
+
+          <div class="col-md-6">
+
+            <ul class="list-group">
+              <li class="list-group-item">
+                <label for="inputEmail3">Email</label>
+                <div id="email-placeholder-container" class="progress"
+                  style="margin-top: 0.5rem; margin-bottom: -0.5rem;">
+                  <div id="email-placeholder" class="progress-bar" role="progressbar"
+                    style="width: 0%; background-color: grey;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                    0%</div>
+                </div>
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail">
+              </li>
+              <li class="list-group-item">
+                <label for="inputEmail3">Phone</label>
+                <div id="phone-placeholder-container" class="progress"
+                  style="margin-top: 0.5rem; margin-bottom: -0.5rem;">
+                  <div id="phone-placeholder" class="progress-bar" role="progressbar"
+                    style="width: 0%; background-color: grey;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                    0%</div>
+                </div>
+                <input type="text" readonly class="form-control-plaintext" id="staticPhone">
+              </li>
+
+            </ul>
+
+            <div class="other-infos infos-zone">
+              <div class="row">
+
+                <div class="col-auto mt-3">
+                  <button type="button" class="btn btn-secondary" onclick="changePhone()">Change Phone</button>
+                </div>
+
+                <div class="col-auto mt-3">
+                  <button type="button" class="btn btn-secondary" onclick="resetPassword()">Reset Password</button>
+                </div>
+
+                <div class="col-auto mt-3">
+                  <button type="button" class="btn btn-danger" onclick="deleteAccount()">Delete Your Account</button>
+                </div>
               </div>
-        </div>
-        <!-- /#sidebar-wrapper -->
-    
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-    
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <ul class="navbar-nav ml-1">
-                    <button class="btn btn-outline-secondary" id="menu-toggle">Menu</button>
-                </ul>
-                
-                <ul class="navbar-nav ml-auto mt-1 mb-1">
-                    <li class="nav-item active" >
-                        <button type="button" class="btn btn-outline-danger" onclick="signOut()">Sign out</button>
-                    </li>
-                </ul>
-            </nav>
-
-            <div class="container-fluid">
-
-                <div class="row py-5 mt-2 justify-content-center">
-                    <h2>Account Settings</h2>
-                </div>
-
-                <div class="row ml-3 mr-3">
-                    <div class="col-md-5">
-                        <div class="row justify-content-center">
-                            <img src="../../assets/default-pp.png">
-                        </div>
-                        <div class="row justify-content-center">
-                            <input type="text" readonly class="form-control-plaintext mr-5 ml-5" id="nameAndLastname" style="text-align: center;">
-                        </div>
-                        
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <label for="inputEmail3">Email</label>
-                                <div id="email-placeholder-container" class="progress" style="margin-top: 0.5rem; margin-bottom: -0.5rem;">
-                                    <div id="email-placeholder" class="progress-bar" role="progressbar" style="width: 0%; background-color: grey;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">0%</div>
-                                </div>
-                                <input type="text" readonly class="form-control-plaintext" id="staticEmail">
-                            </li>
-                            <li class="list-group-item">
-                                <label for="inputEmail3">Phone</label>
-                                <div id="phone-placeholder-container" class="progress" style="margin-top: 0.5rem; margin-bottom: -0.5rem;">
-                                    <div id="phone-placeholder" class="progress-bar" role="progressbar" style="width: 0%; background-color: grey;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">0%</div>
-                                  </div>
-                                <input type="text" readonly class="form-control-plaintext" id="staticPhone">
-                            </li>
-
-                          </ul>
-
-                        <div class="other-infos infos-zone">
-                                <div class="row">
-
-                                    <div class="col-auto mt-3">
-                                        <button type="button" class="btn btn-secondary" onclick="changePhone()">Change Phone</button>
-                                    </div>
-
-                                    <div class="col-auto mt-3">
-                                        <button type="button" class="btn btn-secondary"
-                                            onclick="resetPassword()">Reset Password</button>
-                                    </div>
-
-                                    <div class="col-auto mt-3">
-                                        <button type="button" class="btn btn-danger"
-                                            onclick="deleteAccount()">Delete Your Account</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                    
+              </form>
             </div>
-
+          </div>
         </div>
-        <!-- /#page-content-wrapper -->
+
+      </div>
 
     </div>
-    <!-- /#dashboard-wrapper -->
+    <!-- /#page-content-wrapper -->
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </div>
+  <!-- /#dashboard-wrapper -->
 
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="../../vendor/jquery/jquery.min.js"></script>
+  <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-database.js"></script>
-    <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
-    <script src="/__/firebase/init.js"></script>
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 
-    <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
-    <script src="https://apis.google.com/js/platform.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-database.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-storage.js"></script>
+  <script src="/__/firebase/init.js"></script>
 
-    <meta name="google-signin-client_id"
-        content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+  <script src="//connect.facebook.net/en_US/sdk.js?onload=onLoad"></script>
+  <script src="https://apis.google.com/js/platform.js"></script>
 
-    <script src="../../javascript/logout.js" defer></script>
-    <script src="../../javascript/check-login-state.js" defer></script>
-        
-    <script src="../../javascript/settings.js"></script>
-    
+  <meta name="google-signin-client_id"
+    content="682877338890-pt2fts6ts1hupjj4ph3duo00eq87t0eb.apps.googleusercontent.com">
+
+  <script src="../../javascript/logout.js" defer></script>
+  <script src="../../javascript/check-login-state.js" defer></script>
+
+  <script src="../../javascript/settings.js"></script>
+
 </body>
+
 </html>

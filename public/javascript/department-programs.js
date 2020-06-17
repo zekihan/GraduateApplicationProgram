@@ -1,13 +1,5 @@
-
-
-
-
-
-
-
-
 function getDepartmentPrograms() {
-    
+
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
 
@@ -17,45 +9,45 @@ function getDepartmentPrograms() {
             firebase.database().ref("departments/" + departmentId).once('value').then(function (snapshot) {
                 var department = snapshot.child("name").val();
                 displayTitle(department);
-            
+
             }).catch(function (error) {
                 console.log(error);
             });
 
 
-            var programArray=new Array();
+            var programArray = new Array();
             var userId = firebase.auth().currentUser.uid;
-            var userRef =firebase.database().ref("users/" + userId);
+            var userRef = firebase.database().ref("users/" + userId);
             userRef.once("value").then(function (user) {
-                var phDRef =  firebase.database().ref('departments/' + departmentId + '/program/phd');
-                var masterRef =  firebase.database().ref('departments/' + departmentId + '/program/masters');
+                var phDRef = firebase.database().ref('departments/' + departmentId + '/program/phd');
+                var masterRef = firebase.database().ref('departments/' + departmentId + '/program/masters');
                 masterRef.once("value").then(function (masterPrograms) {
-                      masterPrograms.forEach(function (program) {
-                        console.log("name masters: "+ program.child("name").val().toString());
+                    masterPrograms.forEach(function (program) {
+                        console.log("name masters: " + program.child("name").val().toString());
                         programArray.push({
-                        type:"MASTER",
-                        id:program.key,
-                        name: program.child("name").val(),
-                        isTaking: program.child("isTaking").val(),
-                        explanation:program.child("explanation").val()                          
-                      });
-                });
-                phDRef.once("value").then(function (phdPrograms) {
-                    phdPrograms.forEach(function (program) {
-                        console.log("name phd: "+ program.child("name").val().toString());
-                        programArray.push({
-                        type:"PHD",
-                        id:program.key,
-                        name: program.child("name").val(),
-                        isTaking: program.child("isTaking").val(),
-                        explanation:program.child("explanation").val()                       
+                            type: "MASTER",
+                            id: program.key,
+                            name: program.child("name").val(),
+                            isTaking: program.child("isTaking").val(),
+                            explanation: program.child("explanation").val()
+                        });
                     });
-              });
-              displayPrograms(programArray);
+                    phDRef.once("value").then(function (phdPrograms) {
+                        phdPrograms.forEach(function (program) {
+                            console.log("name phd: " + program.child("name").val().toString());
+                            programArray.push({
+                                type: "PHD",
+                                id: program.key,
+                                name: program.child("name").val(),
+                                isTaking: program.child("isTaking").val(),
+                                explanation: program.child("explanation").val()
+                            });
+                        });
+                        displayPrograms(programArray);
+                    });
                 });
             });
-        });
-    }
+        }
     });
 }
 
@@ -67,7 +59,7 @@ function parseDepartmentId() {
     return queries[1];
 }
 
-function displayTitle(department){
+function displayTitle(department) {
     document.getElementById("department-title").innerHTML = department + " Department Available Programs";
 }
 
@@ -80,7 +72,7 @@ function displayPrograms(programs) {
     ol.style.listStyleType = "none";
 
     //Common term and department information
-   // var term = applicants[0].term;
+    // var term = applicants[0].term;
     //var department = applicants[0].department;
 
     programs.forEach(function (program) {
@@ -136,12 +128,12 @@ function displayPrograms(programs) {
 
         innerDiv.appendChild(innerMostDiv);
 
-        
+
         var span = document.createElement("SPAN");
         span.classList.add("d-block");
-        if(program.explanation)
+        if (program.explanation)
             span.innerHTML = program.explanation;
-        else{
+        else {
             span.innerHTML = "No explanation provided."
         }
         innerDiv.appendChild(span);
@@ -149,8 +141,8 @@ function displayPrograms(programs) {
         outerDiv.appendChild(innerDiv);
 
         li.appendChild(outerDiv);
-        
-        
+
+
 
         /* Acceptance checkbox 
         var containerLabel = document.createElement("LABEL");
@@ -160,7 +152,7 @@ function displayPrograms(programs) {
         checkbox.style = "margin-right: 4px;"
         containerLabel.appendChild(checkbox);
         */
-        
+
         /*
        var containerLabel = document.createElement("LABEL");
        var innerSpan = document.createElement("SPAN");
@@ -170,9 +162,9 @@ function displayPrograms(programs) {
        innerSpan.innerHTML = "Remove Program";
        containerLabel.appendChild(innerSpan);
         */
-       var containerLabel = document.createElement("LABEL");
+        var containerLabel = document.createElement("LABEL");
 
-       outerDiv.appendChild(containerLabel);
+        outerDiv.appendChild(containerLabel);
 
         ol.appendChild(li);
     });

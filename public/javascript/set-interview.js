@@ -1,4 +1,3 @@
-
 //Decode the URL and get the parameters
 var queryString = decodeURIComponent(window.location.search);
 queryString = queryString.substring(1);
@@ -15,7 +14,7 @@ department = (queries[2].split("="))[1];
 console.log("application id is " + applicationId);
 
 firebase.database().ref('applications/' + termInfo + '/' + department + '/' + applicationId).once("value").then(function (snapshot) {
-    if(snapshot.val() === null){
+    if (snapshot.val() === null) {
         window.location.href = "dept-list-applications";
     }
     var name = snapshot.child('content/name').val();
@@ -24,20 +23,20 @@ firebase.database().ref('applications/' + termInfo + '/' + department + '/' + ap
 });
 
 
-function setInterview(){
+function setInterview() {
 
     var placeIn = $('#place-field').val();
     var dateIn = $('#date-picker').val();
     var timeIn = $('#time-picker').val();
-    
+
     //TODO: check fields left blank or not?
-    
-    firebase.database().ref('applications/' + termInfo + '/' + department + '/' + applicationId + '/departmentControl/interviewInfo').set ({
+
+    firebase.database().ref('applications/' + termInfo + '/' + department + '/' + applicationId + '/departmentControl/interviewInfo').set({
         date: dateIn,
         time: timeIn,
-        place : placeIn
+        place: placeIn
     });
-    
+
     getApplicationInfoWithId(applicationId, termInfo, department);
 }
 

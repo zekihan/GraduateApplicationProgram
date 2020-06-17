@@ -3,7 +3,7 @@ const functions = require('firebase-functions');
 var admin = require("firebase-admin");
 
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey('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');
+sgMail.setApiKey("sengrid-api");
 
 exports.sendAcceptanceEmail = functions.https.onRequest(async (request, response) => {
     const myURL = new URL("https://www.xyz.com" + request.url);
@@ -21,12 +21,12 @@ exports.sendAcceptanceEmail = functions.https.onRequest(async (request, response
         .then((snaps) => {
             snaps.forEach((snap) => {
                 var data = {
-                    email:snap.child('content').child('email').val(),
-                    name:snap.child('content').child('name').val(),
-                    lastname:snap.child('content').child('lastName').val(),
-                    program:snap.child('content').child('program').val(),
-                    applied:snap.child('content').child('appliedProgram').val(),
-                    linkToMyapplication:'https://grad-application.web.app/users/applicant/my-application'
+                    email: snap.child('content').child('email').val(),
+                    name: snap.child('content').child('name').val(),
+                    lastname: snap.child('content').child('lastName').val(),
+                    program: snap.child('content').child('program').val(),
+                    applied: snap.child('content').child('appliedProgram').val(),
+                    linkToMyapplication: 'https://grad-application.web.app/users/applicant/my-application'
                 }
                 const msg = {
                     to: data.email,
@@ -39,7 +39,7 @@ exports.sendAcceptanceEmail = functions.https.onRequest(async (request, response
                         applied: data.applied,
                         email: data.email,
                         linkToMyapplication: data.linkToMyapplication
-                     }
+                    }
                 };
                 sgMail.send(msg);
             });

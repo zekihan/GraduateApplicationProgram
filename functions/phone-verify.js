@@ -19,7 +19,7 @@ exports.sendCode = functions.https.onRequest(async (request, res) => {
     console.log(request.body)
 
     const identityToolkit = google.identitytoolkit({
-        auth: 'AIzaSyA547mqKiE8KaPBOhyzRzwmaqVvlefeTgY',
+        auth: 'google-api',
         version: 'v3'
     });
 
@@ -47,7 +47,7 @@ exports.verifyCode = functions.https.onRequest(async (request, res) => {
     console.log(request.body)
 
     const identityToolkit = google.identitytoolkit({
-        auth: 'AIzaSyA547mqKiE8KaPBOhyzRzwmaqVvlefeTgY',
+        auth: 'google-api',
         version: 'v3',
     });
 
