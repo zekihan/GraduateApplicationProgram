@@ -1,4 +1,4 @@
-# Graduate Schooll Application Program
+# Graduate School Application Program
 
 ***
 
